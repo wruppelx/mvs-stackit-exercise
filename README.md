@@ -1,0 +1,3 @@
+# mvs-stackit-praktikum-bachelorarbeit
+
+Dieses Repository beinhaltet Skripte und Konfigurationsdateien zur Erstellung, Konfiguration und Bereinigung einer Übungs- und Versuchs­umgebung für praktische Untersuchungen im Bereich Cloud-basiertes Video-Transcoding und Content-Auslieferung. Der Fokus liegt auf der Nutzung von Object-Storage- und CDN-Diensten der Anbieter StackIT und Fastly. Ergänzend dazu enthält das Repository die zugehörige technische Dokumentation des Workflows sowie der eingesetzten Komponenten. Das Repository entsteht im Rahmen der Bachelorarbeit im Studiengang Medientechnik an der Hochschule RheinMain und dient der strukturierten Umsetzung sowie Dokumentation der experimentellen Anteile der Arbeit.

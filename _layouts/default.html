@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{ page.title }}</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<aside class="sidebar">
+
+<h2>Navigation</h2>
+
+<ul>
+
+<li>
+<a href="{{ '/' | relative_url }}">Überblick</a>
+</li>
+
+<!-- Versuch 1 -->
+
+<li>
+
+<details>
+<summary>Versuch 1</summary>
+
+<ul class="subnav">
+
+<li>
+<a href="{{ '/docs/Versuch1/00-einleitung.html' | relative_url }}">
+Einleitung
+</a>
+</li>
+
+<li>
+<a href="{{ '/docs/Versuch1/01-einfuehrung.html' | relative_url }}">
+Einführung
+</a>
+</li>
+
+<li>
+<a href="{{ '/docs/Versuch1/02-BucketCreation.html' | relative_url }}">
+Bucket Creation
+</a>
+</li>
+
+<li>
+<a href="{{ '/docs/Versuch1/03-VorbereitungTranscodierung.html' | relative_url }}">
+Vorbereitung Transcodierung
+</a>
+</li>
+
+<li>
+<a href="{{ '/docs/Versuch1/04-ffmpegtranscode.html' | relative_url }}">
+FFmpeg Transcoding
+</a>
+</li>
+
+<li>
+<a href="{{ '/docs/Versuch1/05-fazit stackit.html' | relative_url }}">
+Fazit
+</a>
+</li>
+
+</ul>
+
+</details>
+
+</li>
+
+<!-- Versuch 2 -->
+
+<li>
+
+<details>
+<summary>Versuch 2</summary>
+
+<ul class="subnav">
+
+<li>
+<a href="{{ '/docs/Versuch2/01-einfuehrung.html' | relative_url }}">
+Einführung
+</a>
+</li>
+
+<li>
+<a href="{{ '/docs/Versuch2/02-property.html' | relative_url }}">
+Property
+</a>
+</li>
+
+<li>
+<a href="{{ '/docs/Versuch2/03-inhalte_abrufen.html' | relative_url }}">
+Inhalte abrufen
+</a>
+</li>
+
+<li>
+<a href="{{ '/docs/Versuch2/04-fazit.html' | relative_url }}">
+Fazit
+</a>
+</li>
+
+</ul>
+
+</details>
+
+</li>
+
+<!-- Versuch 3 -->
+
+<li>
+
+<details>
+<summary>Versuch 3</summary>
+
+<ul class="subnav">
+
+<li>
+<a href="{{ '/docs/Versuch3/01-einfuehrung.html' | relative_url }}">
+Einführung
+</a>
+</li>
+
+<li>
+<a href="{{ '/docs/Versuch3/02-Ingest_Analyse.html' | relative_url }}">
+Ingest Analyse
+</a>
+</li>
+
+<li>
+<a href="{{ '/docs/Versuch3/03-CDN Im Realbetrieb.html' | relative_url }}">
+CDN im Realbetrieb
+</a>
+</li>
+
+<li>
+<a href="{{ '/docs/Versuch3/04-Automatisierungsbeispiel.html' | relative_url }}">
+Automatisierungsbeispiel
+</a>
+</li>
+
+<li>
+<a href="{{ '/docs/Versuch3/05-fazit.html' | relative_url }}">
+Fazit
+</a>
+</li>
+
+</ul>
+
+</details>
+
+</li>
+
+</ul>
+
+</aside>
+
+<main class="content">
+
+<div class="page-container">
+
+{% if page.title %}
+<h1 class="page-title">{{ page.title }}</h1>
+{% endif %}
+
+{{ content }}
+
+</div>
+
+</main>
+
+</div>
+
+</body>
+</html>

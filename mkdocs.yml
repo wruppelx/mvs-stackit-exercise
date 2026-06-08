@@ -1,0 +1,62 @@
+site_name: Video-on-Demand (STACKIT/Fastly)
+site_url: https://wruppelx.github.io/mvs-stackit-exercise
+repo_url: https://github.com/wruppelx/mvs-stackit-exercise
+edit_uri: ""
+theme:
+  name: material
+  language: de
+  features:
+    - toc.integrate
+    - navigation.top
+    - navigation.footer
+    - content.code.copy
+  logo: assets/logo_hsrm_weiss.svg
+  favicon: assets/favicon.png
+  palette:
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Umschalten zu Lightmode
+      primary: red
+      accent: red
+
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch
+        name: Umschalten zu Darkmode
+      primary: red
+      accent: red
+
+markdown_extensions:
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+  - footnotes
+  - pymdownx.critic
+
+plugins:
+  - search:
+      lang: de
+
+nav:
+  - Übersicht: index.md
+  - Einleitung: einleitung.md
+  - Versuch 1:
+    - Einführung Versuch 1: versuch1/01-einfuehrung.md
+    - Bucket Creation: versuch1/02-BucketCreation.md
+    - Vorbereitung Transcodierung: versuch1/VorbereitungTranscodierung.md
+    - Transcodierung: versuch1/04-ffmpegtranscode.md
+    - Fazit: versuch1/05-fazit.md
+  - Versuch 2:
+    - Einführung Versuch 2: versuch2/01-einfuehrung.md
+    - CDN Service: versuch2/02-service.md
+    - Caching: versuch2/03-inhalte_abrufen.md
+    - Abrufzeit: versuch2/04-abrufzeit.md
+    - Fazit: versuch2/05-fazit.md
+  - Versuch 3:
+    - Einführung Versuch 3: versuch3/01-einfuehrung.md
+    - Ingestanalyse: versuch3/02-Ingest_Analyse.md
+    - CDN im Realbetrieb: versuch3/03-CDNRealbetrieb.md
+    - Automatisierung: versuch3/04-Automatisierungsbeispiel.md
+    - Fazit: versuch3/05-fazit.md
