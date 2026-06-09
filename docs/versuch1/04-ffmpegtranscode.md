@@ -19,9 +19,11 @@ Zur Verbindugn werden wieder ihre Keys benötigt, welche Sie sich notiert haben 
 
 
 !!! question "Frage 1.4"
-  Was passiert technisch, wenn der zuvor ausgeführte Befehl eingegeben wird?<br>
-  Beschreiben Sie, welche Komponenten beteiligt sind und welche Aktionen im Hintergrund ablaufen.
-  Gehen Sie dabei insbesondere darauf ein, wie der Befehl mit dem Betriebssystem bzw. der Cloud-Infrastruktur interagiert.
+    Was passiert technisch, wenn der zuvor ausgeführte Befehl eingegeben wird?
+
+    Beschreiben Sie, welche Komponenten beteiligt sind und welche Aktionen im Hintergrund ablaufen.
+
+    Gehen Sie dabei insbesondere darauf ein, wie der Befehl mit dem Betriebssystem bzw. der Cloud-Infrastruktur interagiert.
 
 Nach erfolgreicher Anmeldung befindet man sich auf dem Linux-System der virtuellen Maschine und kann dort weitere Software installieren und ausführen.
 
@@ -328,16 +330,16 @@ cat hls_output/master.m3u8
 ![S3 Dashboard](../assets/catinfo1.jpg)
 
 !!! question "Frage 1.5"
-  Analysieren Sie die Ausgabe der Datei <code>master.m3u8</code>, die mit dem
-  Befehl <code>cat</code> angezeigt wurde.<br><br>
+    Analysieren Sie die Ausgabe der Datei <code>master.m3u8</code>, die mit dem
+    Befehl <code>cat</code> angezeigt wurde.
 
-  Erläutern Sie, welche Informationen in der Manifestdatei enthalten sind und
-  welche Bedeutung die einzelnen Einträge (z. B. <code>#EXT</code>-Tags und
-  Segmentreferenzen) für die Wiedergabe des Videos haben.<br><br>
+    Erläutern Sie, welche Informationen in der Manifestdatei enthalten sind und
+    welche Bedeutung die einzelnen Einträge (z. B. <code>#EXT</code>-Tags und
+    Segmentreferenzen) für die Wiedergabe des Videos haben.
 
-  Gehen Sie dabei insbesondere darauf ein, wie das Manifest den Aufbau des
-  Videostreams beschreibt und warum die eigentlichen Mediendaten nicht direkt
-  in der Manifestdatei enthalten sind.
+    Gehen Sie dabei insbesondere darauf ein, wie das Manifest den Aufbau des
+    Videostreams beschreibt und warum die eigentlichen Mediendaten nicht direkt
+    in der Manifestdatei enthalten sind.
 
 
 ## Einspeisung der Manifest- und Segmentdateien in den STACKIT Object Storage

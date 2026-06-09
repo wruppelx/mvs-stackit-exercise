@@ -126,5 +126,5 @@ s3cmd put PFAD_ZUR_DATEI s3://IHR_BUCKETNAME/
 **Auf der Weboberfläche unter dem dem Reiter Bucket wird diese Datei nicht angezeigt!**
 
 !!! question "Frage 1.2"
-    Wie können Sie nun herausfinden ob der Upload wie geplant funktioniert hat? Recherchieren Sie nach dem benötigten Command und tragen Sie diesen in ihre Abgabemappe ein
+    Wie können Sie nun herausfinden, ob der Upload wie geplant funktioniert hat? Recherchieren Sie nach dem benötigten Command und tragen Sie diesen in ihre Abgabemappe ein
 
