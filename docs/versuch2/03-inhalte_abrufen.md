@@ -42,21 +42,12 @@ curl.exe -I "https://<username>.global.ssl.fastly.net/testvideo_1080p.mp4"
 
 ![ObjectSTorage](../assets/Versuch2/2ndcall.jpg)
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 10:
-  </span><br>
+!!! question "Frage 2.3"
   <ul>
     <li>Woran lässt sich erkennen, dass die Datei beim zweiten Abruf aus dem Cache ausgeliefert wurde?</li>
     <li>Welche Bedeutung haben die Header <code>X-Cache</code> und <code>Age</code>?</li>
     <li>Warum sind in der Antwort weiterhin Header des Origin-Servers sichtbar?</li>
   </ul>
-</div>
 
 # Wiedergabe des HLS-Streams (STACKIT + Fastly)
 

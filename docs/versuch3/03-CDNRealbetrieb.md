@@ -17,16 +17,7 @@ Eine technische Umsetzung ist **nicht erforderlich**.
 
 # Kontext für die Recherche
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 12:
-  </span><br><br>
-
+!!! question "Frage 3.2"
   Sie betreiben das im Versuch aufgebaute Video-on-Demand-System produktiv.
   Recherchieren Sie, wie ein CDN wie <b>Fastly</b> in den folgenden Situationen
   unterstützen kann.
@@ -52,12 +43,4 @@ Eine technische Umsetzung ist **nicht erforderlich**.
 
   **Geben Sie die verwendeten Quellen an.**
 
-</div>
 
----
-
-⬅️ **Vorheriges Kapitel:**  
-[Ingest Analyse](02-Ingest_Analyse.md)
-
-➡️ **Nächstes Kapitel:**  
-[Automatisierungsbeispiel](04-Automatisierungsbeispiel.md)

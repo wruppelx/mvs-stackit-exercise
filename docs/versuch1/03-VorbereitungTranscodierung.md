@@ -43,17 +43,8 @@ Die jeweilige Ressource wird dadurch automatisch Teil des Netzwerks.
 
 Eine separate Kopplung oder zusätzliche Konfiguration des Netzwerks ist nicht erforderlich.
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 3:
-  </span><br>
+!!! question "Frage 1.3"
   Überprüfen Sie den Ihnen zugewiesenen Adressbereich, die konfigurierten DNS-Server sowie die Routing-Tabelle. Dokumentieren Sie Ihre Ergebnisse in der Abgabemappe.<br>
-</div>
 
 
 ## SSH-Schlüssel für den Serverzugang erstellen

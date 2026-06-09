@@ -42,15 +42,7 @@ curl.exe -w "TTFB CDN: %{time_starttransfer}`n" -o NUL -s `
 https://leonueberholz.global.ssl.fastly.net/testvideo_1080p.mp4
 ```
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 11:
-  </span><br>
+!!! question "Frage 2.4"
   <ul>
     <li>Messen Sie die Time-to-First-Byte (TTFB) für jede transcodierte Version
         (<code>1080p</code>, <code>720p</code>, <code>480p</code>) über das CDN.</li>
@@ -58,7 +50,6 @@ https://leonueberholz.global.ssl.fastly.net/testvideo_1080p.mp4
     <li>Berechnen Sie für jede Auflösung den Median der gemessenen TTFB-Werte.</li>
     <li>Vergleichen Sie die Mediane der verschiedenen Auflösungen.</li>
   </ul>
-</div>
 
 **Das sollte dann so aussehen:**
 

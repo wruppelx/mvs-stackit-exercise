@@ -167,16 +167,7 @@ testvideo_460p.mp4
 ```
 **Kopieren Sie sich die Ausgabe in ein separates Textdokument**
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 10: Vergleich der Transcoding-Ergebnisse
-  </span><br><br>
-
+!!! question "Frage 3.1: Vergleich der Transcoding-Ergebnisse"
   Analysieren Sie die Ausgaben von <code>ffprobe</code> für die folgenden Dateien:
   <ul>
     <li><code>testvideo_1080p.mp4</code></li>
@@ -195,7 +186,6 @@ testvideo_460p.mp4
   <b>Hinweis:</b><br>
   Nutzen Sie ausschließlich die mit <code>ffprobe</code> ermittelten Werte.
   Eigene Annahmen ohne Messwerte sind kenntlich zu machen.
-</div>
 
 
 ![S3 Quellpfad](../assets/versuch3/s3_quellpfad.png)

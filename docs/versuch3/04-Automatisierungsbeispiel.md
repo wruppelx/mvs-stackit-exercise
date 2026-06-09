@@ -68,16 +68,7 @@ s3cmd get s3://<DeinBucketname>/testvideo_1080p.mp4 testvideo_1080p.mp4
 s3cmd ls s3://leonueberholz-4567 > bucket_state_before.txt
 ```
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 13
-  </span><br><br>
-
+<!!! question "Frage 3.3"
   Betrachten Sie folgenden Befehl:
 
   <pre><code>
@@ -90,7 +81,6 @@ s3cmd ls s3://leonueberholz-4567 > bucket_state_before.txt
     <li>Was der Befehl genau bewirkt</li>
     <li>Warum die Ausgabe in eine Datei umgeleitet wird</li>
   </ul>
-</div>
 
 
 ### Schritt 3: Datei im Object Storage ändern (Ingest simulieren)
@@ -221,16 +211,7 @@ das CDN konsistent auf Anfragen reagiert
 
 der Cache sich selbst aktualisiert, sobald neue Inhalte angefragt werden
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 14: Automatische Reaktion im CDN-Workflow
-  </span><br><br>
-
+!!! question "Frage 3.4: Automatische Reaktion im CDN-Workflow"
   In diesem Versuch wurde bewusst <b>keine</b> Cloud Function,
   <b>kein</b> Event-Trigger und <b>kein</b> serverseitiger Automatisierungsdienst
   (z.&nbsp;B. AWS Lambda) eingesetzt.<br><br>
@@ -256,14 +237,12 @@ der Cache sich selbst aktualisiert, sobald neue Inhalte angefragt werden
   </ul>
 
   <br>
-  Aufgabe 15:
-  <br>
+!!! question "Frage 3.5"
   <b>Bewerten Sie, warum dieses einfache Reaktionsmodell in der Praxis
   für viele Video-on-Demand-Workflows ausreichend ist</b>
   und in welchen Fällen eine explizite Automatisierung (z.&nbsp;B. mit Triggern)
   dennoch sinnvoll wäre.
 
-</div>
 
 ---
 

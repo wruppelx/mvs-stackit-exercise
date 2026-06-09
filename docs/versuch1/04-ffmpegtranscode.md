@@ -18,19 +18,10 @@ ssh -i <PFAD_ZUM_PRIVATE_KEY> ubuntu@<PUBLIC-IP-DER-VM>
 Zur Verbindugn werden wieder ihre Keys benötigt, welche Sie sich notiert haben sollten. Geben Sie diese dort ein!
 
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 4:
-  </span><br>
+!!! question "Frage 1.4"
   Was passiert technisch, wenn der zuvor ausgeführte Befehl eingegeben wird?<br>
   Beschreiben Sie, welche Komponenten beteiligt sind und welche Aktionen im Hintergrund ablaufen.
   Gehen Sie dabei insbesondere darauf ein, wie der Befehl mit dem Betriebssystem bzw. der Cloud-Infrastruktur interagiert.
-</div>
 
 Nach erfolgreicher Anmeldung befindet man sich auf dem Linux-System der virtuellen Maschine und kann dort weitere Software installieren und ausführen.
 
@@ -336,15 +327,7 @@ cat hls_output/master.m3u8
 
 ![S3 Dashboard](../assets/catinfo1.jpg)
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 5:
-  </span><br>
+!!! question "Frage 1.5"
   Analysieren Sie die Ausgabe der Datei <code>master.m3u8</code>, die mit dem
   Befehl <code>cat</code> angezeigt wurde.<br><br>
 
@@ -355,7 +338,6 @@ cat hls_output/master.m3u8
   Gehen Sie dabei insbesondere darauf ein, wie das Manifest den Aufbau des
   Videostreams beschreibt und warum die eigentlichen Mediendaten nicht direkt
   in der Manifestdatei enthalten sind.
-</div> 
 
 
 ## Einspeisung der Manifest- und Segmentdateien in den STACKIT Object Storage
@@ -434,21 +416,12 @@ ls -lh testvideo_*.mp4
 
 
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 6:
-  </span><br>
+!!! question "Frage 1.6"
   Fertigen Sie einen Screenshot der abschließenden <em>libx264</em>-Ausgabe an, die nach dem Transcodierungsvorgang in der Konsole angezeigt wird.
   Interpretieren Sie anhand dieser Ausgabe, wie der Encoder die Videodaten verarbeitet hat.
   Gehen Sie dabei insbesondere auf die Verteilung von <em>I-, P- und B-Frames</em>, die angezeigten
   <em>QP-Werte</em> sowie die resultierende durchschnittliche Bitrate ein und erläutern Sie,
   was diese Informationen über Qualität, Komplexität und Effizienz der Transcodierung aussagen.
-</div>
 
 
 **Wiederhholen SIe diesen Befehl bitte auch für 720p und 480p. Nehmen Sie sich den obrigen Befehl für die 1080p COdierung als Hilfe**
@@ -484,12 +457,7 @@ s3cmd put testvideo_480p.mp4 s3://<DEINBUCKETNAME>/ \
   --host-bucket="%(bucket).object.storage.eu01.onstackit.cloud"
 ```
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
+!!! question "Frage 1.7"
   <span style="font-size:1.1em;">
      <strong>Fleißaufgabe:</strong>
   </span><br>
@@ -498,7 +466,6 @@ s3cmd put testvideo_480p.mp4 s3://<DEINBUCKETNAME>/ \
   Erläutern Sie anhand des verwendeten Befehls, wie mithilfe von
   <code>--include</code> und <code>--exclude</code> gezielt nur bestimmte Dateien
   (z. B. alle transcodierten Versionen eines Videos) übertragen werden.
-</div>
 
 
 **Das Ergebnis sollte so aussehen:**
@@ -577,16 +544,7 @@ MediaInfo zeigt unter anderem folgende Parameter an:
 **Fertigen Sie bitte einen Screenshot der verschiedenen transcodierten Versionen an und betten Sie diese in ihre Abgabemappe ein**
 
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 7:
-  </span><br>
-  
+!!! question "Frage 1.8"
   **Nun ist ihre kreativität gefragt...**
   Transcodieren Sie die Datei <code>testvideo.mp4</code> erneut mit <em>FFmpeg</em> und nehmen Sie dabei eigenständig Anpassungen an den Transcodierungsparametern vor.<br><br>
 
@@ -606,7 +564,6 @@ MediaInfo zeigt unter anderem folgende Parameter an:
     <li>den verwendeten FFmpeg-Befehl</li>
     <li>die Unterschiede zur vorherigen Transcodierung</li>
   </ul>
-</div>
 
 
 

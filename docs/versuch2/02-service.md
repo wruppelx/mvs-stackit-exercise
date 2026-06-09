@@ -117,18 +117,10 @@ Im oberen rechten Bereich des Dashboards wird der Button **Create service** ausg
 https://<namenachname>.global.ssl.fastly.net/<deinBucketname>/testvideo_1080p.mp4
 ```
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 8:
+!!! question "Frage 2.1"
   </span><br>
  Was sehen Sie? Fertigen Sie hierfür bitte einen Screenshot an und tragen Sie diesen in ihre Abgabemappe ein.
  Interpretieren Sie die angegebene Nachricht 
-</div>
 
 **Das Problem lässt sich lösen indem wir nun in StackIt weiter machen:**
 
@@ -238,18 +230,9 @@ https://<namenachname>.global.ssl.fastly.net/testvideo_1080p.mp4
 
 **Jetzt interessiert uns noch von wo diese Ablieferung stattfindet. Hierfür erinnern wir uns wieder an das Modul CM1 bei dem wir verschiedene Tools kenennlernern durften um eine Hostdadresse genauer zu inspizieren**
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Aufgabe 9:
+!!! question "Frage 2.2"
   </span><br>
   Mit welchem Kommandozeilenbefehl können Sie überprüfen, auf welche IP-Adressen der CDN-Hostname aufgelöst wird und welcher Edge-Server für die Auslieferung der Inhalte verwendet wird? Fertigen Sie hierzu einen Screenshot der Ausgabe an.
-  
-</div>
 
 **Tipp:**
 
