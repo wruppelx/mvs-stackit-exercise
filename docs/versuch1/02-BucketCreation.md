@@ -17,17 +17,10 @@ Dazu wird der **STACKIT Object Storage** verwendet, ein S3-kompatibler Objektspe
 
 
 <!-- Bild: STACKIT Portal – Projektübersicht mit hervorgehobener Object-Storage-Kachel -->
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
 !!! question "Frage 1.1"
-  Was ist ein Bucket im Object Storage?<br>
-  Erläutern Sie, welche Aufgabe ein Bucket erfüllt. Erstellen Sie hierfür eine erklärende Skizze und fügen Sie diese in Ihre Abgabemappe hinzu.
-</div>
-
+    Was ist ein Bucket im Object Storage?
+    Erläutern Sie, welche Aufgabe ein Bucket erfüllt. Erstellen Sie hierfür eine erklärende Skizze und fügen Sie diese in Ihre Abgabemappe hinzu.
+  
 **Klicken Sie auf das Feld "+ Bucket erstellen"**
 
 ![S3 Dashboard](../assets/versuch1/testme.jpg)
@@ -133,5 +126,5 @@ s3cmd put PFAD_ZUR_DATEI s3://IHR_BUCKETNAME/
 **Auf der Weboberfläche unter dem dem Reiter Bucket wird diese Datei nicht angezeigt!**
 
 !!! question "Frage 1.2"
-  Wie können Sie nun herausfinden ob der Upload wie geplant funktioniert hat? Recherchieren Sie nach dem benötigten Command und tragen Sie diesen in ihre Abgabemappe ein<br>
+    Wie können Sie nun herausfinden ob der Upload wie geplant funktioniert hat? Recherchieren Sie nach dem benötigten Command und tragen Sie diesen in ihre Abgabemappe ein
 
