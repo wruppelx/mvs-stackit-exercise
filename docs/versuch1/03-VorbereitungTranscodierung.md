@@ -44,7 +44,9 @@ Die jeweilige Ressource wird dadurch automatisch Teil des Netzwerks.
 Eine separate Kopplung oder zusätzliche Konfiguration des Netzwerks ist nicht erforderlich.
 
 !!! question "Frage 1.3"
-  Überprüfen Sie den Ihnen zugewiesenen Adressbereich, die konfigurierten DNS-Server sowie die Routing-Tabelle. Dokumentieren Sie Ihre Ergebnisse in der Abgabemappe.<br>
+    Überprüfen Sie den Ihnen zugewiesenen Adressbereich, die konfigurierten DNS-Server sowie die Routing-Tabelle. 
+    
+    Dokumentieren Sie Ihre Ergebnisse in der Abgabemappe.
 
 
 ## SSH-Schlüssel für den Serverzugang erstellen
@@ -202,7 +204,7 @@ Einstellungen prüfen
 
 Nun sollten SIe ihren erstellten Server sehen können
 
-![S3 Dashboard](../assets/serverrunning.jpg)
+![S3 Dashboard](../assets/versuch1/serverrunning.jpg)
 
 ## Zuweisung einer öffentlichen IP-Adresse zur virtuellen Maschine
 
@@ -218,12 +220,12 @@ Navigieren Sie im linken Menü des Servers zu:
 
 Network → Public IP Address
 
-![S3 Dashboard](../assets/connip.jpg)
+![S3 Dashboard](../assets/versuch1/connip.jpg)
 
 
 Diese muss zu guter letzt einfach nur noch mit dem Server verbunden werden:
 
-![S3 Dashboard](../assets/ipconnect.jpg)
+![S3 Dashboard](../assets/versuch1/ipconnect.jpg)
 
 
 ## Testen der Verbindung zur virtuellen Maschine per SSH
@@ -242,7 +244,7 @@ ssh ubuntu@<öffentliche-IP-Adresse>
 ```
 Folgende Ausgabe ist hierbei zu erwarten:
 
-![S3 Dashboard](../assets/sshtest.jpg)
+![S3 Dashboard](../assets/versuch1/sshtest.jpg)
 
 
 
