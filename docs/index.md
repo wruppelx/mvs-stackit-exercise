@@ -14,10 +14,10 @@ Der Fokus liegt auf der Untersuchung cloudbasierter Video-Transcoding- und Conte
 
 Die praktische Übung besteht aus drei Versuchen.
 
-### 🔹 [Versuch 1 – Grundlagen cloudbasierter Transcoding-Workflows](Versuch1/)
+### 🔹 [Versuch 1 – Grundlagen cloudbasierter Transcoding-Workflows](versuch1/)
 Einführung in den Aufbau eines VoD-Workflows, Einrichtung der Infrastruktur und erste Transcodierungsschritte.
 
-### 🔹 [Versuch 2 – Content-Auslieferung über CDN](Versuch2/)
+### 🔹 [Versuch 2 – Content-Auslieferung über CDN](versuch2/)
 Untersuchung der Auslieferung transcodierter Inhalte über ein Content Delivery Network.
 
 ### 🔹 [Versuch 3 – Automatisierter VoD-Workflow](Versuch3/)
