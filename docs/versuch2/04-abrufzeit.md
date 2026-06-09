@@ -43,13 +43,13 @@ https://leonueberholz.global.ssl.fastly.net/testvideo_1080p.mp4
 ```
 
 !!! question "Frage 2.4"
-  <ul>
-    <li>Messen Sie die Time-to-First-Byte (TTFB) für jede transcodierte Version
-        (<code>1080p</code>, <code>720p</code>, <code>480p</code>) über das CDN.</li>
-    <li>Führen Sie jede Messung mindestens drei Mal durch.</li>
-    <li>Berechnen Sie für jede Auflösung den Median der gemessenen TTFB-Werte.</li>
-    <li>Vergleichen Sie die Mediane der verschiedenen Auflösungen.</li>
-  </ul>
+    <ul>
+      <li>Messen Sie die Time-to-First-Byte (TTFB) für jede transcodierte Version
+          (<code>1080p</code>, <code>720p</code>, <code>480p</code>) über das CDN.</li>
+      <li>Führen Sie jede Messung mindestens drei Mal durch.</li>
+      <li>Berechnen Sie für jede Auflösung den Median der gemessenen TTFB-Werte.</li>
+      <li>Vergleichen Sie die Mediane der verschiedenen Auflösungen.</li>
+    </ul>
 
 **Das sollte dann so aussehen:**
 

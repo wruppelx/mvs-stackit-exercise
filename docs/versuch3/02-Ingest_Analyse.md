@@ -168,20 +168,20 @@ testvideo_460p.mp4
 **Kopieren Sie sich die Ausgabe in ein separates Textdokument**
 
 !!! question "Frage 3.1: Vergleich der Transcoding-Ergebnisse"
-  Analysieren Sie die Ausgaben von <code>ffprobe</code> für die folgenden Dateien:
-  <ul>
-    <li><code>testvideo_1080p.mp4</code></li>
-    <li><code>testvideo_720p.mp4</code></li>
-    <li><code>testvideo_460p.mp4</code></li>
-  </ul>
+    Analysieren Sie die Ausgaben von <code>ffprobe</code> für die folgenden Dateien:
+    <ul>
+      <li><code>testvideo_1080p.mp4</code></li>
+      <li><code>testvideo_720p.mp4</code></li>
+      <li><code>testvideo_460p.mp4</code></li>
+    </ul>
 
-  Gehen Sie dabei insbesondere auf folgende Punkte ein:
-  <ul>
-    <li>Welche technischen Parameter unterscheiden sich zwischen den Dateien?</li>
-    <li>Welche Parameter sind bei allen Versionen identisch?</li>
-    <li>Wie verändert sich die Bitrate im Verhältnis zur Auflösung?</li>
-    <li>Welche Auswirkungen haben diese Unterschiede auf Bandbreite und Speicherbedarf?</li>
-  </ul>
+    Gehen Sie dabei insbesondere auf folgende Punkte ein:
+    <ul>
+      <li>Welche technischen Parameter unterscheiden sich zwischen den Dateien?</li>
+      <li>Welche Parameter sind bei allen Versionen identisch?</li>
+      <li>Wie verändert sich die Bitrate im Verhältnis zur Auflösung?</li>
+      <li>Welche Auswirkungen haben diese Unterschiede auf Bandbreite und Speicherbedarf?</li>
+    </ul>
 
   <b>Hinweis:</b><br>
   Nutzen Sie ausschließlich die mit <code>ffprobe</code> ermittelten Werte.

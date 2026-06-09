@@ -419,11 +419,11 @@ ls -lh testvideo_*.mp4
 
 
 !!! question "Frage 1.6"
-  Fertigen Sie einen Screenshot der abschließenden <em>libx264</em>-Ausgabe an, die nach dem Transcodierungsvorgang in der Konsole angezeigt wird.
-  Interpretieren Sie anhand dieser Ausgabe, wie der Encoder die Videodaten verarbeitet hat.
-  Gehen Sie dabei insbesondere auf die Verteilung von <em>I-, P- und B-Frames</em>, die angezeigten
-  <em>QP-Werte</em> sowie die resultierende durchschnittliche Bitrate ein und erläutern Sie,
-  was diese Informationen über Qualität, Komplexität und Effizienz der Transcodierung aussagen.
+    Fertigen Sie einen Screenshot der abschließenden <em>libx264</em>-Ausgabe an, die nach dem Transcodierungsvorgang in der Konsole angezeigt wird.
+    
+    Interpretieren Sie anhand dieser Ausgabe, wie der Encoder die Videodaten verarbeitet hat.
+
+    Gehen Sie dabei insbesondere auf die Verteilung von <em>I-, P- und B-Frames</em>, die angezeigten <em>QP-Werte</em> sowie die resultierende durchschnittliche Bitrate ein und erläutern Sie, was diese Informationen über Qualität, Komplexität und Effizienz der Transcodierung aussagen.
 
 
 **Wiederhholen SIe diesen Befehl bitte auch für 720p und 480p. Nehmen Sie sich den obrigen Befehl für die 1080p COdierung als Hilfe**
@@ -460,14 +460,9 @@ s3cmd put testvideo_480p.mp4 s3://<DEINBUCKETNAME>/ \
 ```
 
 !!! question "Frage 1.7"
-  <span style="font-size:1.1em;">
-     <strong>Fleißaufgabe:</strong>
-  </span><br>
-  Recherchieren Sie, mit welchem <em>Syntax</em> mehrere transcodierte Dateien gleichzeitig
-  aus einem Verzeichnis in den Object Storage hochgeladen werden können.
-  Erläutern Sie anhand des verwendeten Befehls, wie mithilfe von
-  <code>--include</code> und <code>--exclude</code> gezielt nur bestimmte Dateien
-  (z. B. alle transcodierten Versionen eines Videos) übertragen werden.
+    Recherchieren Sie, mit welchem <code>s3cmd</code>-Befehl mehrere transcodierte Dateien gleichzeitig aus einem Verzeichnis in den Object Storage hochgeladen werden können.
+
+    Erläutern Sie anhand des verwendeten Befehls, wie mithilfe von <code>--include</code> und <code>--exclude</code> gezielt nur bestimmte Dateien (z. B. alle transcodierten Versionen eines Videos) übertragen werden.
 
 
 **Das Ergebnis sollte so aussehen:**
@@ -482,7 +477,7 @@ scp ubuntu@192.214.178.41:~/transcoded_download/testvideo_1080p.mp4 "$env:USERPR
 ```
 
 
-**Wiederholen Sie diesen Vorgang auch für die anderen transcodierten Videos. Tragen Sie diese Commands auch wieder in die Arbeitsmappe ein**
+**Wiederholen Sie diesen Vorgang auch für die anderen transcodierten Videos. Dokumentieren Sie die verwendeten Befehle in Ihrem Bericht.**
 
 ![S3 Dashboard](../.assets/versuch1/uploadedintobucket.jpg)
 
@@ -505,7 +500,8 @@ scp ubuntu@<IP des Servers>:~/transcoded_download/testvideo_1080p.mp4 "$env:USER
 ```
 
 
-**Wiederholen Sie diesen Vorgang auch für die anderen transcodierten Videos. Tragen Sie diese Commands auch wieder in die Arbeitsmappe ein**
+**Wiederholen Sie diesen Vorgang auch für die anderen transcodierten Videos. 
+Dokumentieren Sie die verwendeten Befehle in Ihrem Bericht.**
 
 
 ## Analyse der transcodierten Dateien mit MediaInfo
@@ -547,25 +543,25 @@ MediaInfo zeigt unter anderem folgende Parameter an:
 
 
 !!! question "Frage 1.8"
-  **Nun ist ihre kreativität gefragt...**
-  Transcodieren Sie die Datei <code>testvideo.mp4</code> erneut mit <em>FFmpeg</em> und nehmen Sie dabei eigenständig Anpassungen an den Transcodierungsparametern vor.<br><br>
+    **Nun ist ihre kreativität gefragt...**
+    Transcodieren Sie die Datei <code>testvideo.mp4</code> erneut mit <em>FFmpeg</em> und nehmen Sie dabei eigenständig Anpassungen an den Transcodierungsparametern vor.<br><br>
 
-  Verändern Sie mindestens zwei der folgenden Punkte:
-  <ul>
-    <li>Video-Bitrate</li>
-    <li>Audio-Bitrate</li>
-    <li>Framerate</li>
-  </ul>
+    Verändern Sie mindestens zwei der folgenden Punkte:
+    <ul>
+      <li>Video-Bitrate</li>
+      <li>Audio-Bitrate</li>
+      <li>Framerate</li>
+    </ul>
 
 
-  Der benötigte FFmpeg-Befehl kann eigenständig aus der offiziellen Dokumentation oder durch Recherche im Internet ermittelt werden.<br><br>
+    Der benötigte FFmpeg-Befehl kann eigenständig aus der offiziellen Dokumentation oder durch Recherche im Internet ermittelt werden.<br><br>
 
-  Analysieren Sie die erzeugte Ausgabedatei anschließend mit <em>MediaInfo</em> und dokumentieren Sie:
-  <ul>
-    <li>die gewählten Parameter</li>
-    <li>den verwendeten FFmpeg-Befehl</li>
-    <li>die Unterschiede zur vorherigen Transcodierung</li>
-  </ul>
+    Analysieren Sie die erzeugte Ausgabedatei anschließend mit <em>MediaInfo</em> und dokumentieren Sie:
+    <ul>
+      <li>die gewählten Parameter</li>
+      <li>den verwendeten FFmpeg-Befehl</li>
+      <li>die Unterschiede zur vorherigen Transcodierung</li>
+    </ul>
 
 
 

@@ -69,18 +69,17 @@ s3cmd ls s3://leonueberholz-4567 > bucket_state_before.txt
 ```
 
 <!!! question "Frage 3.3"
-  Betrachten Sie folgenden Befehl:
+    Betrachten Sie folgenden Befehl:
 
-  <pre><code>
-s3cmd ls s3://leonueberholz-4567 > bucket_state_before.txt
-  </code></pre>
+    <pre><code>
+      s3cmd ls s3://leonueberholz-4567 > bucket_state_before.txt
+    </code></pre>
 
-  <br>
-  Beschreiben Sie in eigenen Worten:
-  <ul>
-    <li>Was der Befehl genau bewirkt</li>
-    <li>Warum die Ausgabe in eine Datei umgeleitet wird</li>
-  </ul>
+    Beschreiben Sie in eigenen Worten:
+    <ul>
+      <li>Was der Befehl genau bewirkt</li>
+      <li>Warum die Ausgabe in eine Datei umgeleitet wird</li>
+    </ul>
 
 
 ### Schritt 3: Datei im Object Storage ändern (Ingest simulieren)
@@ -212,45 +211,33 @@ das CDN konsistent auf Anfragen reagiert
 der Cache sich selbst aktualisiert, sobald neue Inhalte angefragt werden
 
 !!! question "Frage 3.4: Automatische Reaktion im CDN-Workflow"
-  In diesem Versuch wurde bewusst <b>keine</b> Cloud Function,
-  <b>kein</b> Event-Trigger und <b>kein</b> serverseitiger Automatisierungsdienst
-  (z.&nbsp;B. AWS Lambda) eingesetzt.<br><br>
+    In diesem Versuch wurde bewusst <b>keine</b> Cloud Function,
+    <b>kein</b> Event-Trigger und <b>kein</b> serverseitiger Automatisierungsdienst
+    (z.&nbsp;B. AWS Lambda) eingesetzt.<br><br>
 
-  Trotzdem konnte beobachtet werden, dass das System korrekt auf eine Änderung
-  im <b>STACKIT Object Storage</b> reagiert hat und die neue Datei
-  über das <b>Fastly CDN</b> ausgeliefert wurde.
+    Trotzdem konnte beobachtet werden, dass das System korrekt auf eine Änderung
+    im <b>STACKIT Object Storage</b> reagiert hat und die neue Datei
+    über das <b>Fastly CDN</b> ausgeliefert wurde.
 
-  <br><br>
-  <b>Beschreiben Sie in eigenen Worten:</b>
-  <ul>
-    <li>was sich konkret im Object Storage geändert hat,</li>
-    <li>wie diese Änderung vom CDN technisch „bemerkt“ wird,</li>
-    <li>warum kein explizites Ereignis oder Trigger notwendig war.</li>
-  </ul>
+    <b>Beschreiben Sie in eigenen Worten:</b>
+    <ul>
+      <li>was sich konkret im Object Storage geändert hat,</li>
+      <li>wie diese Änderung vom CDN technisch „bemerkt“ wird,</li>
+      <li>warum kein explizites Ereignis oder Trigger notwendig war.</li>
+    </ul>
 
-  <br>
-  <b>Gehen Sie dabei insbesondere auf folgende Punkte ein:</b>
-  <ul>
-    <li>die Rolle des HTTP-Requests vom Client,</li>
-    <li>die Funktion des Origin-Servers im CDN-Kontext,</li>
-    <li>das Zusammenspiel von Cache, Cache-Miss und erneuter Speicherung.</li>
-  </ul>
+    <b>Gehen Sie dabei insbesondere auf folgende Punkte ein:</b>
+    <ul>
+      <li>die Rolle des HTTP-Requests vom Client,</li>
+      <li>die Funktion des Origin-Servers im CDN-Kontext,</li>
+      <li>das Zusammenspiel von Cache, Cache-Miss und erneuter Speicherung.</li>
+    </ul>
 
-  <br>
+
 !!! question "Frage 3.5"
-  <b>Bewerten Sie, warum dieses einfache Reaktionsmodell in der Praxis
-  für viele Video-on-Demand-Workflows ausreichend ist</b>
-  und in welchen Fällen eine explizite Automatisierung (z.&nbsp;B. mit Triggern)
-  dennoch sinnvoll wäre.
+    <b>Bewerten Sie, warum dieses einfache Reaktionsmodell in der Praxis für viele Video-on-Demand-Workflows ausreichend ist</b> und in welchen Fällen eine explizite Automatisierung (z.B. mit Triggern) dennoch sinnvoll wäre.
 
 
----
-
-⬅️ **Vorheriges Kapitel:**  
-[CDN im Realbetrieb](03-CDN Im Realbetrieb.md)
-
-➡️ **Nächstes Kapitel:**  
-[Fazit](05-fazit.md)
 
 
 
