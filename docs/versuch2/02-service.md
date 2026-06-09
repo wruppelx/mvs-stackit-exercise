@@ -8,7 +8,7 @@ Als CDN-Anbieter wird **Fastly** verwendet.
 ---
 **Doch was genau bringt uns das eigentlich und wofür machen wir das ganze hier. Mit einer Grafik wird versucht zu erklären was die klaren Vorteile hierbei sind**
 
-![ObjectSTorage](../../assets/Versuch2/cdnexpl.jpg)
+![ObjectSTorage](../assets/Versuch2/cdnexpl.jpg)
 
 **Verstanden? Dann kann es nun losgehen! Wir gehen das wieder Schritt für Schritt durch!**
 
@@ -31,7 +31,7 @@ ssh@ubuntu<DEINESERVERIP>
 
 **Sie kommen wieder auf die folgende Maske:**
 
-![ObjectSTorage](../../assets/Versuch2/vmconnect.jpg)
+![ObjectSTorage](../assets/Versuch2/vmconnect.jpg)
 
 
 **Nun prüfen ob die Videos draufliegen:**
@@ -59,13 +59,13 @@ Der Object Storage übernimmt die Rolle des **Origin Servers**.
 
 **Navigieren Sie bitte zur Internetseite von Fastly https://www.fastly.com/ und melden Sie sich dort mit ihren Credentials an:** 
 
-![ObjectSTorage](../../assets/Versuch2/fastlylogin.jpg)
+![ObjectSTorage](../assets/Versuch2/fastlylogin.jpg)
 
 *leave blank for further instructions*
 
 **Sie sollten nun die folgende Fastly Startseite vor sich sehen.**
 
-![ObjectSTorage](../../assets/Versuch2/mainfastly.jpg)
+![ObjectSTorage](../assets/Versuch2/mainfastly.jpg)
 
 ## Schritt 1: Neuen Fastly Service erstellen
 
@@ -81,13 +81,13 @@ Da für diesen Versuch noch kein CDN-Service existiert, muss zunächst ein neuer
 
 Im oberen rechten Bereich des Dashboards wird der Button **Create service** ausgewählt.
 
-![ObjectSTorage](../../assets/Versuch2/createservices.jpg)
+![ObjectSTorage](../assets/Versuch2/createservices.jpg)
 
 **Wählen Sie dort bitte CDN**
 
 **Folgende Maske sollte nun erscheinen:**
 
-![ObjectSTorage](../../assets/Versuch2/servicemaskfastly.jpg)
+![ObjectSTorage](../assets/Versuch2/servicemaskfastly.jpg)
 
 **Tätigen Sie dort bitte folgende Einstellungen:**
 
@@ -104,7 +104,7 @@ Im oberen rechten Bereich des Dashboards wird der Button **Create service** ausg
 
 **So sollte es nun bei Ihnene aussehen:**
 
-![ObjectSTorage](../../assets/Versuch2/servicedone.jpg)
+![ObjectSTorage](../assets/Versuch2/servicedone.jpg)
 
 
 
@@ -143,7 +143,7 @@ Segmented Caching ist standardmäßig nicht aktiv und muss gezielt konfiguriert 
 Navigieren Sie unter **LOGGING** zu dem Reiter Snippets
 
 
-![ObjectSTorage](../../assets/Versuch2/VLCSNIPPET.jpg)
+![ObjectSTorage](../assets/Versuch2/VLCSNIPPET.jpg)
 
 Übergeben Sie auf der Einrichtungsmaske folgende Parameter:
 
@@ -157,7 +157,7 @@ if (req.url.ext == ".mp4") {
 }
 ```
 
-![ObjectSTorage](../../assets/Versuch2/mp4renewal.jpg)
+![ObjectSTorage](../assets/Versuch2/mp4renewal.jpg)
 
 
 
@@ -178,7 +178,7 @@ ssh ubuntu@<IP-DEINER-VM>
 ```
 **Sie müssten sich hier wieder finden.**
 
-![ObjectSTorage](../../assets/Versuch2/vmconnect2.jpg)
+![ObjectSTorage](../assets/Versuch2/vmconnect2.jpg)
 
 **Nun wird die Datei angelegt die uns die BErechtigung geben soll. Geben Sie hierfür folgendes ein.**
 
@@ -187,7 +187,7 @@ nano public-read.json
 ```
 **Die Maske der Powershell sollte nun so aussehen:**
 
-![ObjectSTorage](../../assets/Versuch2/nano.jpg)
+![ObjectSTorage](../assets/Versuch2/nano.jpg)
 
 **Geben Sie nun folgenden Befehl dort ein:**
 
@@ -213,7 +213,7 @@ nano public-read.json
 
 **Sie befinden sich wieder auf der Hauptmaske**
 
-![ObjectSTorage](../../assets/Versuch2/nanodone.jpg)
+![ObjectSTorage](../assets/Versuch2/nanodone.jpg)
 
 ---
 **Nun wird die Policy angewandt**
@@ -234,7 +234,7 @@ https://<namenachname>.global.ssl.fastly.net/testvideo_1080p.mp4
 
 **Sie sollten folgende Ausgabe im Browser erhalten:**
 
-![ObjectSTorage](../../assets/Versuch2/rabbitfastly.jpg)
+![ObjectSTorage](../assets/Versuch2/rabbitfastly.jpg)
 
 **Jetzt interessiert uns noch von wo diese Ablieferung stattfindet. Hierfür erinnern wir uns wieder an das Modul CM1 bei dem wir verschiedene Tools kenennlernern durften um eine Hostdadresse genauer zu inspizieren**
 

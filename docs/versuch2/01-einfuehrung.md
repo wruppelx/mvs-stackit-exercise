@@ -80,7 +80,7 @@ Durch den Einsatz von Edge-Servern werden Ladezeiten reduziert und die Ausliefer
 
 
 
-![Cloud vs Edge Computing](../../assets/Versuch2/cloudvsedge.jpg)
+![Cloud vs Edge Computing](../assets/Versuch2/cloudvsedge.jpg)
 
 
 

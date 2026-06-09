@@ -40,7 +40,7 @@ curl.exe -I "https://<username>.global.ssl.fastly.net/testvideo_1080p.mp4"
 ```
 **Die Ausgabe sollte nun wie folgt aussehen:**
 
-![ObjectSTorage](../../assets/Versuch2/2ndcall.jpg)
+![ObjectSTorage](../assets/Versuch2/2ndcall.jpg)
 
 <div style="
   border: 2px solid #ffffff;
@@ -71,7 +71,7 @@ Der Player ist erreichbar unter:
 
 https://hlsjs.video-dev.org/demo/
 
-![ObjectSTorage](../../assets/Versuch2/hlsplayer.jpg)
+![ObjectSTorage](../assets/Versuch2/hlsplayer.jpg)
 
 ---
 ## ⚠️ Wichtiger Hinweis zu CORS (zwingend erforderlich)
@@ -101,7 +101,7 @@ https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgce
 3. CORS-Extension auswählen  
 4. „Toggle ON“ aktivieren  
 
-![ObjectSTorage](../../assets/Versuch2/cors.jpg)
+![ObjectSTorage](../assets/Versuch2/cors.jpg)
 
 ---
 
@@ -115,7 +115,7 @@ Nach Aktivierung der Extension:
 
 **https://<DeinBucketname>.object.storage.eu01.onstackit.cloud/hls/master.m3u8**
 
-![ObjectSTorage](../../assets/Versuch2/runningvid.jpg)
+![ObjectSTorage](../assets/Versuch2/runningvid.jpg)
 
 ---
 

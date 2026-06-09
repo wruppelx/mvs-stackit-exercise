@@ -5,13 +5,13 @@ Dazu wird der **STACKIT Object Storage** verwendet, ein S3-kompatibler Objektspe
 
 **Der Zugriff erfolgt über das STACKIT Portal im Browser. Auf der rechten Reiterseite. Hier findet man unter dem Reiter Computing den Unterpunkt "Object storage"**
 
-![ObjectSTorage](../assets/enableobjectstorage.jpg)
+![ObjectSTorage](../assets/versuch1/enableobjectstorage.jpg)
 
 **Hier muss der Objektspeicher manuell aktiviert werden. Hierfür muss nur der vorhandene Button "Objektspeicher aktivieren" geklickt werden.**
 
 **Nun bitte zu dem Unterreiter Buckets navigieren**
 
-![ObjectSTorage](../assets/Bucket-select.jpg)
+![ObjectSTorage](../assets/versuch1/Bucket-select.jpg)
 **
 
 
@@ -32,7 +32,7 @@ Dazu wird der **STACKIT Object Storage** verwendet, ein S3-kompatibler Objektspe
 
 **Klicken Sie auf das Feld "+ Bucket erstellen"**
 
-![S3 Dashboard](../assets/testme.jpg)
+![S3 Dashboard](../assets/versuch1/testme.jpg)
 
 Die Namensvergabe soll nach einem einhitlichen Standard erfolgen:  <span style="color:orange; font-weight:bold; font-size:1.2em;">[HDSNAME-Letzten 4 Ziffern Ihrer Matrikelnummer]. Beispiel: [lelugoue-4567]  </span><br>
 
@@ -66,7 +66,7 @@ Diese werden später in der Kommandozeile verwendet.
 
 1. Navigieren Sie zu: Object Storage → Credentials & Groups
 
-![S3 Dashboard](../assets/credngru.jpg)
+![S3 Dashboard](../assets/versuch1/credngru.jpg)
 
 2.In der Übersicht werden die vorhandenen Credential Groups angezeigt. Standardmäßig existiert bereits eine Gruppe mit dem Namen default.
 
@@ -74,7 +74,7 @@ Diese werden später in der Kommandozeile verwendet.
 
 4. Wechseln Sie innerhalb der Gruppe in den Reiter Credentials.
 
-![S3 Dashboard](../assets/crediz.jpg)
+![S3 Dashboard](../assets/versuch1/crediz.jpg)
 
 
 5. Klicken Sie auf Create Credentials und erstellen Sie neue Zugangsdaten.

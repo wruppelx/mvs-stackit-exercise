@@ -8,7 +8,7 @@ Die VM übernimmt in diesem Versuch die Rolle eines **Rechenknotens**, auf dem e
 - Transcoding-Parameter
 - Ablauf des Workflows
 
-![S3 Dashboard](../assets/StackApp.jpg)
+![S3 Dashboard](../assets/versuch1/StackApp.jpg)
 
 ### Ablauf im Überblick
 
@@ -34,7 +34,7 @@ Ein eigenes Netzwerk muss nicht erstellt werden..**
 
 **Bitte navigieren SIe an der linken Seite zu dem Reiter richtung Network:**
 
-![S3 Dashboard](../assets/navinet.jpg)
+![S3 Dashboard](../assets/versuch1/navinet.jpg)
 
 Das vorhandene Netzwerk muss nicht manuell mit anderen Komponenten verbunden werden.
 
@@ -66,7 +66,7 @@ Das SSH-Schlüsselpaar wird über den folgenden Online-Generator erzeugt:
 
 https://8gwifi.org/sshfunctions.jsp
 
-![S3 Dashboard](../assets/keykeykey.jpg)
+![S3 Dashboard](../assets/versuch1/keykeykey.jpg)
 
 1.Öffnen Sie die oben genannte Webseite.
 2.Wählen Sie als Algorithmus RSA.
@@ -110,11 +110,11 @@ Sie haben nun die Möglichkeit das erzeugte Keypaar auf ihrem STACKIT-Konto zu v
 
 **Navigieren sie hierzu als erstes zu ihren Nutzereinstellungen:**
 
-![S3 Dashboard](../assets/Benutzereinstellungen.jpg) 
+![S3 Dashboard](../assets/versuch1/Benutzereinstellungen.jpg) 
 
 **Unter Passwort&Sicherheit finden Sie nun den Reiter SSH-Schlüssel. Klicken Sie bitte da drauf:**
 
-![S3 Dashboard](../assets/keyname.jpg)
+![S3 Dashboard](../assets/versuch1/keyname.jpg)
 
 **Geben SIe als Namen Ihren Vornamen+Key ein. Zum Beispiel: *leonkey***
 
@@ -142,7 +142,7 @@ Navigieren Sie in der linken Seitenleiste zu:
 
 Networks → Security Groups
 
-![S3 Dashboard](../assets/createsecugroup.jpg)
+![S3 Dashboard](../assets/versuch1/createsecugroup.jpg)
 
 In der Übersicht wird mindestens eine Security Group mit dem Namen `default` angezeigt. Diese Security Group ist in der Regel bereits dem Server zugewiesen und kann für den SSH-Zugriff verwendet werden.
 
@@ -170,7 +170,7 @@ Speichern Sie die Regel nach dem Eintragen der Werte. Die Änderung wird sofort 
 
 **Navigieren Sie zu **Computing** / Server**
 
-![S3 Dashboard](../assets/createserver.jpg)
+![S3 Dashboard](../assets/versuch1/createserver.jpg)
 
 **Klicken Sie auf Create Server**
 

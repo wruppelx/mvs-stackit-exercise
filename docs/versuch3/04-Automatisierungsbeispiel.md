@@ -104,7 +104,7 @@ s3cmd put testvideo_1080p.mp4 s3://<DeinBucketname>/testvideo_1080p.mp4
 **Das sollte so aussehen:**
 
 
-![ObjectSTorage](../../assets/Versuch3/change.jpg)
+![ObjectSTorage](../assets/Versuch3/change.jpg)
 ### Schritt 4: Neuen zustand erfassen
 
 **Jetzt speichern wir den Zustand nach der Änderung.**
@@ -130,7 +130,7 @@ curl -I https://<DeineDomain>.global.ssl.fastly.net/testvideo_1080p.mp4
 ```
 **Die Ausgabe zeigt uns an:**
 
-![ObjectSTorage](../../assets/Versuch3/miss.jpg)
+![ObjectSTorage](../assets/Versuch3/miss.jpg)
 
 **Ein weiteres mal der gleiche Abruf:**
 ```bash

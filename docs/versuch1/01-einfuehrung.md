@@ -14,11 +14,11 @@ Die Syntax des HDS-Namens entspricht derjenigen, die auch bei der Anmeldung im S
 
 Der HDS-Name wird im Verlauf der Versuche mehrfach verwendet und ist daher als fester Bestandteil der jeweiligen Konfigurationen zu verstehen. Änderungen des Namens während des Praktikums sind zu vermeiden, da dies die Zuordnung und Reproduzierbarkeit der Ergebnisse beeinträchtigen kann.
 
-![STACKIT Object Storage](../assets/hdsname.jpg)
+![STACKIT Object Storage](../assets/Versuch1/hdsname.jpg)
 
 ### Cloud-Speicher (*Object-Storage*)
 
-![STACKIT Object Storage](../assets/object-storage.png)
+![STACKIT Object Storage](../assets/versuch1/object-storage.png)
 
 
 Cloud-Speicher funktioniert im Grundprinzip ähnlich wie bekannte Dienste wie Dropbox oder Google Drive: Dateien werden zentral gespeichert und können bei Bedarf wieder abgerufen werden. In professionellen Cloud-Umgebungen kommt dafür jedoch meist Objektspeicher (Object Storage) zum Einsatz.
@@ -40,7 +40,7 @@ Nach Abschluss der Transcodierung werden die erzeugten Ausgabedateien wieder im 
 
 Dieses Vorgehen entspricht einem typischen cloudbasierten Video-on-Demand-Workflow und verdeutlicht, wie Rechenressourcen, Speicher und Auslieferung in der Cloud getrennt voneinander eingesetzt werden.
 
-![FFMPEG Encoding](../assets/ffmpeg-coding.png)
+![FFMPEG Encoding](../assets/versuch1/ffmpeg-coding.png)
 
 ### Log-in
 
@@ -49,19 +49,19 @@ Für diesen Praktikumsversuch erhalten die Studierenden die benötigten Zugangsd
 Zur Anmeldung auf StackIT gelangt man über diesen Link: https://portal.stackit.cloud/
 
 
-![Login User](../assets/login-user.jpg)
+![Login User](../assets/versuch1/login-user.jpg)
 
 **Hier kann der bereitgestellte Username aus der E-Mail entnommen werden**
 
-![Login password](../assets/login-pw.jpg)
+![Login password](../assets/versuch1/login-pw.jpg)
 
 **Hier kann das bereitgestellte Password aus der E-Mail entnommen werden**
 
-![Login mfa](../assets/mfa-login.jpg)
+![Login mfa](../assets/versuch1/mfa-login.jpg)
 
 **Hier besteht die Möglichkeit eine 2 Faktor Authentifizierung einzugeben. Dies kann wahlweise mit der Uni-Mail oder mit einer App erfolgen. Als App für das Handy empfiehlt sich hier Microsoft Authenticator https://support.microsoft.com/de-de/account-billing/microsoft-authenticator-herunterladen-351498fc-850a-45da-b7b6-27e523b8702a**
 
-![Landingpage region](../assets/Landingpage-region.jpg)
+![Landingpage region](../assets/versuch1/Landingpage-region.jpg)
 
 **Auf der Landingpage sollte in der oberen Leiste das richtige Projekt und die region EU01 - (Deutschland Süd) ausgewählt werden. Hierfür sollte für Sie bereits ein Projekt vorhanden sein, welches Ihren HDS-Namen beinhaltet**
 

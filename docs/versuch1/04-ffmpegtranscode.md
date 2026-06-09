@@ -197,7 +197,7 @@ Eine Anleitung dazu finden Sie im vorherigen Kapitel. 🙂
 
 Nach der erfolgreichen Konfiguration wird überprüft, ob die virtuelle Maschine auf den Object Storage zugreifen kann. Dazu wird der zuvor erstellte Bucket aufgelistet.
 
-**Bitte geben sie folgendne Befehl in die VM Console ein:**  
+**Bitte geben sie folgende Befehle in die VM Console ein:**  
 
 ```bash
 s3cmd ls s3://<DEINBUCKETNAME> \
@@ -515,7 +515,7 @@ scp ubuntu@192.214.178.41:~/transcoded_download/testvideo_1080p.mp4 "$env:USERPR
 
 **Wiederholen Sie diesen Vorgang auch für die anderen transcodierten Videos. Tragen Sie diese Commands auch wieder in die Arbeitsmappe ein**
 
-![S3 Dashboard](../../assets/Versuch1/uploadedintobucket.jpg)
+![S3 Dashboard](../assets/Versuch1/uploadedintobucket.jpg)
 
 ## Download der transcodierten Dateien und Analyse mit MediaInfo
 
@@ -544,7 +544,7 @@ scp ubuntu@<IP des Servers>:~/transcoded_download/testvideo_1080p.mp4 "$env:USER
 Nach dem Download aus der virtuellen Maschine liegen die transcodierten Videodateien lokal auf dem eigenen Rechner, z. B. auf dem Desktop.  
 Im nächsten Schritt werden diese Dateien mit dem Analysewerkzeug *MediaInfo* untersucht.
 
-![S3 Dashboard](../../assets/Versuch1/mediainfo.jpg)
+![S3 Dashboard](../assets/Versuch1/mediainfo.jpg)
 
 ### Vorbereitung
 
@@ -570,7 +570,7 @@ MediaInfo zeigt unter anderem folgende Parameter an:
 - Framerate
 - Containerformat
 
-![S3 Dashboard](../../assets/Versuch1/mediainfoui.jpg)
+![S3 Dashboard](../assets/Versuch1/mediainfoui.jpg)
 
 
 **Darunter sollten Sie jetzt Werte angezeigt bekommen wie bspw: Format, Formatprofil,...**
