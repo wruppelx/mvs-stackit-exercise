@@ -17,15 +17,15 @@ theme:
       toggle:
         icon: material/toggle-switch-off-outline
         name: Umschalten zu Lightmode
-      primary: red
-      accent: red
+      primary: blue
+      accent: blue
 
     - scheme: default
       toggle:
         icon: material/toggle-switch
         name: Umschalten zu Darkmode
-      primary: red
-      accent: red
+      primary: blue
+      accent: blue
 
 markdown_extensions:
   - admonition
