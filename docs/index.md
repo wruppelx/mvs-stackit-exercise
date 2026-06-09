@@ -72,8 +72,7 @@ Im Fazit jedes Kapitels sind die Dateien genannt, die mindestens abgegeben werde
         ...
     📁 Versuch2
     📁 Versuch3
-    📁 Versuch4
-    📁 Versuch5
+    📁 Experimente
 ```
 
 !!! warning "Warnung"
@@ -97,4 +96,4 @@ Zur Wiedergabe von transcodierten Videodateien sollte ein aktueller Mediaplayer 
 
 Um die technischen Metadaten der Videodateien auszulesen, wird [MediaInfo](https://mediaarea.net/en/MediaInfo) benötigt.
 
-![MediaInfo Screenshot](assets/mediainfo.png)
+![MediaInfo Screenshot](./assets/mediainfo.png)

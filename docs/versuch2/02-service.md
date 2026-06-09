@@ -235,11 +235,7 @@ https://<namenachname>.global.ssl.fastly.net/testvideo_1080p.mp4
     
     Fertigen Sie hierzu einen Screenshot der Ausgabe an.
 
-**Tipp:**
 
-```bash
- _______ Fastly-Url 1.1.1.1
- ```
 <div style="
   border: 2px solid #ffffff;
   padding: 14px;

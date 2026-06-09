@@ -22,19 +22,19 @@ Die in diesem Versuch erlernten Inhalte sind für die Medientechnik von hoher Re
 
 In der Abgabe sollten die im Laufe des Versuchs erzeugten transcodierten Dateien enthalten sein. Dazu gehören die drei standardisierten Distributionsformate sowie die zusätzlich erstellte Datei aus der eigenständigen Transcodierungsaufgabe.
 
-📁 Versuch 1
 
-📄 testvideo_1080p.mp4
+```
+📁 
+    📁 Versuch1
+        📄 testvideo_1080p.mp4
+        📄 testvideo_720p.mp4
+        📄 testvideo_480p.mp4
+    📁 Experimente
+        📄 testvideo_eigenes_experiment.mp4
+```
 
-📄 testvideo_720p.mp4
 
-📄 testvideo_480p.mp4
-
-📁 Experimente
-
-📄 testvideo_experiment.mp4
-
-Eigene Experimente mit abweichenden Transcodierungsparametern sind ausdrücklich erwünscht und können zusätzlich dokumentiert und abgegeben werden. Diese Zusatzarbeit fließt natürlich psoitiv in Ihre Bewertung ein.
+Eigene Experimente mit abweichenden Transcodierungsparametern sind ausdrücklich erwünscht und können zusätzlich dokumentiert und abgegeben werden. Diese Zusatzarbeit fließt  positiv in Ihre Bewertung ein.
 
 
 
