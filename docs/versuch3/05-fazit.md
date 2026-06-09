@@ -20,7 +20,3 @@ Speicherung, Verarbeitung, Distribution und Analyse greifen ineinander, ohne das
 
 Für die Medientechnikpraxis ist insbesondere die Fähigkeit relevant, solche Systeme nicht nur theoretisch zu verstehen, sondern auch zu konfigurieren, zu testen und zu analysieren.
 Der Umgang mit Kommandozeilenwerkzeugen, HTTP-Headern und CDN-Konzepten stellt dabei eine essentielle Kompetenz dar, die in realen Produktionsumgebungen täglich benötigt wird.
----
-
-⬅️ **Vorheriges Kapitel:**  
-[Automatisierungsbeispiel](04-Automatisierungsbeispiel.md)

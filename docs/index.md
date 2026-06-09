@@ -20,7 +20,7 @@ Einführung in den Aufbau eines VoD-Workflows, Einrichtung der Infrastruktur und
 ### 🔹 [Versuch 2 – Content-Auslieferung über CDN](versuch2/)
 Untersuchung der Auslieferung transcodierter Inhalte über ein Content Delivery Network.
 
-### 🔹 [Versuch 3 – Automatisierter VoD-Workflow](Versuch3/)
+### 🔹 [Versuch 3 – Automatisierter VoD-Workflow](versuch3/)
 Konzeption und Umsetzung eines automatisierten End-to-End-Workflows.
 
 ---
