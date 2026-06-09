@@ -45,7 +45,7 @@ Nach erfolgreicher Anmeldung befindet man sich auf dem Linux-System der virtuell
 
 **Nach erfolgreicher Eingabe sollte folgende Ausgabe in der Powershell zu erwarten sein**
 
-![S3 Dashboard](../.assets/versuch1/cmdsuccesful.jpg)
+![S3 Dashboard](../.assets/Versuch1/cmdsuccesful.jpg)
 
 ## Aktueller Stand des Versuchs
 
@@ -78,7 +78,7 @@ Bedeutet:**Geben Sie folgende Befehle in das gleiche Powershellfenster ein, wo s
 
 **Tipp:** Sie können dies kontrollieren indem vor ihrem Eingabefeld in grüner Schrift ihr Server angezeigt wird
 
-![S3 Dashboard](../.assets/versuch1/cmdservergreen.jpg)
+![S3 Dashboard](../.assets/Versuch1/cmdservergreen.jpg)
 
 
 **Geben Sie bitte nun dort folgenden Befehl ein:**
@@ -99,7 +99,7 @@ Die Option -y sorgt dafür, dass alle Rückfragen automatisch mit „Ja“ best�
 
 **Nach erfolgreicher Ausführung sollten sie folgende Meldung bekommen:**
 
-![S3 Dashboard](../.assets/versuch1/nonono.jpg)
+![S3 Dashboard](../.assets/Versuch1/nonono.jpg)
 
 ## Zugriff auf den Object Storage von der virtuellen Maschine
 
@@ -128,7 +128,7 @@ sudo apt install s3cmd
 
 **Folgende Ausgabe sollte daraus erfolgen:**
 
-![S3 Dashboard](../.assets/versuch1/s3cmddone.jpg)
+![S3 Dashboard](../.assets/Versuch1/s3cmddone.jpg)
 
 
 **Prüfen Sie die Installation bitte mit folgendem Befehl**
@@ -184,7 +184,7 @@ Falls dies nicht der Fall ist, können die Zugangsdaten jederzeit erneut erstell
 Eine Anleitung dazu finden Sie im vorherigen Kapitel. 🙂
 </div>
 
-![S3 Dashboard](../.assets/versuch1/awskeys1.jpg)
+![S3 Dashboard](../.assets/Versuch1/awskeys1.jpg)
 
 ### Test des Zugriffs auf den Object Storage von StackIT
 
@@ -215,7 +215,7 @@ s3cmd get s3://<DEINBUCKETNAME>/testvideo.mp4 ./testvideo.mp4 \
 ```
 **Folgendes Ergebis ist zu erwarten:**
 
-![S3 Dashboard](../.assets/versuch1/s3cmddownload.jpg)
+![S3 Dashboard](../.assets/Versuch1/s3cmddownload.jpg)
 
 **Auch hier gilt wieder testen:**
 
@@ -304,14 +304,14 @@ Der Parameter -bufsize beschreibt die Größe des Rate-Control-Puffers und besti
 
 **Sie sollten sowas in etwa sehen:**
 
-![S3 Dashboard](../.assets/versuch1/hlsladder.jpg)
+![S3 Dashboard](../.assets/Versuch1/hlsladder.jpg)
 
 **Danach kann geprüft werden ob die Manifestdateien wirklich angelegt worden sind:**
 
 ```bash
 ls -lh hls_output
 ```
-![S3 Dashboard](../.assets/versuch1/moremasterplaylists.jpg)
+![S3 Dashboard](../.assets/Versuch1/moremasterplaylists.jpg)
 
 Anzeigen der Manifestdatei
 
@@ -327,7 +327,7 @@ cat hls_output/master.m3u8
 
 **Die Ausgabe sieht danach dann so aus:**
 
-![S3 Dashboard](../.assets/versuch1/catinfo1.jpg)
+![S3 Dashboard](../.assets/Versuch1/catinfo1.jpg)
 
 !!! question "Frage 1.5"
     Analysieren Sie die Ausgabe der Datei <code>master.m3u8</code>, die mit dem
@@ -467,7 +467,7 @@ s3cmd put testvideo_480p.mp4 s3://<DEINBUCKETNAME>/ \
 
 **Das Ergebnis sollte so aussehen:**
 
-![S3 Dashboard](../.assets/versuch1/bucketuploaded.jpg)
+![S3 Dashboard](../.assets/Versuch1/bucketuploaded.jpg)
 
 
 **Nach Abschluss des Uploads wird überprüft, ob die Dateien erfolgreich im Object Storage abgelegt wurden:**
@@ -479,7 +479,7 @@ scp ubuntu@192.214.178.41:~/transcoded_download/testvideo_1080p.mp4 "$env:USERPR
 
 **Wiederholen Sie diesen Vorgang auch für die anderen transcodierten Videos. Dokumentieren Sie die verwendeten Befehle in Ihrem Bericht.**
 
-![S3 Dashboard](../.assets/versuch1/uploadedintobucket.jpg)
+![S3 Dashboard](../.assets/Versuch1/uploadedintobucket.jpg)
 
 ## Download der transcodierten Dateien und Analyse mit MediaInfo
 
@@ -509,7 +509,7 @@ Dokumentieren Sie die verwendeten Befehle in Ihrem Bericht.**
 Nach dem Download aus der virtuellen Maschine liegen die transcodierten Videodateien lokal auf dem eigenen Rechner, z. B. auf dem Desktop.  
 Im nächsten Schritt werden diese Dateien mit dem Analysewerkzeug *MediaInfo* untersucht.
 
-![S3 Dashboard](../.assets/versuch1/mediainfo.jpg)
+![S3 Dashboard](../.assets/Versuch1/mediainfo.jpg)
 
 ### Vorbereitung
 
@@ -535,7 +535,7 @@ MediaInfo zeigt unter anderem folgende Parameter an:
 - Framerate
 - Containerformat
 
-![S3 Dashboard](../.assets/versuch1/mediainfoui.jpg)
+![S3 Dashboard](../.assets/Versuch1/mediainfoui.jpg)
 
 
 **Darunter sollten Sie jetzt Werte angezeigt bekommen wie bspw: Format, Formatprofil,...**

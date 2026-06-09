@@ -188,7 +188,7 @@ testvideo_460p.mp4
   Eigene Annahmen ohne Messwerte sind kenntlich zu machen.
 
 
-![S3 Quellpfad](../assets/versuch3/s3_quellpfad.png)
+![S3 Quellpfad](../assets/Versuch3/s3_quellpfad.png)
 
 ---
 
@@ -198,6 +198,6 @@ testvideo_460p.mp4
 ➡️ **Nächstes Kapitel:**  
 [CDN im Realbetrieb](03-CDN Im Realbetrieb.md)
 
-![S3 Kopie Zielpfad](../assets/versuch3/s3_zielpfad.png)
+![S3 Kopie Zielpfad](../assets/Versuch3/s3_zielpfad.png)
 
 Kontrollieren Sie, dass die Datei in das richtige Verzeichnis kopiert wurde.
