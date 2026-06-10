@@ -1,0 +1,1308 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://wruppelx.github.io/mvs-stackit-exercise/versuch3/04-Automatisierungsbeispiel/">
+      
+      
+        <link rel="prev" href="../03-CDNRealbetrieb/">
+      
+      
+        <link rel="next" href="../05-fazit/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Automatisierung - Video-on-Demand (STACKIT/Fastly)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#automatische-reaktion-auf-neue-inhalte" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href="../.." title="Video-on-Demand (STACKIT/Fastly)" class="md-header__button md-logo" aria-label="Video-on-Demand (STACKIT/Fastly)" data-md-component="logo">
+      
+  <img src="../../assets/logo_hsrm_weiss.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Video-on-Demand (STACKIT/Fastly)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Automatisierung
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Umschalten zu Lightmode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Umschalten zu Lightmode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Umschalten zu Darkmode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Umschalten zu Darkmode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/wruppelx/mvs-stackit-exercise" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Video-on-Demand (STACKIT/Fastly)" class="md-nav__button md-logo" aria-label="Video-on-Demand (STACKIT/Fastly)" data-md-component="logo">
+      
+  <img src="../../assets/logo_hsrm_weiss.svg" alt="logo">
+
+    </a>
+    Video-on-Demand (STACKIT/Fastly)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/wruppelx/mvs-stackit-exercise" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Übersicht
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../einleitung/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Einleitung
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versuch 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Versuch 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch1/01-einfuehrung/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Einführung Versuch 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch1/02-BucketCreation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bucket Creation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch1/03-VorbereitungTranscodierung/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vorbereitung Transcodierung
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch1/04-ffmpegtranscode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transcodierung mit ffmpeg
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch1/05-fazit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fazit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versuch 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Versuch 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch2/01-einfuehrung/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Einführung Versuch 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch2/02-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CDN Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch2/03-inhalte_abrufen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch2/04-abrufzeit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Abrufzeit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch2/05-fazit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fazit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versuch 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Versuch 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-einfuehrung/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Einführung Versuch 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-Ingest_Analyse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ingestanalyse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-CDNRealbetrieb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CDN im Realbetrieb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automatisierung
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automatisierung
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architekturidee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architekturidee
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beispiel-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beispiel-Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status-der-bearbeitung-uberprufen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status der Bearbeitung überprüfen
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Status der Bearbeitung überprüfen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schritt-1-arbeitsverzeichnis-vorbereiten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schritt 1: Arbeitsverzeichnis vorbereiten
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schritt-2-aktuellen-zustand-des-object-storage-erfassen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schritt 2: Aktuellen Zustand des Object Storage erfassen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schritt-3-datei-im-object-storage-andern-ingest-simulieren" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schritt 3: Datei im Object Storage ändern (Ingest simulieren)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schritt-4-neuen-zustand-erfassen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schritt 4: Neuen zustand erfassen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schritt-5-reaktionsauslosung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schritt 5: Reaktionsauslösung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#was-ist-hier-gerade-passiert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Was ist hier gerade passiert?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-fazit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fazit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="automatische-reaktion-auf-neue-inhalte">Automatische Reaktion auf neue Inhalte</h1>
+<p>In diesem abschließenden Versuch soll gezeigt werden, wie ein einfacher
+automatisierter Workflow ohne Cloud Functions umgesetzt werden kann.</p>
+<p>Dazu wird regelmäßig geprüft, ob sich Inhalte im Object Storage geändert haben.
+Wird eine Änderung erkannt, wird automatisch eine Überprüfung der CDN-Auslieferung durchgeführt.</p>
+<p>Dieses Vorgehen ist typisch für einfache produktive Medienworkflows
+und wird häufig in Kombination mit Cronjobs oder Monitoring-Skripten eingesetzt.</p>
+<hr />
+<h2 id="architekturidee">Architekturidee</h2>
+<hr />
+<h2 id="beispiel-workflow">Beispiel-Workflow</h2>
+<ol>
+<li>Aktuellen Zustand des Object Storage erfassen</li>
+<li>Änderung im Object Storage erzeugen</li>
+<li>Object Storage erneut prüfen</li>
+<li>Änderung erkennen</li>
+<li>Reaktion ausführen</li>
+<li>CDN-Auslieferung kontrollieren</li>
+<li>Ergebnis dokumentieren</li>
+</ol>
+<hr />
+<h2 id="status-der-bearbeitung-uberprufen">Status der Bearbeitung überprüfen</h2>
+<p>Der Status der Ausführung der Lambda-Funktionen kann über den AWS-Service CloudWatch verfolgt werden. Dort sind auch mögliche Fehlermeldungen sichtbar.
+Über die Suchleiste den Service Cloudwatch auswählen. Unter "Protokolle" "Protokollgruppen" aufrufen. In der Übersicht sehen Sie Ihre Lambda-Funktionen. Durch Klick auf die jeweilige Funktion können Sie den Status der letzten Aufrufe abrufen.</p>
+<hr />
+<h3 id="schritt-1-arbeitsverzeichnis-vorbereiten">Schritt 1: Arbeitsverzeichnis vorbereiten</h3>
+<p><strong>Melden Sie sich auf der VM an und erstellen Sie ein neues Verzeichnis für den Versuch:</strong></p>
+<p><strong>Auf der VM anmelden:</strong></p>
+<pre><code class="language-bash">ssh ubuntu@&lt;DeineIPvomServer&gt;
+</code></pre>
+<p><strong>Directory erstellen:</strong></p>
+<pre><code class="language-bash">mkdir reaction-test
+cd reaction-test
+</code></pre>
+<p><strong>Das schaut dann so aus:</strong></p>
+<p><strong>Laden Sie nun auch hier wieder einer der 3 transcodierten Files aus dem Bucket herunter mit folgendem Command:</strong></p>
+<pre><code class="language-bash">s3cmd get s3://&lt;DeinBucketname&gt;/testvideo_1080p.mp4 testvideo_1080p.mp4
+</code></pre>
+<h3 id="schritt-2-aktuellen-zustand-des-object-storage-erfassen">Schritt 2: Aktuellen Zustand des Object Storage erfassen</h3>
+<p><strong>Gebe nun folgenden Befehl ein:</strong></p>
+<pre><code class="language-bash">s3cmd ls s3://leonueberholz-4567 &gt; bucket_state_before.txt
+</code></pre>
+<p>&lt;!!! question "Frage 3.3"
+    Betrachten Sie folgenden Befehl:</p>
+<pre><code>&lt;pre&gt;&lt;code&gt;
+  s3cmd ls s3://leonueberholz-4567 &gt; bucket_state_before.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+Beschreiben Sie in eigenen Worten:
+&lt;ul&gt;
+  &lt;li&gt;Was der Befehl genau bewirkt&lt;/li&gt;
+  &lt;li&gt;Warum die Ausgabe in eine Datei umgeleitet wird&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<h3 id="schritt-3-datei-im-object-storage-andern-ingest-simulieren">Schritt 3: Datei im Object Storage ändern (Ingest simulieren)</h3>
+<p><strong>Jetzt rufen wir mit folgendme Befehl eine Änderung im Bucket hervor:</strong></p>
+<pre><code class="language-bash">s3cmd put testvideo_1080p.mp4 s3://&lt;DeinBucketname&gt;/testvideo_1080p.mp4
+</code></pre>
+<p><strong>Das sollte so aussehen:</strong></p>
+<p><img alt="ObjectSTorage" src="../../assets/Versuch3/change.jpg" /></p>
+<h3 id="schritt-4-neuen-zustand-erfassen">Schritt 4: Neuen zustand erfassen</h3>
+<p><strong>Jetzt speichern wir den Zustand nach der Änderung.</strong></p>
+<pre><code class="language-bash">s3cmd ls s3://&lt;DeinBucketname&gt; &gt; bucket_state_after.txt
+</code></pre>
+<p><strong>und vergleichen den Vorher Nachher Zustand</strong></p>
+<pre><code class="language-bash">diff bucket_state_before.txt bucket_state_after.txt
+</code></pre>
+<p><strong>Was ist nun zu sehen? Dokumentiere SIe ihre Beobachtung.</strong></p>
+<h2 id="schritt-5-reaktionsauslosung">Schritt 5: Reaktionsauslösung</h2>
+<p><strong>Jetzt prüfen wir automatisch, ob die geänderte Datei korrekt über Fastly ausgeliefert wird.</strong></p>
+<pre><code class="language-bash">curl -I https://&lt;DeineDomain&gt;.global.ssl.fastly.net/testvideo_1080p.mp4
+</code></pre>
+<p><strong>Die Ausgabe zeigt uns an:</strong></p>
+<p><img alt="ObjectSTorage" src="../../assets/Versuch3/miss.jpg" /></p>
+<p><strong>Ein weiteres mal der gleiche Abruf:</strong></p>
+<pre><code class="language-bash">curl -I https://&lt;DeineDomain&gt;.global.ssl.fastly.net/testvideo_1080p.mp4
+</code></pre>
+<h2 id="was-ist-hier-gerade-passiert">Was ist hier gerade passiert?</h2>
+<p>Was ist hier gerade passiert? (Einordnung)</p>
+<p>In diesem Experiment wurde kein klassischer Event-Trigger, keine Cloud Function und kein serverseitiger Automatisierungsdienst eingesetzt.
+Trotzdem hat das Gesamtsystem korrekt auf eine Änderung reagiert.</p>
+<p><strong>1️. Änderung im Object Storage</strong></p>
+<p>Zunächst wurde der Zustand des STACKIT Object Storage verändert:</p>
+<p>Eine Datei wurde neu hochgeladen oder</p>
+<p>eine bestehende Datei wurde ersetzt</p>
+<p>Der Object Storage fungiert dabei als Single Source of Truth:
+Er enthält immer die aktuell gültige Version der Mediendateien.</p>
+<p>Wichtig:</p>
+<p>Der Object Storage informiert niemanden aktiv über diese Änderung.</p>
+<p><strong>2️. Erkennung der Änderung (State Comparison)</strong></p>
+<p>Die Änderung wurde nicht durch ein Ereignis erkannt, sondern durch Zustandsvergleich:</p>
+<p>Ein vorher gespeicherter Zustand (z. B. Dateiliste)</p>
+<p>wird mit einem aktuellen Zustand verglichen</p>
+<p>Unterschiede (neue / geänderte Dateien) werden sichtbar</p>
+<p>Dieses Prinzip ist extrem verbreitet:</p>
+<p>-Cronjobs</p>
+<p>-Monitoring-Systeme</p>
+<p>-Medien-QA-Pipelines</p>
+<p>-Backup- und Sync-Tools</p>
+<p><strong>Das System reagiert nicht auf Events, sondern auf Unterschiede.</strong></p>
+<p><strong>3️. Abruf über das CDN</strong></p>
+<p>Nach der erkannten Änderung wird die Datei erneut über das CDN abgerufen:</p>
+<p>Client fragt Fastly nach der Datei</p>
+<p>Fastly prüft:</p>
+<p>Ist die Datei im Cache vorhanden?</p>
+<p>Ist sie gültig?</p>
+<p>Da sich der Origin-Inhalt geändert hat, muss Fastly:</p>
+<p>die Datei neu vom Origin abrufen</p>
+<p>die neue Version an den Client ausliefern</p>
+<p><strong>4️. Automatisches Caching im CDN</strong></p>
+<p>Sobald Fastly die neue Datei vom Object Storage abgerufen hat:</p>
+<p>wird sie automatisch auf dem Edge-Server gespeichert</p>
+<p>zukünftige Anfragen werden aus dem Cache bedient</p>
+<p>Wichtig:</p>
+<p>Das Caching ist keine explizite Aktion, sondern eine Folge der Auslieferung.</p>
+<p><strong>5️. Warum das eine „automatische Reaktion“ ist</strong></p>
+<p>Auch ohne Lambda, Webhooks oder Trigger hat das System korrekt reagiert, weil:</p>
+<p>der Origin den neuen Zustand bereitstellt</p>
+<p>das CDN konsistent auf Anfragen reagiert</p>
+<p>der Cache sich selbst aktualisiert, sobald neue Inhalte angefragt werden</p>
+<div class="admonition question">
+<p class="admonition-title">Frage 3.4: Automatische Reaktion im CDN-Workflow</p>
+<p>In diesem Versuch wurde bewusst <b>keine</b> Cloud Function,
+<b>kein</b> Event-Trigger und <b>kein</b> serverseitiger Automatisierungsdienst
+(z.&nbsp;B. AWS Lambda) eingesetzt.<br><br></p>
+<p>Trotzdem konnte beobachtet werden, dass das System korrekt auf eine Änderung
+im <b>STACKIT Object Storage</b> reagiert hat und die neue Datei
+über das <b>Fastly CDN</b> ausgeliefert wurde.</p>
+<p><b>Beschreiben Sie in eigenen Worten:</b>
+<ul>
+  <li>was sich konkret im Object Storage geändert hat,</li>
+  <li>wie diese Änderung vom CDN technisch „bemerkt“ wird,</li>
+  <li>warum kein explizites Ereignis oder Trigger notwendig war.</li>
+</ul></p>
+<p><b>Gehen Sie dabei insbesondere auf folgende Punkte ein:</b>
+<ul>
+  <li>die Rolle des HTTP-Requests vom Client,</li>
+  <li>die Funktion des Origin-Servers im CDN-Kontext,</li>
+  <li>das Zusammenspiel von Cache, Cache-Miss und erneuter Speicherung.</li>
+</ul></p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Frage 3.5</p>
+<p><b>Bewerten Sie, warum dieses einfache Reaktionsmodell in der Praxis für viele Video-on-Demand-Workflows ausreichend ist</b> und in welchen Fällen eine explizite Automatisierung (z.B. mit Triggern) dennoch sinnvoll wäre.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
+        
+          
+          <a href="../03-CDNRealbetrieb/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: CDN im Realbetrieb">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Zurück
+              </span>
+              <div class="md-ellipsis">
+                CDN im Realbetrieb
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../05-fazit/" class="md-footer__link md-footer__link--next" aria-label="Weiter: Fazit">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Weiter
+              </span>
+              <div class="md-ellipsis">
+                Fazit
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.integrate", "navigation.top", "navigation.footer", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
