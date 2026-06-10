@@ -10,11 +10,11 @@ Stattdessen wird ein einfaches, aber praxisnahes Logging-Konzept verwendet, wie 
 Die Statusmeldungen werden dabei lokal auf der STACKIT-VM in einer Logdatei protokolliert.
 So lässt sich jederzeit nachvollziehen:
 
--wann eine neue Datei erkannt wurde
+- wann eine neue Datei erkannt wurde
 
--wann das Transcoding gestartet wurde
+- wann das Transcoding gestartet wurde
 
--wann alle Distributionsformate erfolgreich erzeugt wurden
+- wann alle Distributionsformate erfolgreich erzeugt wurden
 
 Dieses Vorgehen ist bewusst einfach gehalten, vermittelt jedoch ein zentrales Prinzip moderner Medientechnik:
 
@@ -29,13 +29,13 @@ Sie gibt Auskunft darüber, was gerade passiert oder welcher Schritt abgeschloss
 
 Typische Statusmeldungen in diesem Versuch sind zum Beispiel:
 
--Upload erkannt
+- Upload erkannt
 
--Transcoding gestartet
+- Transcoding gestartet
 
--Transcoding abgeschlossen
+- Transcoding abgeschlossen
 
--Statusmeldungen sind essenziell, um automatisierte Prozesse nachvollziehbar und kontrollierbar zu machen.
+- Statusmeldungen sind essenziell, um automatisierte Prozesse nachvollziehbar und kontrollierbar zu machen.
 
 ### Logging
 
@@ -43,11 +43,11 @@ Logging bezeichnet das systematische Mitschreiben von Statusmeldungen und Ereign
 
 In diesem Versuch wird Logging genutzt, um:
 
--den Ablauf des Workflows zu dokumentieren
+- den Ablauf des Workflows zu dokumentieren
 
--Fehler schneller zu erkennen
+- Fehler schneller zu erkennen
 
--den zeitlichen Verlauf einzelner Schritte nachzuvollziehen
+- den zeitlichen Verlauf einzelner Schritte nachzuvollziehen
 
 Logdateien werden in der Praxis sehr häufig eingesetzt, da sie einfach umzusetzen und unabhängig von speziellen Cloud-Diensten sind.
 
@@ -57,11 +57,11 @@ Als asynchron bezeichnet man Prozesse, die im Hintergrund ablaufen, ohne den Nut
 
 Das Transcoding in diesem Versuch ist ein typisches Beispiel:
 
--der Auftrag wird gestartet
+- der Auftrag wird gestartet
 
--die Verarbeitung läuft unabhängig weiter
+- die Verarbeitung läuft unabhängig weiter
 
--das Ergebnis steht erst später zur Verfügung
+- das Ergebnis steht erst später zur Verfügung
 
 Statusmeldungen und Logging sind besonders bei asynchronen Prozessen wichtig, da der Fortschritt nicht sofort sichtbar ist.
 

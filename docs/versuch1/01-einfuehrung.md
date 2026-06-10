@@ -1,3 +1,19 @@
+# Versuch 1  
+## Grundlagen cloudbasierter Transcoding-Workflows
+
+Dieser Versuch behandelt die grundlegenden Konzepte, den Aufbau sowie die praktische Umsetzung eines cloudbasierten Video-Transcoding-Workflows unter Nutzung von Object Storage und Transcoding-Tools.
+
+## Ziel des Versuchs
+
+Ziel ist es, ein grundlegendes Verständnis für:
+
+- die Architektur cloudbasierter Transcoding-Workflows  
+- die Nutzung von Object Storage  
+- die Verarbeitung von Videodaten mit FFmpeg  
+- sowie die Bewertung der technischen Umsetzung  
+
+zu entwickeln.
+
 
 In diesem Versuch werden zunächst die grundlegenden Begriffe und Konzepte eines cloudbasierten Transcodierungs-Workflows erläutert. Anschließend wird anhand einer Schritt-für-Schritt-Anleitung ein erster Transcodierauftrag erstellt und ausgeführt. Ziel ist es, nach Abschluss von Versuch 1 ein grundlegendes Verständnis für Cloud-Transcoder zu entwickeln und einen einfachen Video-on-Demand-Workflow in einer europäischen Cloud-Umgebung selbstständig umsetzen zu können.
 
@@ -10,29 +26,29 @@ Der Versuch basiert auf der Cloud-Plattform STACKIT als Infrastruktur-Anbieter s
 
 Für alle im Rahmen dieses Praktikums durchgeführten Versuche wird ein einheitlicher HDS-Name verwendet. Dieser Name dient der eindeutigen Identifikation von Ressourcen und wird unter anderem bei der Benennung von Buckets, Services und weiteren Komponenten eingesetzt.
 
-Die Syntax des HDS-Namens entspricht derjenigen, die auch bei der Anmeldung im Stud.IP-System verwendet wird. Dadurch ist eine konsistente und nachvollziehbare Zuordnung der angelegten Ressourcen zu einzelnen Studierenden gewährleistet.
+Die Syntax des HDS-Benutzernamens entspricht derjenigen, die auch bei der Anmeldung im Stud.IP-System verwendet wird. Dadurch ist eine konsistente und nachvollziehbare Zuordnung der angelegten Ressourcen zu einzelnen Studierenden gewährleistet.
 
 Der HDS-Name wird im Verlauf der Versuche mehrfach verwendet und ist daher als fester Bestandteil der jeweiligen Konfigurationen zu verstehen. Änderungen des Namens während des Praktikums sind zu vermeiden, da dies die Zuordnung und Reproduzierbarkeit der Ergebnisse beeinträchtigen kann.
 
-![STACKIT Object Storage](../assets/Versuch1/hdsname.jpg)
+![HDS](../assets/Versuch1/hdsname.jpg)
 
 ### Cloud-Speicher (*Object-Storage*)
 
 ![STACKIT Object Storage](../assets/Versuch1/object-storage.png)
 
 
-Cloud-Speicher funktioniert im Grundprinzip ähnlich wie bekannte Dienste wie Dropbox oder Google Drive: Dateien werden zentral gespeichert und können bei Bedarf wieder abgerufen werden. In professionellen Cloud-Umgebungen kommt dafür jedoch meist Objektspeicher (Object Storage) zum Einsatz.
+Cloud-Speicher funktioniert im Grundprinzip ähnlich wie bekannte Dienste wie Dropbox oder Google Drive: Dateien werden zentral gespeichert und können bei Bedarf wieder abgerufen werden. In professionellen Cloud-Umgebungen kommt dafür jedoch meist Objektspeicher (Object Storage) zum Einsatz. Objectspeicher weren auch als Buckets bezeichnet.
 
-Im Gegensatz zu klassischen Ordnerstrukturen werden die Daten hier als einzelne Objekte gespeichert. Jedes Objekt liegt in einem sogenannten Bucket und besitzt eine eindeutige Kennung. Die interne Organisation übernimmt der Cloud-Anbieter, sodass sich Anwender nicht um Verzeichnisstrukturen kümmern müssen.
+Im Gegensatz zu klassischen Ordnerstrukturen werden die Daten hier als einzelne Objekte gespeichert. 
 
 Für diesen Praktikumsversuch wird STACKIT Object Storage verwendet. Über die Weboberfläche des STACKIT Control Centers oder über standardisierte Schnittstellen (S3-kompatible API) können Dateien hochgeladen und verwaltet werden. In diesem Versuch dient der Objektspeicher als Ablageort für die hochgeladenen Videodateien sowie für die später erzeugten, transcodierten Versionen.
 
 ⚠️ Achtung 
 Für gespeicherte Daten fallen laufende Kosten an, außerdem können Kosten für den Datenabruf entstehen. Bei den im Rahmen dieses Versuchs verwendeten kleinen Datenmengen sind diese Kosten sehr gering. Bei größeren Projekten mit vielen oder sehr großen Dateien können die Speicher- und Übertragungskosten jedoch deutlich steigen.
-### Transcodierer (*über Virtual-Machine*)
 
+### Transcodierer (*über eine Virtual Machine*)
 
-STACKIT stellt keinen eigenen, spezialisierten Transcoding-Dienst bereit. Stattdessen erfolgt die Verarbeitung von Medieninhalten über virtuelle Maschinen, die mit dem Produkt STACKIT Compute Engine bereitgestellt werden. Eine virtuelle Maschine kann dabei wie ein normaler Server betrachtet werden, auf dem eigene Software ausgeführt wird.
+STACKIT stellt keinen eigenen, spezialisierten Transcoding-Dienst bereit. Stattdessen erfolgt die Verarbeitung von Medieninhalten über virtuelle Maschinen, die mit dem Service STACKIT Compute Engine bereitgestellt werden. Eine virtuelle Maschine kann dabei wie ein normaler Server betrachtet werden, auf dem eigene Software ausgeführt wird.
 
 In diesem Praktikumsversuch wird auf einer solchen virtuellen Maschine eine Transcoding-Software (z. B. FFmpeg) installiert. Die VM greift zunächst auf die im STACKIT Object Storage abgelegten Videodateien zu und lädt diese zur Verarbeitung herunter. Anschließend werden die Videodateien in verschiedene Zielformate und Auflösungen umgewandelt, um eine spätere Wiedergabe auf unterschiedlichen Endgeräten zu ermöglichen.
 
