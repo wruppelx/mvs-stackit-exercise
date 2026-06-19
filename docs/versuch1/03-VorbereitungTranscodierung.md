@@ -248,7 +248,7 @@ ssh -i <PFAD_ZUM_PRIVATE_KEY> ubuntu@<PUBLIC-IP-DER-VM>
   Der Fingerprint wird anschließend gespeichert, sodass diese Abfrage bei zukünftigen Verbindungen nicht erneut erscheint.
 </div>
 
-**Nach erfolgreicher Eingabe sollte folgende Ausgabe in der Powershell zu erwarten sein**
+**Nach erfolgreicher Eingabe sollte folgende Ausgabe in der lokalen Shell zu sehen sein**
 
 ![S3 Dashboard](../assets/Versuch1/cmdsuccesful.jpg)
 
@@ -265,7 +265,7 @@ Nach erfolgreicher Anmeldung befindet man sich auf dem Linux-System der virtuell
 
 ## Einrichten der Laufzeitumgebung
 
-Das Betriebssystem wird aktualisiert und die Anwendungen `s3cmd` sowie `ffmpeg` werden mit diesen Befehlen installiert.
+In den folgenden Abschnitten weerden das Betriebssystem  aktualisiert und die Anwendungen `s3cmd` sowie `ffmpeg`  installiert.
 
 ### Aktualisierung des Betriebssystems
 
@@ -305,7 +305,7 @@ STACKIT stellt für den Object Storage keine eigenen, vollwertigen Client-Werkze
 
 Für den Datentransfer sowie für automatisierte Workflows stellt STACKIT eine **S3-kompatible Schnittstelle** bereit. Diese implementiert die Amazon-S3-API, die sich als De-facto-Standard für objektbasierten Cloud-Speicher etabliert hat. Durch diesen Ansatz können etablierte, herstellerunabhängige Werkzeuge eingesetzt werden.
 
-Im Rahmen dieses Versuchs wird ausschließlich das Open-Source-Werkzeug **s3cmd** verwendet.  
+Im Rahmen dieses Versuchs wird ausschließlich das Open-Source-Werkzeug `s3cmd` verwendet.  
 `s3cmd` dient hierbei als  Client zur Kommunikation mit der S3-kompatiblen Schnittstelle von STACKIT. Der Zugriff erfolgt explizit über den STACKIT-Endpoint, es wird also **keine AWS-Infrastruktur** genutzt.
 
 ---

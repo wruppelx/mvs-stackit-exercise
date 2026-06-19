@@ -35,24 +35,24 @@ Damit wird der Übergang von der reinen Infrastruktur- und Speicherbereitstellun
 s3cmd --configure
 ```
 
-**Hier werden seriell der Accesskey und Secret Acceskey abgefragt, sowie Default Region Name und Default Output Format**
+**Hier werden seriell der Access Key und Secret Key abgefragt, sowie Default Region Name und Default Output Format**
 
 **Die Ausgabe sollte so aussehen:**
 
-```bash
+```console
 Enter new values or accept defaults in brackets with Enter.
 Refer to user manual for detailed description of all options.
 
-Access key and Secret key are your identifiers for Amazon S3. Leave them empty for using the env variables.
-Access Key: **Ihr Public Key**
-Secret Key: **Ihr Private Key**
-Default Region [US]: eu01
+Access Key and Secret Key are your identifiers for Amazon S3. Leave them empty for using the env variables.
+Access Key: **<Ihr Public Key>**
+Secret Key: **<Ihr Private Key>**
+Default Region [US]: **eu01**
 
 Use "s3.amazonaws.com" for S3 Endpoint and do not modify it to the target Amazon S3.
-S3 Endpoint [s3.amazonaws.com]: object.storage.eu01.onstackit.cloud
+S3 Endpoint [s3.amazonaws.com]: **object.storage.eu01.onstackit.cloud**
 Use "%(bucket)s.s3.amazonaws.com" to the target Amazon S3. "%(bucket)s" and "%(location)s" vars can be used
 if the target S3 system supports dns based buckets.
-DNS-style bucket+hostname:port template for accessing a bucket [%(bucket)s.s3.amazonaws.com]: %(bucket)s.object.storage.eu01.onstackit.cloud
+DNS-style bucket+hostname:port template for accessing a bucket [%(bucket)s.s3.amazonaws.com]: **%(bucket)s.object.storage.eu01.onstackit.cloud**
 
 
 ```
@@ -66,20 +66,11 @@ Success. Your access key and secret key worked fine :-)
 
 
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="font-size:1.1em;">
-    ℹ️ <strong>Hinweis:</strong>
-  </span><br>
-Access key und Secret key sind jene, die Sie zu Beginn in STACKIT angelegt haben.
-Es wird vorausgesetzt, dass Sie sich diese sorgfältig notiert haben.
-Falls dies nicht der Fall ist, können die Zugangsdaten jederzeit erneut erstellt werden.
-Eine Anleitung dazu finden Sie im vorherigen Kapitel. 🙂
-</div>
+<!!! info
+  Access Key und Secret Key sind jene, die Sie zu Beginn in STACKIT angelegt haben.
+  Es wird vorausgesetzt, dass Sie sich diese sorgfältig notiert haben.
+  Falls dies nicht der Fall ist, können die Zugangsdaten jederzeit erneut erstellt werden.
+  Eine Anleitung dazu finden Sie im vorherigen Kapitel. 🙂
 
 ![S3 Dashboard](../assets/Versuch1/awskeys1.jpg)
 

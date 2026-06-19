@@ -28,14 +28,7 @@ Die Namensvergabe soll nach einem einheitlichen Schema erfolgen:
 <span style="color:orange; font-weight:bold; font-size:1.2em;">`bucket-<HDS-Nutzername>`  Beispiel: `bucket-musterax`  </span><br>
 
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-
-    ℹ️ Hinweis:
+!!! info
   
   Notieren Sie sich alle im Projekt verwendeten <strong>Zugangsdaten</strong>, 
   <strong>Namen</strong> und <strong>Bezeichnungen</strong> (z. B. Bucket-Namen, 
@@ -43,7 +36,6 @@ Die Namensvergabe soll nach einem einheitlichen Schema erfolgen:
   Diese Informationen werden benötigt, um den Versuch später auch 
   <strong>außerhalb der Präsenzveranstaltung</strong> (z. B. von zu Hause aus) 
   weiterzuführen.
-</div>
 
 
 ## Vorbereitung: Zugangsdaten (Keys) im STACKIT Control Center erstellen
