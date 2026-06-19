@@ -1,38 +1,40 @@
-## Transcodierung über eine virtuelle Maschine (VM)
+# Transcodierung über eine virtuelle Maschine (VM)
 
 Im folgenden Abschnitt wird die **Transcodierung eines Videos mithilfe einer virtuellen Maschine (VM)** durchgeführt.  
-Dabei wird das zuvor in den Object Storage hochgeladene Video auf eine VM geladen, dort verarbeitet und anschließend wieder im Object Storage abgelegt.
+Dabei wird ein zuvor in den Object Storage hochgeladenes Video auf einer VM transcodiert. Das Ergebnis der Transcodierung wird anschließend wieder im Object Storage abgelegt.
 
 Die VM übernimmt in diesem Versuch die Rolle eines **Rechenknotens**, auf dem eine Transcoding-Software ausgeführt wird. Im Gegensatz zu vollständig verwalteten Cloud-Services bietet dieser Ansatz volle Kontrolle über:
+
 - eingesetzte Software
+
 - Transcoding-Parameter
+
 - Ablauf des Workflows
 
 ![S3 Dashboard](../assets/Versuch1/StackApp.jpg)
 
-### Ablauf im Überblick
+## Ablauf im Überblick
 
-Der Transcoding-Prozess besteht aus vier klaren Schritten:
+Der Transcoding-Prozess besteht aus den folgenden Schritten:
 
-1. **Bereitstellung der VM**  
-   Eine virtuelle Maschine mit Linux-Betriebssystem wird gestartet und dient als Arbeitsumgebung.
+1. **Bereitstellung der virtuellen Maschine**  
+   Eine virtuelle Maschine (VM) mit Linux-Betriebssystem wird als Arbeitsumgebung eingerichtet.
 
-2. **Übertragung der Quelldatei**  
-   Das Originalvideo wird aus dem Object Storage auf die VM heruntergeladen.
+2. **Einrichtung der Laufzeitumgebung **  
+   Instalation der benötigten Anwendungen auf der VM.
 
 3. **Transcodierung**  
-   Mithilfe eines Kommandozeilenwerkzeugs (FFmpeg) wird das Video in ein alternatives Ausgabeformat bzw. eine andere Auflösung umgewandelt.
+   Mithilfe eines Kommandozeilenwerkzeugs (FFmpeg) wird eine MXF-Datei in ein Streaming-Format transcodiert.
 
 4. **Rücktransfer der Ergebnisse**  
-   Die transcodierte Videodatei wird wieder in den Object Storage hochgeladen und steht dort für die weitere Verarbeitung oder Auslieferung bereit.
+   Die transcodierte Videodatei wird in den Object Storage hochgeladen und steht dort für die weitere Verarbeitung oder Auslieferung bereit.
 
 
 ## Netzwerk
 
-**Für dieses Praktikum ist bereits ein virtuelles Netzwerk vorhanden, das verwendet werden kann.
-Ein eigenes Netzwerk muss nicht erstellt werden..**
+**Für dieses Praktikum ist bereits ein virtuelles Netzwerk vorhanden, das verwendet werden soll.**
 
-**Bitte navigieren SIe an der linken Seite zu dem Reiter richtung Network:**
+**Bitte navigieren Sie an der linken Seite zu Networking: > Network**
 
 ![S3 Dashboard](../assets/Versuch1/navinet.jpg)
 
@@ -44,20 +46,19 @@ Die jeweilige Ressource wird dadurch automatisch Teil des Netzwerks.
 Eine separate Kopplung oder zusätzliche Konfiguration des Netzwerks ist nicht erforderlich.
 
 !!! question "Frage 1.3"
-    Überprüfen Sie den Ihnen zugewiesenen Adressbereich, die konfigurierten DNS-Server sowie die Routing-Tabelle. 
+    Dokumentieren Sie den Ihnen zugewiesenen Adressbereich, die Netzmaske, die konfigurierten DNS-Server sowie die Routing-Tabelle. 
     
-    Dokumentieren Sie Ihre Ergebnisse in der Abgabemappe.
 
 
 ## SSH-Schlüssel für den Serverzugang erstellen
 
 Für den Zugriff auf den Linux-Server wird eine Anmeldung per **SSH-Schlüssel** verwendet. Dabei besteht ein Schlüssel immer aus einem **privaten** und einem **öffentlichen** Teil. In der STACKIT-Weboberfläche wird **nur der öffentliche Schlüssel** hinterlegt.
 
-#### Schritt 1: SSH-Schlüsselpaar erzeugen (plattformunabhängig)
+### Schritt 1: SSH-Schlüsselpaar erzeugen (plattformunabhängig)
 
 Das SSH-Schlüsselpaar wird über den folgenden Online-Generator erzeugt:
 
-https://8gwifi.org/sshfunctions.jsp
+[https://8gwifi.org/sshfunctions.jsp](https://8gwifi.org/sshfunctions.jsp)
 
 ![S3 Dashboard](../assets/Versuch1/keykeykey.jpg)
 
@@ -70,48 +71,43 @@ https://8gwifi.org/sshfunctions.jsp
 
 ### Schritt 2: Key in STACKIT ablegen
 
-Speichern Sie sowohl den public-Key als auch den privat-Key  den privaten Schlüssel lokal auf Ihrem Rechner, z. B. unter folgendem Namen:
+Speichern Sie sowohl den Public Key als auch den Private Key lokal auf Ihrem Rechner, z. B. unter folgendem Namen:
 
 ```bash
-priv-key-stackit.pk
+pub-key-stackit.txt
+priv-key-stackit.txt
 ```
-
-Nun wird derSchlüssel standardmäßig im Ordner  
-
-`C:\Users\<Benutzername>\.ssh\`  
-
-gespeichert.
 
 Bei der Servererstellung kann hierfür später das erstellte Schlüsselpaar verwendet werden.
 
-Um sich erfolgreich mit der VM nun verbinden zu können benötigen Sie folgenden Befehl:
+**Wichtig: Unter Linux und macOS müssen Sie die Zugriffsrechte auf die Datei ändern:**
+
+```bash
+chmod 400 <priv-key-file>
+```
+
+Um sich später mit der VM verbinden zu können, nutzen Sie folgenden Befehl:
 
 ```bash
 ssh -i <priv-key-file> ubuntu@<public ip der vm>
 ```
-**Für Linux und MACOS gilt:**
-
-```bash
-chmod 400 <priv-key-file> ubuntu@<public ip der vm>
-```
-Wichtig: Der Private-Key darf hierbei nur für Sie lesbar sein!
 
 
 ### Schritt 3: Einrichtung des Keys auf der STACKIT Weboberfläche
 
-Sie haben nun die Möglichkeit das erzeugte Keypaar auf ihrem STACKIT-Konto zu verknüpfen.
+Ds erzeugte Keypaar soll nun mit Ihrem STACKIT-Konto verknüpft werden.
 
-**Navigieren sie hierzu als erstes zu ihren Nutzereinstellungen:**
+**Navigieren sie hierzu  zu ihren Nutzereinstellungen:**
 
 ![S3 Dashboard](../assets/Versuch1/Benutzereinstellungen.jpg) 
 
-**Unter Passwort&Sicherheit finden Sie nun den Reiter SSH-Schlüssel. Klicken Sie bitte da drauf:**
+**Unter Passwort&Sicherheit finden Sie nun die Option "SSH-Schlüssel erstellen":**
 
 ![S3 Dashboard](../assets/Versuch1/keyname.jpg)
 
-**Geben SIe als Namen Ihren Vornamen+Key ein. Zum Beispiel: *leonkey***
+**Geben Sie als Namen key-<HDS-Nutzernamen> ein. Zum Beispiel: *key-musterax***
 
-**Für den Schlüssel wird ihr Publickey benötigt**
+**In das Feld Schlüssel kopieren Sie Ihren Public Key**
 
 **Anschließend auf Create klicken**
 
@@ -119,11 +115,11 @@ Sie haben nun die Möglichkeit das erzeugte Keypaar auf ihrem STACKIT-Konto zu v
 
 
 
-## Security Groups erzeugen
+## Security Group anpassen
 
 ### Konfiguration der Security Group für den SSH-Zugriff
 
-Damit eine Verbindung zur virtuellen Maschine über SSH hergestellt werden kann, muss der entsprechende Netzwerkzugriff explizit erlaubt werden. In STACKIT erfolgt diese Zugriffskontrolle über sogenannte Security Groups. Security Groups definieren, welcher ein- und ausgehende Netzwerkverkehr für eine Ressource erlaubt ist.
+Damit eine Verbindung zur virtuellen Maschine über SSH hergestellt werden kann, muss der entsprechende Netzwerkzugriff über Port 22 explizit erlaubt werden. In STACKIT erfolgt diese Zugriffskontrolle über sogenannte Security Groups. Security Groups definieren, welcher ein- und ausgehende Netzwerkverkehr für eine Ressource erlaubt ist.
 
 Standardmäßig ist bei neu erstellten Servern kein externer Zugriff über Port 22 freigegeben. Aus diesem Grund muss vor dem ersten Login eine passende Regel ergänzt werden.
 
@@ -149,7 +145,7 @@ Um den SSH-Zugriff zu erlauben, muss eine neue eingehende Regel erstellt werden.
 
 Tragen Sie die folgenden Werte ein:
 
-Name: namenachnameRegel -> maxmustermannRegel  
+Name: ssh  
 Protokoll: TCP  
 Start-Port: 22  
 End-Port: 22  
@@ -167,31 +163,31 @@ Speichern Sie die Regel nach dem Eintragen der Werte. Die Änderung wird sofort 
 
 **Klicken Sie auf Create Server**
 
-- **Name:** namenachnamevm1337  
-- **Availability Zone:** EU01-2  
+- **Name:** vm-<HDR-Nutzername>  
+- **Availability Zone:** EU01-1  
 - **Betriebssystem:** Ubuntu  
 - **Version:** Ubuntu 24.04  
 - **STACKIT Server Agent:** aktiviert  
 - **Leistungsklasse:** Performance Class 2  
 - **Volumengröße:** 60 GB  
-- **Boot-Volume beim Löschen löschen:** nicht aktivieren  
+- **Boot-Volume beim Löschen löschen:**  aktivieren  
 
 ---
 
-## Flavors
+### Flavors
 
 - **Kategorie:** Allgemeine Zwecke  
 - **Auswahl:** g2i.2 2 CPU 8GB RAM  
 
 ---
 
-## Management
+### Management
 
 - **Server Backup Management Service:** deaktiviert  
 - **Server Update Management Service:** deaktiviert  
 
 **Network**
-**Wählen Sie hier ihr vorher erzeugtes Netzwerk aus**
+**Wählen Sie hier das bereits angelegte Netzwerk aus**
 
 **Initiale Zugangsdaten**
 
@@ -223,32 +219,119 @@ Network → Public IP Address
 ![S3 Dashboard](../assets/Versuch1/connip.jpg)
 
 
-Diese muss zu guter letzt einfach nur noch mit dem Server verbunden werden:
+Die Public IP Address muss dem neu erstellten Server zugeordnet werden:
 
 ![S3 Dashboard](../assets/Versuch1/ipconnect.jpg)
 
 
-## Testen der Verbindung zur virtuellen Maschine per SSH
+### Verbindung zur virtuellen Maschine
 
-In der Medieninformatik und in medientechnischen Systemen ist es besonders wichtig, technische Konfigurationen nicht nur theoretisch korrekt einzurichten, sondern diese auch praktisch zu überprüfen. Gerade bei verteilten Systemen in der Cloud können kleine Konfigurationsfehler, etwa in der Netzwerk- oder Sicherheitskonfiguration, dazu führen, dass ein System zwar formal existiert, jedoch nicht wie vorgesehen nutzbar ist. Aus diesem Grund ist es gängige Praxis, jeden wesentlichen Einrichtungsschritt durch gezielte Tests gegenzuprüfen, bevor mit der eigentlichen Verarbeitung von Medieninhalten begonnen wird.
-
-Nachdem der virtuellen Maschine eine öffentliche IP-Adresse zugewiesen wurde, kann nun eine Verbindung über das Secure-Shell-Protokoll (SSH) hergestellt werden. SSH ermöglicht einen sicheren, textbasierten Zugriff auf das Linux-System der virtuellen Maschine und wird im weiteren Verlauf des Versuchs zur Installation und Ausführung der Transcoding-Software verwendet.
-
-
-### Test der Netzwerkverbindung
-
-Vor dem eigentlichen Login wird geprüft, ob der Server über den SSH-Port erreichbar ist. Dazu wird auf dem lokalen Rechner folgendes Kommando ausgeführt:
+Zunächst wird eine Verbindung zur zuvor erstellten virtuellen Maschine hergestellt. Der Zugriff erfolgt über das Secure Shell Protokoll (SSH).
 
 ```bash
-ssh ubuntu@<öffentliche-IP-Adresse>
+ssh -i <PFAD_ZUM_PRIVATE_KEY> ubuntu@<PUBLIC-IP-DER-VM>
 ```
-Folgende Ausgabe ist hierbei zu erwarten:
 
-![S3 Dashboard](../assets/Versuch1/sshtest.jpg)
+<div style="
+  border: 2px solid #ffffff;
+  padding: 14px;
+  border-radius: 6px;
+  margin: 14px 0;
+">
+  <span style="font-size:1.1em;">
+    ℹ️ <strong>Hinweis:</strong>
+  </span><br>
+  Beim ersten Verbindungsaufbau per SSH erscheint eine Sicherheitsabfrage zum sogenannten <em>Host-Fingerprint</em>.
+  Diese Abfrage dient dazu, die Identität des entfernten Servers zu überprüfen.
+  Da es sich hierbei um eine neu erstellte virtuelle Maschine handelt, ist der Fingerprint dem lokalen System noch nicht bekannt.
+  In diesem Fall genügt es, die Abfrage mit <code>yes</code> zu bestätigen.
+  Der Fingerprint wird anschließend gespeichert, sodass diese Abfrage bei zukünftigen Verbindungen nicht erneut erscheint.
+</div>
+
+**Nach erfolgreicher Eingabe sollte folgende Ausgabe in der Powershell zu erwarten sein**
+
+![S3 Dashboard](../assets/Versuch1/cmdsuccesful.jpg)
+
+!!! question "Frage 1.4"
+    Was passiert technisch, wenn der zuvor ausgeführte Befehl eingegeben wird?
+
+    Beschreiben Sie, welche Komponenten beteiligt sind und welche Aktionen im Hintergrund ablaufen.
+
+    Gehen Sie dabei insbesondere darauf ein, wie der Befehl mit dem Betriebssystem bzw. der Cloud-Infrastruktur interagiert.
+
+Nach erfolgreicher Anmeldung befindet man sich auf dem Linux-System der virtuellen Maschine und kann dort weitere Software installieren und ausführen.
 
 
 
-**Alle Schritte verliefen erfolgreich? Dann geht es nun weiter zum Transcoding!**
+## Einrichten der Laufzeitumgebung
+
+Das Betriebssystem wird aktualisiert und die Anwendungen `s3cmd` sowie `ffmpeg` werden mit diesen Befehlen installiert.
+
+### Aktualisierung des Betriebssystems
+
+Zur Aktualisierung des Betriebssystems Ubuntu geben Sie bitte folgenden Befehl ein:
+```bash
+sudo apt-get update
+```
+
+**Dieser Befehl aktualisiert die Paketlisten des Systems. Dabei wird geprüft, welche neuen Versionen von Software verfügbar sind, ohne sie direkt zu installieren.**
+
+
+### Installation der Transcoding-Software
+
+Für die Transcodierung wird in diesem Versuch das Kommandozeilenwerkzeug **FFmpeg** eingesetzt. FFmpeg ist ein weit verbreitetes Open-Source-Werkzeug zur Verarbeitung von Audio- und Videodaten und wird sowohl in Forschung, Lehre als auch in produktiven Medien-Workflows verwendet.
+
+Die Installation erfolgt direkt auf der virtuellen Maschine über den Paketmanager des Betriebssystems.
+
+```bash
+sudo apt-get install ffmpeg -y
+```
+
+**Dieser Befehl installiert das Programm ffmpeg, das für die Verarbeitung und Konvertierung von Audio- und Videodateien verwendet wird.
+Die Option -y sorgt dafür, dass alle Rückfragen automatisch mit „Ja“ bestätigt werden.**
+
+**Nach erfolgreicher Ausführung sollten sie folgende Meldung bekommen:**
+
+![S3 Dashboard](../assets/Versuch1/nonono.jpg)
+
+## Zugriff auf den Object Storage von der virtuellen Maschine
+
+Nachdem die virtuelle Maschine vorbereitet und die Transcoding-Software installiert wurde, muss sie nun  auf den Object Storage zugreifen können. Dazu wird auf der VM die bereits bekannte S3-kompatible Schnittstelle verwendet. Die virtuelle Maschine übernimmt damit aktiv die Rolle des Transcoders und greift direkt auf die im Object Storage abgelegten Quelldateien zu.
+
+
+### Nutzung der S3-kompatiblen Schnittstelle mit s3cmd
+
+STACKIT stellt für den Object Storage keine eigenen, vollwertigen Client-Werkzeuge bereit, wie sie beispielsweise von großen Hyperscalern angeboten werden. Die Verwaltung des Object Storage erfolgt primär über die Weboberfläche des STACKIT Control Centers, in der grundlegende Aufgaben wie das Anlegen von Buckets oder das Erstellen von Zugangsdaten durchgeführt werden können.
+
+Für den Datentransfer sowie für automatisierte Workflows stellt STACKIT eine **S3-kompatible Schnittstelle** bereit. Diese implementiert die Amazon-S3-API, die sich als De-facto-Standard für objektbasierten Cloud-Speicher etabliert hat. Durch diesen Ansatz können etablierte, herstellerunabhängige Werkzeuge eingesetzt werden.
+
+Im Rahmen dieses Versuchs wird ausschließlich das Open-Source-Werkzeug **s3cmd** verwendet.  
+`s3cmd` dient hierbei als  Client zur Kommunikation mit der S3-kompatiblen Schnittstelle von STACKIT. Der Zugriff erfolgt explizit über den STACKIT-Endpoint, es wird also **keine AWS-Infrastruktur** genutzt.
+
+---
+
+### Installation von s3cmd
+
+Installieren Sie `s3cmd` über den Paketmanager des Betriebssystems:
+
+```bash
+sudo apt-get install s3cmd -y
+```
+
+
+**Folgende Ausgabe sollte daraus erfolgen:**
+
+![S3 Dashboard](../assets/Versuch1/s3cmddone.jpg)
+
+
+**Prüfen Sie die Installation bitte mit folgendem Befehl**
+
+```bash
+s3cmd --version
+```
+
+
+
 
 
 

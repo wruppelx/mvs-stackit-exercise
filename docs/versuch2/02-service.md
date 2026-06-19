@@ -93,8 +93,8 @@ Im oberen rechten Bereich des Dashboards wird der Button **Create service** ausg
 
 | Feld / Bereich        | Eingabe                               |
 |----------------------|----------------------------------------|
-| Service name         | `stackit-<HDS account>`          |
-| Eigene Domain        | `stackit-<HDS account>.global.ssl.fastly.net` |
+| Service name         | `stackit-<HDS-Nutzername>`          |
+| Eigene Domain        | `stackit-<HDS-Nutzername>.global.ssl.fastly.net` |
 | Origin Host          | `https://<Virtual-Hosted-Style-Name>.object.storage.eu01.onstackit.cloud`|
 | Override default host| aktiviert                              |
 | Default compression  | aktiviert                              |

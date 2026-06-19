@@ -24,11 +24,13 @@ Der Versuch basiert auf der Cloud-Plattform STACKIT als Infrastruktur-Anbieter s
 
 ### HDS-Nutzername
 
-Für alle im Rahmen dieses Praktikums durchgeführten Versuche wird ein einheitlicher HDS-Name verwendet. Dieser Name dient der eindeutigen Identifikation von Ressourcen und wird unter anderem bei der Benennung von Buckets, Services und weiteren Komponenten eingesetzt.
+Ihr HDS-Nutzername dient der eindeutigen Identifikation von Ressourcen und wird unter anderem bei der Benennung von Buckets, Services und weiteren Komponenten eingesetzt.
 
-Die Syntax des HDS-Benutzernamens entspricht derjenigen, die auch bei der Anmeldung im Stud.IP-System verwendet wird. Dadurch ist eine konsistente und nachvollziehbare Zuordnung der angelegten Ressourcen zu einzelnen Studierenden gewährleistet.
+Die Syntax des HDS-Nutzernamens entspricht derjenigen, die auch bei der Anmeldung im Stud.IP-System verwendet wird. Dadurch ist eine konsistente und nachvollziehbare Zuordnung der angelegten Ressourcen zu einzelnen Studierenden gewährleistet.
 
-Der HDS-Name wird im Verlauf der Versuche mehrfach verwendet und ist daher als fester Bestandteil der jeweiligen Konfigurationen zu verstehen. Änderungen des Namens während des Praktikums sind zu vermeiden, da dies die Zuordnung und Reproduzierbarkeit der Ergebnisse beeinträchtigen kann.
+Der HDS-Nutzername wird im Verlauf der Versuche mehrfach verwendet und ist daher als fester Bestandteil der jeweiligen Konfigurationen zu verstehen. 
+
+Wennin der Anleitung `<HDS-Nutzername>` als Bezeichner verwendet wird, ersetzen Sie diesen bitte durch Ihren HDS-Nutzernamen.
 
 ![HDS](../assets/Versuch1/hdsname.jpg)
 
@@ -79,6 +81,6 @@ Zur Anmeldung auf StackIT gelangt man über diesen Link: https://portal.stackit.
 
 ![Landingpage region](../assets/Versuch1/Landingpage-region.jpg)
 
-**Auf der Landingpage sollte in der oberen Leiste das richtige Projekt und die region EU01 - (Deutschland Süd) ausgewählt werden. Hierfür sollte für Sie bereits ein Projekt vorhanden sein, welches Ihren HDS-Namen beinhaltet**
+**Auf der Landingpage sollte in der oberen Leiste das richtige Projekt und die region EU01 - (Deutschland Süd) ausgewählt werden. Hierfür sollte für Sie bereits ein Projekt vorhanden sein, welches Ihren HDS-Nutzernamen beinhaltet**
 
 

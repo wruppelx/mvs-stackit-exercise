@@ -9,9 +9,7 @@ Wird eine Änderung erkannt, wird automatisch eine Überprüfung der CDN-Auslief
 Dieses Vorgehen ist typisch für einfache produktive Medienworkflows
 und wird häufig in Kombination mit Cronjobs oder Monitoring-Skripten eingesetzt.
 
----
 ## Architekturidee
----
 ## Beispiel-Workflow
 
 1. Aktuellen Zustand des Object Storage erfassen
@@ -22,13 +20,7 @@ und wird häufig in Kombination mit Cronjobs oder Monitoring-Skripten eingesetzt
 6. CDN-Auslieferung kontrollieren
 7. Ergebnis dokumentieren
 
----
 
-## Status der Bearbeitung überprüfen
-Der Status der Ausführung der Lambda-Funktionen kann über den AWS-Service CloudWatch verfolgt werden. Dort sind auch mögliche Fehlermeldungen sichtbar.
-Über die Suchleiste den Service Cloudwatch auswählen. Unter "Protokolle" "Protokollgruppen" aufrufen. In der Übersicht sehen Sie Ihre Lambda-Funktionen. Durch Klick auf die jeweilige Funktion können Sie den Status der letzten Aufrufe abrufen.
-
----
 
 ### Schritt 1: Arbeitsverzeichnis vorbereiten
 
@@ -65,14 +57,14 @@ s3cmd get s3://<DeinBucketname>/testvideo_1080p.mp4 testvideo_1080p.mp4
 **Gebe nun folgenden Befehl ein:**
 
 ```bash
-s3cmd ls s3://leonueberholz-4567 > bucket_state_before.txt
+s3cmd ls s3://<ihr bucketname> > bucket_state_before.txt
 ```
 
 <!!! question "Frage 3.3"
     Betrachten Sie folgenden Befehl:
 
     <pre><code>
-      s3cmd ls s3://leonueberholz-4567 > bucket_state_before.txt
+      s3cmd ls s3://<ihr bucketname> > bucket_state_before.txt
     </code></pre>
 
     Beschreiben Sie in eigenen Worten:
@@ -87,19 +79,19 @@ s3cmd ls s3://leonueberholz-4567 > bucket_state_before.txt
  **Jetzt rufen wir mit folgendme Befehl eine Änderung im Bucket hervor:**
 
 ```bash
-s3cmd put testvideo_1080p.mp4 s3://<DeinBucketname>/testvideo_1080p.mp4
+s3cmd put testvideo_1080p.mp4 s3://<ihr bucketname>/testvideo_1080p.mp4
 ```
 
 **Das sollte so aussehen:**
 
 
 ![ObjectSTorage](../assets/Versuch3/change.jpg)
-### Schritt 4: Neuen zustand erfassen
+### Schritt 4: Neuen Zustand erfassen
 
 **Jetzt speichern wir den Zustand nach der Änderung.**
 
 ```bash
-s3cmd ls s3://<DeinBucketname> > bucket_state_after.txt
+s3cmd ls s3://<ihr bucketname> > bucket_state_after.txt
 ```
 
 **und vergleichen den Vorher Nachher Zustand**

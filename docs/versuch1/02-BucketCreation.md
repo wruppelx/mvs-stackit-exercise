@@ -15,15 +15,17 @@ Dazu wird der **STACKIT Object Storage** verwendet, ein S3-kompatibler Objektspe
 
 
 !!! question "Frage 1.1"
-    Was ist ein Bucket im Object Storage?
+    Wie erklären Sie sich, dass auch der Cloud-Anbieter STACKIT das S3-Protokoll für seinen Object Storage nutzt?
 
-    Erläutern Sie, welche Aufgabe ein Bucket erfüllt. Erstellen Sie hierfür eine erklärende Skizze und fügen Sie diese in Ihre Abgabemappe hinzu.
+    Finden Sie die Spezifikation des S3-Protokolls und recherchieren Sie die Lizenzbedingungen.
   
 **Klicken Sie auf das Feld "+ Bucket erstellen"**
 
 ![S3 Dashboard](../assets/Versuch1/testme.jpg)
 
-Die Namensvergabe soll nach einem einhitlichen Standard erfolgen:  <span style="color:orange; font-weight:bold; font-size:1.2em;">[HDSNAME-Letzten 4 Ziffern Ihrer Matrikelnummer]. Beispiel: [lelugoue-4567]  </span><br>
+Die Namensvergabe soll nach einem einheitlichen Schema erfolgen:  
+
+<span style="color:orange; font-weight:bold; font-size:1.2em;">`bucket-<HDS-Nutzername>`  Beispiel: `bucket-musterax`  </span><br>
 
 
 <div style="
@@ -43,21 +45,18 @@ Die Namensvergabe soll nach einem einhitlichen Standard erfolgen:  <span style="
   weiterzuführen.
 </div>
 
-**Die Oberfläche sollte bei erfolgreicher durchführung wie folgt aussehen:**
 
 ## Vorbereitung: Zugangsdaten (Keys) im STACKIT Control Center erstellen
 
 Bevor Dateien hochgeladen werden können, müssen **Zugangsdaten (Keys)** für den Object Storage angelegt werden.  
 Diese werden später in der Kommandozeile verwendet.
 
-# 1. Zugangsdaten im STACKIT Portal erstellen
-
 
 1. Navigieren Sie zu: Object Storage → Credentials & Groups
 
 ![S3 Dashboard](../assets/Versuch1/credngru.jpg)
 
-2.In der Übersicht werden die vorhandenen Credential Groups angezeigt. Standardmäßig existiert bereits eine Gruppe mit dem Namen default.
+2. In der Übersicht werden die vorhandenen Credential Groups angezeigt. Standardmäßig existiert bereits eine Gruppe mit dem Namen default.
 
 3. Öffnen Sie die Gruppe default, indem Sie diese anklicken.
 
@@ -114,17 +113,19 @@ Save settings? [y/N]: y
 ```
 ## Upload des Videos in den Bucket
 
- Laden Sie das bereitgestellte **testvideo.mp4** aus der von Ihnen bereitgestellten E-Mail der Lehrveranstaltung mit dem Betreff "Testvideo MVS-P"  herunter.
+ Laden Sie das unter folgender URL verfügbare Testvideo herunter:
+ https://www.mt.hs-rm.de/testsignals/mvs-2026S/STEM2-Clip-MVS-STACKIT.mxf
 
-Geben Sie in der Console nun folegenden Befehl ein 
+
+Geben Sie in der Console nun folgenden Befehl ein 
 
 ```bash
-s3cmd put PFAD_ZUR_DATEI s3://IHR_BUCKETNAME/
+s3cmd put STEM2-Clip-MVS-STACKIT.mxf s3://IHR_BUCKETNAME/Versuch1/
 ```
 **Auf der Weboberfläche unter dem dem Reiter Bucket wird diese Datei nicht angezeigt!**
 
 !!! question "Frage 1.2"
     Wie können Sie nun herausfinden, ob der Upload wie geplant funktioniert hat? 
     
-    Recherchieren Sie nach dem benötigten Command und tragen Sie diesen in ihre Abgabemappe ein
+    Recherchieren Sie den benötigten s3cmd Befehl und nehmen Sie einen Screenshot der Ausgabe in Ihre Ausarbeitung auf
 
