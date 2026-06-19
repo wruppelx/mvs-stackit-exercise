@@ -29,13 +29,12 @@ Die Namensvergabe soll nach einem einheitlichen Schema erfolgen:
 
 
 !!! info
-  
-  Notieren Sie sich alle im Projekt verwendeten <strong>Zugangsdaten</strong>, 
-  <strong>Namen</strong> und <strong>Bezeichnungen</strong> (z. B. Bucket-Namen, 
-  Benutzernamen oder Projektkennungen).  
-  Diese Informationen werden benötigt, um den Versuch später auch 
-  <strong>außerhalb der Präsenzveranstaltung</strong> (z. B. von zu Hause aus) 
-  weiterzuführen.
+    Notieren Sie sich alle im Projekt verwendeten <strong>Zugangsdaten</strong>, 
+    <strong>Namen</strong> und <strong>Bezeichnungen</strong> (z. B. Bucket-Namen, 
+    Benutzernamen oder Projektkennungen).  
+    Diese Informationen werden benötigt, um den Versuch später auch 
+    <strong>außerhalb der Präsenzveranstaltung</strong> (z. B. von zu Hause aus) 
+    weiterzuführen.
 
 
 ## Vorbereitung: Zugangsdaten (Keys) im STACKIT Control Center erstellen
@@ -65,9 +64,10 @@ Nach dem Erstellen werden **zwei Schlüssel angezeigt**:
 - **Access Key** (öffentlicher Schlüssel)
 - **Secret Key** (privater Schlüssel)
 
-⚠️ **Wichtig:**  
-Der **Secret Key wird nur einmal angezeigt**.  
-Notieren oder speichern Sie beide Keys sorgfältig. Diese werden gleich noch **sehr relevant** sein.
+!!! info
+    ⚠️ **Wichtig:**  
+    Der **Secret Key wird nur einmal angezeigt**.  
+    Notieren oder speichern Sie beide Keys sorgfältig. Diese werden gleich noch **sehr relevant** sein.
 
 ## Upload von Dateien in den STACKIT Object Storage (CLI)
 

@@ -66,11 +66,11 @@ Success. Your access key and secret key worked fine :-)
 
 
 
-<!!! info
-  Access Key und Secret Key sind jene, die Sie zu Beginn in STACKIT angelegt haben.
-  Es wird vorausgesetzt, dass Sie sich diese sorgfältig notiert haben.
-  Falls dies nicht der Fall ist, können die Zugangsdaten jederzeit erneut erstellt werden.
-  Eine Anleitung dazu finden Sie im vorherigen Kapitel. 🙂
+!!! info
+    Access Key und Secret Key sind jene, die Sie zu Beginn in STACKIT angelegt haben.
+    Es wird vorausgesetzt, dass Sie sich diese sorgfältig notiert haben.
+    Falls dies nicht der Fall ist, können die Zugangsdaten jederzeit erneut erstellt werden.
+    Eine Anleitung dazu finden Sie im vorherigen Kapitel. 🙂
 
 ![S3 Dashboard](../assets/Versuch1/awskeys1.jpg)
 
