@@ -3,14 +3,14 @@ Ein zentrales Funktionsprinzip von Content Delivery Networks (CDNs) ist das soge
 Dabei werden Inhalte, die einmal vom Ursprungssystem (Origin) abgerufen wurden, zwischengespeichert und bei späteren Anfragen erneut ausgeliefert, ohne den Origin erneut zu kontaktieren.
 
 Im Kontext dieses Versuchs bedeutet das:
-Die Videodateien liegen dauerhaft im STACKIT Object Storage, werden jedoch über Fastly an die Endnutzer ausgeliefert.
+Die Videodateien liegen dauerhaft im STACKIT Bucket, werden jedoch über Fastly an die Endnutzer ausgeliefert.
 Fastly übernimmt dabei nicht nur die Weiterleitung der Anfrage, sondern speichert häufig angefragte Inhalte direkt auf seinen Edge-Servern.
 
 Durch dieses Vorgehen ergeben sich mehrere Vorteile:
 
 kürzere Ladezeiten für Endnutzer
 
-geringere Last auf dem Object Storage
+geringere Last auf dem Bucket
 
 bessere Skalierbarkeit bei vielen gleichzeitigen Zugriffen
 
@@ -104,7 +104,7 @@ Nach Aktivierung der Extension:
 ### URL-Struktur
 
 
-**https://<DeinBucketname>.object.storage.eu01.onstackit.cloud/export/master.m3u8**
+**https://bucket-<HDS-Nutzername>.object.storage.eu01.onstackit.cloud/export/hls_export/master.m3u8**
 
 ![ObjectSTorage](../assets/Versuch2/runningvid.jpg)
 
@@ -115,7 +115,7 @@ Nach Aktivierung der Extension:
 
 Transcodierte Videodateien wurden erfolgreich über ein CDN ausgeliefert
 
-Der Object Storage fungierte als reiner Origin, nicht als direkter Auslieferungspunkt
+Der Bucket fungierte als reiner Origin, nicht als direkter Auslieferungspunkt
 
 Ein öffentlicher CDN-Hostname ermöglichte den Zugriff ohne direkten Speicherzugang
 

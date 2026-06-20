@@ -1,7 +1,7 @@
 # Transcodierung über eine virtuelle Maschine (VM)
 
 Im folgenden Abschnitt wird die **Transcodierung eines Videos mithilfe einer virtuellen Maschine (VM)** durchgeführt.  
-Dabei wird ein zuvor in den Object Storage hochgeladenes Video auf einer VM transcodiert. Das Ergebnis der Transcodierung wird anschließend wieder im Object Storage abgelegt.
+Dabei wird ein zuvor in das Bucket hochgeladenes Video auf einer VM transcodiert. Das Ergebnis der Transcodierung wird anschließend wieder im Bucket abgelegt.
 
 Die VM übernimmt in diesem Versuch die Rolle eines **Rechenknotens**, auf dem eine Transcoding-Software ausgeführt wird. Im Gegensatz zu vollständig verwalteten Cloud-Services bietet dieser Ansatz volle Kontrolle über:
 
@@ -27,7 +27,7 @@ Der Transcoding-Prozess besteht aus den folgenden Schritten:
    Mithilfe eines Kommandozeilenwerkzeugs (FFmpeg) wird eine MXF-Datei in ein Streaming-Format transcodiert.
 
 4. **Rücktransfer der Ergebnisse**  
-   Die transcodierte Videodatei wird in den Object Storage hochgeladen und steht dort für die weitere Verarbeitung oder Auslieferung bereit.
+   Die transcodierte Videodatei wird in das Bucket hochgeladen und steht dort für die weitere Verarbeitung oder Auslieferung bereit.
 
 
 ## Netzwerk
@@ -232,21 +232,13 @@ Zunächst wird eine Verbindung zur zuvor erstellten virtuellen Maschine hergeste
 ssh -i <PFAD_ZUM_PRIVATE_KEY> ubuntu@<PUBLIC-IP-DER-VM>
 ```
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="font-size:1.1em;">
-    ℹ️ <strong>Hinweis:</strong>
-  </span><br>
-  Beim ersten Verbindungsaufbau per SSH erscheint eine Sicherheitsabfrage zum sogenannten <em>Host-Fingerprint</em>.
-  Diese Abfrage dient dazu, die Identität des entfernten Servers zu überprüfen.
-  Da es sich hierbei um eine neu erstellte virtuelle Maschine handelt, ist der Fingerprint dem lokalen System noch nicht bekannt.
-  In diesem Fall genügt es, die Abfrage mit <code>yes</code> zu bestätigen.
-  Der Fingerprint wird anschließend gespeichert, sodass diese Abfrage bei zukünftigen Verbindungen nicht erneut erscheint.
-</div>
+!!! info
+      ℹ️ <strong>Hinweis:</strong>
+   Beim ersten Verbindungsaufbau per SSH erscheint eine Sicherheitsabfrage zum sogenannten <em>Host-Fingerprint</em>.
+   Diese Abfrage dient dazu, die Identität des entfernten Servers zu überprüfen.
+   Da es sich hierbei um eine neu erstellte virtuelle Maschine handelt, ist der Fingerprint dem lokalen System noch nicht bekannt.
+   In diesem Fall genügt es, die Abfrage mit <code>yes</code> zu bestätigen.
+   Der Fingerprint wird anschließend gespeichert, sodass diese Abfrage bei zukünftigen Verbindungen nicht erneut erscheint.
 
 **Nach erfolgreicher Eingabe sollte folgende Ausgabe in der lokalen Shell zu sehen sein**
 
@@ -296,7 +288,7 @@ Die Option -y sorgt dafür, dass alle Rückfragen automatisch mit „Ja“ best�
 
 ## Zugriff auf den Object Storage von der virtuellen Maschine
 
-Nachdem die virtuelle Maschine vorbereitet und die Transcoding-Software installiert wurde, muss sie nun  auf den Object Storage zugreifen können. Dazu wird auf der VM die bereits bekannte S3-kompatible Schnittstelle verwendet. Die virtuelle Maschine übernimmt damit aktiv die Rolle des Transcoders und greift direkt auf die im Object Storage abgelegten Quelldateien zu.
+Nachdem die virtuelle Maschine vorbereitet und die Transcoding-Software installiert wurde, muss sie nun  auf das Bucket zugreifen können. Dazu wird auf der VM die bereits bekannte S3-kompatible Schnittstelle verwendet. Die virtuelle Maschine übernimmt damit aktiv die Rolle des Transcoders und greift direkt auf die im Bucket abgelegten Quelldateien zu.
 
 
 ### Nutzung der S3-kompatiblen Schnittstelle mit s3cmd

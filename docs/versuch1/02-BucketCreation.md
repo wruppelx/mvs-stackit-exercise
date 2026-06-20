@@ -3,7 +3,7 @@
 Zuerst wird der Speicherort für die transcodierten Dateien angelegt.  
 Dazu wird der **STACKIT Object Storage** verwendet, ein S3-kompatibler Objektspeicher.
 
-**Der Zugriff erfolgt über das STACKIT Portal im Browser. Auf der rechten Reiterseite. Hier findet man unter dem Reiter Computing den Unterpunkt "Object storage"**
+**Der Zugriff erfolgt über das STACKIT Portal im Browser. Auf der rechten Reiterseite. Hier findet man unter dem Reiter Computing den Unterpunkt "Object Storage"**
 
 ![ObjectSTorage](../assets/Versuch1/enableobjectstorage.jpg)
 
@@ -69,7 +69,7 @@ Nach dem Erstellen werden **zwei Schlüssel angezeigt**:
     Der **Secret Key wird nur einmal angezeigt**.  
     Notieren oder speichern Sie beide Keys sorgfältig. Diese werden gleich noch **sehr relevant** sein.
 
-## Upload von Dateien in den STACKIT Object Storage (CLI)
+## Upload von Dateien in den STACKIT Bucket (CLI)
 
 Da der Upload von Dateien **nicht über die Weboberfläche** erfolgt, wird in diesem Versuch ein Kommandozeilen-Werkzeug verwendet.
 
@@ -103,7 +103,7 @@ HTTP Proxy server name: **Enter drücken**
 Test access with supplied credentials? [Y/n]: n
 Save settings? [y/N]: y
 ```
-## Upload des Videos in den Bucket
+## Upload des Videos in das Bucket
 
  Laden Sie das unter folgender URL verfügbare Testvideo herunter:
  https://www.mt.hs-rm.de/testsignals/mvs-2026S/STEM2-Clip-MVS-STACKIT.mxf

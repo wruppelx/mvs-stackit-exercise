@@ -52,9 +52,9 @@ Für gespeicherte Daten fallen laufende Kosten an, außerdem können Kosten für
 
 STACKIT stellt keinen eigenen, spezialisierten Transcoding-Dienst bereit. Stattdessen erfolgt die Verarbeitung von Medieninhalten über virtuelle Maschinen, die mit dem Service STACKIT Compute Engine bereitgestellt werden. Eine virtuelle Maschine kann dabei wie ein normaler Server betrachtet werden, auf dem eigene Software ausgeführt wird.
 
-In diesem Praktikumsversuch wird auf einer solchen virtuellen Maschine eine Transcoding-Software (z. B. FFmpeg) installiert. Die VM greift zunächst auf die im STACKIT Object Storage abgelegten Videodateien zu und lädt diese zur Verarbeitung herunter. Anschließend werden die Videodateien in verschiedene Zielformate und Auflösungen umgewandelt, um eine spätere Wiedergabe auf unterschiedlichen Endgeräten zu ermöglichen.
+In diesem Praktikumsversuch wird auf einer solchen virtuellen Maschine eine Transcoding-Software (z. B. FFmpeg) installiert. Die VM greift zunächst auf die im STACKIT Bucketten Videodateien zu und lädt diese zur Verarbeitung herunter. Anschließend werden die Videodateien in verschiedene Zielformate und Auflösungen umgewandelt, um eine spätere Wiedergabe auf unterschiedlichen Endgeräten zu ermöglichen.
 
-Nach Abschluss der Transcodierung werden die erzeugten Ausgabedateien wieder im Object Storage gespeichert. Von dort aus können sie in einem weiteren Schritt über ein Content Delivery Network (CDN) an die Endnutzer ausgeliefert werden. Die virtuelle Maschine übernimmt somit ausschließlich die Aufgabe der Medienverarbeitung und ist nicht direkt an der Auslieferung beteiligt.
+Nach Abschluss der Transcodierung werden die erzeugten Ausgabedateien wieder im Bucket gespeichert. Von dort aus können sie in einem weiteren Schritt über ein Content Delivery Network (CDN) an die Endnutzer ausgeliefert werden. Die virtuelle Maschine übernimmt somit ausschließlich die Aufgabe der Medienverarbeitung und ist nicht direkt an der Auslieferung beteiligt.
 
 Dieses Vorgehen entspricht einem typischen cloudbasierten Video-on-Demand-Workflow und verdeutlicht, wie Rechenressourcen, Speicher und Auslieferung in der Cloud getrennt voneinander eingesetzt werden.
 

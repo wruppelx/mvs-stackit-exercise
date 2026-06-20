@@ -3,7 +3,7 @@
 In diesem abschließenden Versuch soll gezeigt werden, wie ein einfacher
 automatisierter Workflow ohne Cloud Functions umgesetzt werden kann.
 
-Dazu wird regelmäßig geprüft, ob sich Inhalte im Object Storage geändert haben.
+Dazu wird regelmäßig geprüft, ob sich Inhalte im Bucket geändert haben.
 Wird eine Änderung erkannt, wird automatisch eine Überprüfung der CDN-Auslieferung durchgeführt.
 
 Dieses Vorgehen ist typisch für einfache produktive Medienworkflows
@@ -12,9 +12,9 @@ und wird häufig in Kombination mit Cronjobs oder Monitoring-Skripten eingesetzt
 ## Architekturidee
 ## Beispiel-Workflow
 
-1. Aktuellen Zustand des Object Storage erfassen
-2. Änderung im Object Storage erzeugen
-3. Object Storage erneut prüfen
+1. Aktuellen Zustand des Bucket erfassen
+2. Änderung im Bucket erzeugen
+3. Bucket erneut prüfen
 4. Änderung erkennen
 5. Reaktion ausführen
 6. CDN-Auslieferung kontrollieren
@@ -52,7 +52,7 @@ s3cmd get s3://<DeinBucketname>/testvideo_1080p.mp4 testvideo_1080p.mp4
 
 
 
-### Schritt 2: Aktuellen Zustand des Object Storage erfassen
+### Schritt 2: Aktuellen Zustand des Bucket erfassen
 
 **Gebe nun folgenden Befehl ein:**
 
@@ -74,7 +74,7 @@ s3cmd ls s3://<ihr bucketname> > bucket_state_before.txt
     </ul>
 
 
-### Schritt 3: Datei im Object Storage ändern (Ingest simulieren)
+### Schritt 3: Datei im Bucket ändern (Ingest simulieren)
 
  **Jetzt rufen wir mit folgendme Befehl eine Änderung im Bucket hervor:**
 
@@ -125,20 +125,20 @@ Was ist hier gerade passiert? (Einordnung)
 In diesem Experiment wurde kein klassischer Event-Trigger, keine Cloud Function und kein serverseitiger Automatisierungsdienst eingesetzt.
 Trotzdem hat das Gesamtsystem korrekt auf eine Änderung reagiert.
 
-**1️. Änderung im Object Storage**
+**1️. Änderung im Bucket**
 
-Zunächst wurde der Zustand des STACKIT Object Storage verändert:
+Zunächst wurde der Zustand des STACKIT Bucket verändert:
 
 Eine Datei wurde neu hochgeladen oder
 
 eine bestehende Datei wurde ersetzt
 
-Der Object Storage fungiert dabei als Single Source of Truth:
+Der Bucket fungiert dabei als Single Source of Truth:
 Er enthält immer die aktuell gültige Version der Mediendateien.
 
 Wichtig:
 
-Der Object Storage informiert niemanden aktiv über diese Änderung.
+Der Bucket informiert niemanden aktiv über diese Änderung.
 
 **2️. Erkennung der Änderung (State Comparison)**
 
@@ -182,7 +182,7 @@ die neue Version an den Client ausliefern
 
 **4️. Automatisches Caching im CDN**
 
-Sobald Fastly die neue Datei vom Object Storage abgerufen hat:
+Sobald Fastly die neue Datei vom Bucket abgerufen hat:
 
 wird sie automatisch auf dem Edge-Server gespeichert
 
@@ -208,12 +208,12 @@ der Cache sich selbst aktualisiert, sobald neue Inhalte angefragt werden
     (z.&nbsp;B. AWS Lambda) eingesetzt.<br><br>
 
     Trotzdem konnte beobachtet werden, dass das System korrekt auf eine Änderung
-    im <b>STACKIT Object Storage</b> reagiert hat und die neue Datei
+    im <b>STACKIT Bucket</b> reagiert hat und die neue Datei
     über das <b>Fastly CDN</b> ausgeliefert wurde.
 
     <b>Beschreiben Sie in eigenen Worten:</b>
     <ul>
-      <li>was sich konkret im Object Storage geändert hat,</li>
+      <li>was sich konkret im Bucket geändert hat,</li>
       <li>wie diese Änderung vom CDN technisch „bemerkt“ wird,</li>
       <li>warum kein explizites Ereignis oder Trigger notwendig war.</li>
     </ul>

@@ -113,7 +113,7 @@ Dies kann zu höheren Ladezeiten und einer stärkeren Belastung des Speichers f�
 In diesem Versuch wird das Zusammenspiel beider Konzepte deutlich:
 
 - **Cloud Computing:**  
-  STACKIT Object Storage dient als zentraler Speicherort für die transcodierten Mediendateien.
+  STACKIT Bucket dient als zentraler Speicherort für die transcodierten Mediendateien.
 
 
 Dieses Zusammenspiel ist typisch für moderne Video-on-Demand-Systeme.  

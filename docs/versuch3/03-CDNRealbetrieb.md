@@ -8,7 +8,7 @@ für einen Testclip genutzt, sondern für eine echte Plattform:
 - Ein neues Video wird veröffentlicht
 - Viele Nutzer greifen gleichzeitig darauf zu
 - Das Video soll nur für bestimmte Personen sichtbar sein
-- Einzelne Nutzer versuchen, die Datei direkt aus dem Object Storage aufzurufen
+- Einzelne Nutzer versuchen, die Datei direkt aus dem Bucket aufzurufen
 
 Ein CDN wie Fastly übernimmt in solchen Situationen weit mehr Aufgaben
 als nur das schnelle Ausliefern der Datei

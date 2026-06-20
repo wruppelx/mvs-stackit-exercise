@@ -1,7 +1,8 @@
 # Service-Konfiguration in Fastly
 
 In diesem Versuch wird auf den transcodierten Videodateien aus Versuch 1 aufgebaut.  
-Ziel ist es, diese Dateien nicht mehr direkt aus dem STACKIT Object Storage abzurufen, sondern über ein Content Delivery Network (CDN) bereitzustellen.
+Ziel ist es, diese Dateien über ein Content Delivery Network (CDN) bereitzustellen.
+Der Abruf über CDN soll in einem weiteren Schritt mit dem direkten Abruf aus dem S3-Bucket verglichen werden.
 
 Als CDN-Anbieter wird **Fastly** verwendet.
 
@@ -14,50 +15,15 @@ Als CDN-Anbieter wird **Fastly** verwendet.
 
 ## Schritt 1: Ausgangslage
 
-Die transcodierten Videodateien liegen im STACKIT Object Storage und sind dort als einzelne Dateien gespeichert, z. B.:
-
-- `testvideo_1080p.mp4`
-- `testvideo_720p.mp4`
-- `testvideo_480p.mp4`
+Die transcodierten Videodateien liegen im STACKIT Bucket im Unterordner `export/`.
 
 
-**Prüfen sie das bitte noch mal. Verbinden Sie sich wieder zu erst mit Ihrer VM auf den Server:**
+Der Bucket übernimmt die Rolle des **Origin Servers**.
+
+**Soweit ist alles vorbereitet für die Kopplung an das CDN. im nächsten Schritt wird die Bedienung für Fastly erklärt**
 
 
-
-```bash
-ssh@ubuntu<DEINESERVERIP>
-```
-
-**Sie kommen wieder auf die folgende Maske:**
-
-![ObjectSTorage](../assets/Versuch2/vmconnect.jpg)
-
-
-**Nun prüfen ob die Videos draufliegen:**
-
-```bash
-s3cmd ls s3://<DEINBUCKETNAME>/
-```
-
-Der Object Storage übernimmt die Rolle des **Origin Servers**.
-
-**Soweit ist alles vorbereitet für unsere Koppelung an das CDN. im nächsten Schritt wird die Bedienung für Fastly erklärt**
-
-# Fastly: Erste Schritte
-
-**Um Fastly nutzen zu können brauchen Sie einen dementsprechenden Account**
-#
-#
-#
-#
-#       *leave blank for further instructions*
-#
-#
-#
-#
-
-**Navigieren Sie bitte zur Internetseite von Fastly https://www.fastly.com/ und melden Sie sich dort mit ihren Credentials an:** 
+Navigieren Sie bitte zur Internetseite von Fastly https://www.fastly.com/ und melden Sie sich dort mit ihren Credentials an:
 
 ![ObjectSTorage](../assets/Versuch2/fastlylogin.jpg)
 
@@ -71,10 +37,6 @@ Der Object Storage übernimmt die Rolle des **Origin Servers**.
 
 Nach dem Login befindet man sich im Fastly-Dashboard des Kurses.  
 Da für diesen Versuch noch kein CDN-Service existiert, muss zunächst ein neuer Service angelegt werden.
-
----
-
-
 
 
 ### 1. Service-Erstellung starten
@@ -91,16 +53,16 @@ Im oberen rechten Bereich des Dashboards wird der Button **Create service** ausg
 
 **Tätigen Sie dort bitte folgende Einstellungen:**
 
-| Feld / Bereich        | Eingabe                               |
+| Feld         | Eingabe                               |
 |----------------------|----------------------------------------|
-| Service name         | `stackit-<HDS-Nutzername>`          |
-| Eigene Domain        | `stackit-<HDS-Nutzername>.global.ssl.fastly.net` |
-| Origin Host          | `https://<Virtual-Hosted-Style-Name>.object.storage.eu01.onstackit.cloud`|
+| Service name         | `service2-<HDS-Nutzername>`           |
+| Eigene Domain        | `svc2-<HDS-Nutzername>.global.ssl.fastly.net` |
+| Origin Host          | `https://bucket-<HDS-Nutzername>.object.storage.eu01.onstackit.cloud`|
 | Override default host| aktiviert                              |
 | Default compression  | aktiviert                              |
 | Force TLS & HSTS  | aktiviert                                 |
 
-**Danach auf Aktivieren klicken**                           
+Danach **noch nicht** auf Aktivieren klicken!
 
 **So sollte es nun bei Ihnene aussehen:**
 
@@ -108,25 +70,14 @@ Im oberen rechten Bereich des Dashboards wird der Button **Create service** ausg
 
 
 
-**Es wurde nun eine eigene Domain in ihrem Namen angelegt mit dem Syntax: <namenachname>.global.ssl.fastly.net**
+**Es wurde nun ein eigener DNS-Eintrag für Sie angelegt:
+ svc2-<HDS-Nutzername>.global.ssl.fastly.net**
 
 
-**Gehen Sie nun in den Browser und geben Sie dort folgendes ein:**
-
-```bash
-https://<namenachname>.global.ssl.fastly.net/<deinBucketname>/testvideo_1080p.mp4
-```
-
-!!! question "Frage 2.1"
-    Was sehen Sie? Fertigen Sie hierfür bitte einen Screenshot an und tragen Sie diesen in ihre Abgabemappe ein.
-
-    Interpretieren Sie die angegebene Nachricht 
-
-**Das Problem lässt sich lösen indem wir nun in StackIt weiter machen:**
 
 ### 2. VCL Anpassungen
 
-Bei der Auslieferung großer Videodateien aus dem STACKIT Object Storage über Fastly stößt die Standardkonfiguration schnell an Grenzen. Für neue Fastly-Accounts dürfen Objekte ohne Zusatzfunktionen nur bis zu einer Größe von 20 MB im Cache gespeichert werden. Das verwendete Testvideo (testvideo.mp4) ist deutlich größer, weshalb ein normaler Cache-Zugriff zu einer Fehlermeldung („Response object too large“) führt.
+Bei der Auslieferung großer Videodateien aus dem STACKIT Bucket über Fastly stößt die Standardkonfiguration schnell an Grenzen. Für neue Fastly-Accounts dürfen Objekte ohne Zusatzfunktionen nur bis zu einer Größe von 20 MB im Cache gespeichert werden. Das verwendete Testvideo (testvideo.mp4) ist deutlich größer, weshalb ein normaler Cache-Zugriff zu einer Fehlermeldung („Response object too large“) führt.
 
 Um solche Dateien trotzdem performant über das CDN ausliefern zu können, bietet Fastly Segmented Caching an. Dabei wird das Video nicht als einzelne große Datei im Cache abgelegt, sondern in kleinere Abschnitte zerlegt. Diese Segmente lassen sich unabhängig voneinander zwischenspeichern und bei Bedarf wieder zusammensetzen. Das passt gut zu typischen Videoabrufen, da moderne Mediaplayer Inhalte ohnehin in Form von Byte-Range-Anfragen anfordern.
 
@@ -143,8 +94,12 @@ Navigieren Sie unter **LOGGING** zu dem Reiter Snippets
 **Placement:** Within subroutine
 **Subroutine:** recv(vcl_recv)
 **Priority:** 100
+
 ```bash
-if (req.url.ext == ".mp4") {
+# Modify request URL
+set req.url = "/export" + req.url;
+# Enable Segmented Caching
+if ((req.url.ext == "ts") || (req.url.ext == "mp4")) {
   set req.enable_segmented_caching = true;
 }
 ```
@@ -152,11 +107,39 @@ if (req.url.ext == ".mp4") {
 ![ObjectSTorage](../assets/Versuch2/mp4renewal.jpg)
 
 
+### 3. Cross-origin resource sharing in den Einstellungen aktivieren
 
+Cross-origin resource sharing (CORS) ist für die Stream-Analyse mit einem HLS-Player erforderlic.
 
+Aktivieren Sie CORS in den Einstellungen Ihres Service wie im folgenden beschrieben:
 
+[Enabling CORS](https://www.fastly.com/documentation/guides/full-site-delivery/headers/enabling-cross-origin-resource-sharing/)
 
+Übernehmen Sie dabei alle Einstellungen wie unter "5. Create header" beschrieben.
 
+### 4. Aktivierung
+
+Überprüfen Sie, ob das VCL-Snippets angelegt wurde.
+
+Aktivieren Sie dann Ihren CDN Service durch Klicken auf **Activate**.
+
+Nach der Aktivierung ist der Service aktiv und die Inhalte können über die
+zugewiesene Domain abgerufen werden.
+
+### Erster Test des Fastly CDN
+
+**Gehen Sie nun in den Browser und geben Sie dort folgendes ein:**
+
+```bash
+https://svc2-<HDS-Nutzername>.global.ssl.fastly.net/hls_ouput/master.m3u8
+```
+
+!!! question "Frage 2.1"
+    Welche Fehlermeldung bekommen Sie? Fertigen Sie hierfür bitte einen Screenshot an und tragen Sie diesen in ihre Abgabemappe ein.
+
+    Interpretieren Sie die angegebene Nachricht 
+
+**Das Problem lässt sich lösen indem wir nun Zugriffsrechte auf das Origin-Bucket konfigurieren.
 
 ### 3. Zugriffsrechte erstellen:
 
@@ -172,7 +155,7 @@ ssh ubuntu@<IP-DEINER-VM>
 
 ![ObjectSTorage](../assets/Versuch2/vmconnect2.jpg)
 
-**Nun wird die Datei angelegt die uns die BErechtigung geben soll. Geben Sie hierfür folgendes ein.**
+**Nun wird die Datei angelegt die uns die Berechtigung geben soll. Geben Sie hierfür folgendes ein.**
 
 ```bash
 nano public-read.json
@@ -181,7 +164,7 @@ nano public-read.json
 
 ![ObjectSTorage](../assets/Versuch2/nano.jpg)
 
-**Geben Sie nun folgenden Befehl dort ein:**
+**Geben Sie nun folgendenn Code in nano ein:**
 
 ```bash
 {
@@ -197,18 +180,18 @@ nano public-read.json
 }
 ```
 
-**Klicken Sie nun CTRL+O für das Speichern.**
+**Speichern Sie dei datei mit CTRL+o (Buchstabe o, nicht null!)).**
 
 **Danach ENTER**
 
-**Danach CTRL+X für das schließen**
+**Danach CTRL+X für das Schließen**
 
 **Sie befinden sich wieder auf der Hauptmaske**
 
 ![ObjectSTorage](../assets/Versuch2/nanodone.jpg)
 
 ---
-**Nun wird die Policy angewandt**
+**Nun wird die Policy Ihrem Bucket zugeordnet**
 
 
 ```bash
@@ -216,19 +199,21 @@ s3cmd setpolicy public-read.json s3://<DeinBucketname>
 ```
 
 
-***Navigieren Sie bitte jetzt zu dem Internetbrowser firefox und geben sie in die URL folgendes ein:**
+***Navigieren Sie bitte jetzt zu dem Internetbrowser firefox und geben sie erneut die URL ein:**
 
 ```bash
-https://<namenachname>.global.ssl.fastly.net/testvideo_1080p.mp4
+https://svc2-<HDS-Nutzername>.global.ssl.fastly.net/hls_output/master.m3u8
 ```
 
 **Wichtig ist hierbei das sie den Browser Firefox benutzen. Chrome unterstützt dieses Feature nicht**
+
+Je nach Browser wird entwede die m3u8-Datei heruntergeladen, oder das Abspielen des Streams gestartet.
 
 **Sie sollten folgende Ausgabe im Browser erhalten:**
 
 ![ObjectSTorage](../assets/Versuch2/rabbitfastly.jpg)
 
-**Jetzt interessiert uns noch von wo diese Ablieferung stattfindet. Hierfür erinnern wir uns wieder an das Modul CM1 bei dem wir verschiedene Tools kenennlernern durften um eine Hostdadresse genauer zu inspizieren**
+**Jetzt interessiert uns noch, von wo diese Ablieferung stattfindet. Hierfür erinnern wir uns wieder an das Modul CM1 bei dem wir verschiedene Tools kenennlernern durften um eine Hostdadresse genauer zu inspizieren**
 
 !!! question "Frage 2.2"
     Mit welchem Kommandozeilenbefehl können Sie überprüfen, auf welche IP-Adressen der CDN-Hostname aufgelöst wird und welcher Edge-Server für die Auslieferung der Inhalte verwendet wird? 

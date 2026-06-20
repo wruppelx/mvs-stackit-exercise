@@ -7,7 +7,7 @@ Dieser überprüft automatisch, ob ein Video korrekt über ein CDN ausgeliefert 
 
 ### Voraussetzungen
 
--Eine transcodierte Videodatei liegt im STACKIT Object Storage
+-Eine transcodierte Videodatei liegt im STACKIT Bucket
 (z. B. testvideo_1080p.mp4)
 
 -Die Datei ist über Fastly erreichbar

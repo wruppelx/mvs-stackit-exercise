@@ -5,7 +5,7 @@
 In diesem Experiment soll untersucht werden, welchen Einfluss ein Content Delivery Network (CDN) auf die Antwortzeit beim Abruf einer Videodatei hat.
 
 **Konkret wird die Time-to-First-Byte (TTFB) verglichen:**
-- einmal beim direkten Abruf der Datei aus dem STACKIT Object Storage (Origin)
+- einmal beim direkten Abruf der Datei aus dem STACKIT Bucket (Origin)
 - einmal beim Abruf derselben Datei über das Fastly CDN
 
 Die TTFB beschreibt die Zeit, die vergeht, bis das erste Datenbyte beim Client ankommt, nachdem die Anfrage abgeschickt wurde.
@@ -15,7 +15,7 @@ Sie ist ein wichtiger Indikator für die wahrgenommene Ladegeschwindigkeit von M
 
 ### Schritt 1: Voraussetzungen prüfen
 
-- **Die Videodatei testvideo_1080p.mp4 liegt im STACKIT Object Storage**
+- **Die Videodatei testvideo_1080p.mp4 liegt im STACKIT Bucket**
 
 - **Die Datei ist öffentlich über Fastly erreichbar, z. B.:**
 

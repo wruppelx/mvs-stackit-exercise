@@ -1,8 +1,8 @@
 # Transcodierung der Videodatei auf einer virtuellen Maschine
 
-Nachdem der Object Storage sowie die virtuelle Maschine eingerichtet wurden, erfolgt im nächsten Schritt die eigentliche Transcodierung einer Videodatei. In AWS würde dieser Schritt durch einen verwalteten Dienst wie AWS Elemental MediaConvert übernommen werden. Da STACKIT aktuell keinen eigenen spezialisierten Transcoding-Dienst bereitstellt, wird dieser Arbeitsschritt in diesem Versuch  auf einer virtuellen Maschine durchgeführt.
+Nachdem der Bucket sowie die virtuelle Maschine eingerichtet wurden, erfolgt im nächsten Schritt die eigentliche Transcodierung einer Videodatei. In AWS würde dieser Schritt durch einen verwalteten Dienst wie AWS Elemental MediaConvert übernommen werden. Da STACKIT aktuell keinen eigenen spezialisierten Transcoding-Dienst bereitstellt, wird dieser Arbeitsschritt in diesem Versuch  auf einer virtuellen Maschine durchgeführt.
 
-Die virtuelle Maschine übernimmt dabei die Rolle eines dedizierten Rechenknotens. Sie greift auf die im Object Storage abgelegte Quelldatei zu, verarbeitet diese lokal und speichert die erzeugten Ergebnisdateien anschließend wieder im Object Storage ab. Dieses Vorgehen entspricht einem typischen cloudbasierten Workflow, bei dem Speicher und Rechenleistung  voneinander getrennt sind.
+Die virtuelle Maschine übernimmt dabei die Rolle eines dedizierten Rechenknotens. Sie greift auf die im Bucket abgelegte Quelldatei zu, verarbeitet diese lokal und speichert die erzeugten Ergebnisdateien anschließend wieder im Bucket ab. Dieses Vorgehen entspricht einem typischen cloudbasierten Workflow, bei dem Speicher und Rechenleistung  voneinander getrennt sind.
 
 
 
@@ -10,20 +10,20 @@ Die virtuelle Maschine übernimmt dabei die Rolle eines dedizierten Rechenknoten
 
 **Bis zu diesem Punkt wurden alle grundlegenden Voraussetzungen für einen cloudbasierten Transcoding-Workflow geschaffen. Die benötigte Infrastruktur ist vollständig eingerichtet und funktionsfähig.**
 
-Zunächst wurde ein Object Storage als zentraler Speicherort für die Medieninhalte angelegt und erfolgreich getestet. Anschließend wurde eine virtuelle Maschine bereitgestellt, die als Rechenknoten für die Medienverarbeitung dient. Durch die Einrichtung von Netzwerk, Security Groups und einer öffentlichen IP-Adresse konnte der externe Zugriff auf die virtuelle Maschine ermöglicht werden.
+Zunächst wurde ein Bucket als zentraler Speicherort für die Medieninhalte angelegt und erfolgreich getestet. Anschließend wurde eine virtuelle Maschine bereitgestellt, die als Rechenknoten für die Medienverarbeitung dient. Durch die Einrichtung von Netzwerk, Security Groups und einer öffentlichen IP-Adresse konnte der externe Zugriff auf die virtuelle Maschine ermöglicht werden.
 
 Der erfolgreiche Verbindungsaufbau per SSH bestätigt, dass die virtuelle Maschine korrekt konfiguriert ist und aus dem Internet erreichbar ist. Damit steht nun eine lauffähige Linux-Arbeitsumgebung zur Verfügung, auf der die eigentliche Transcodierung durchgeführt werden kann.
 
 ## Ziel der nächsten Schritte
 
-Im folgenden Abschnitt beginnt der zentrale Verarbeitungsschritt des Video-on-Demand-Workflows. Eine im Object Storage verfügbare Videodatei wird auf der virtuellen Maschine mithilfe einer Transcoding-Software verarbeitet.
+Im folgenden Abschnitt beginnt der zentrale Verarbeitungsschritt des Video-on-Demand-Workflows. Eine im Bucket verfügbare Videodatei wird auf der virtuellen Maschine mithilfe einer Transcoding-Software verarbeitet.
 
 **Konkret werden in den nächsten Schritten:**
 - die zu transcodierende MXF-Datei 
 - die benötigte Software zur Medienverarbeitung eingesetzt,
-- die Quelldatei aus dem Object Storage geladen,
+- die Quelldatei aus dem Bucket geladen,
 - eine Manifestdatei aus dem dort hinterlegten Video erzeugt
-- und die transcodierten Ergebnisse wieder im Object Storage abgelegt.
+- und die transcodierten Ergebnisse wieder im Bucket abgelegt.
 
 Damit wird der Übergang von der reinen Infrastruktur- und Speicherbereitstellung zur eigentlichen Medienverarbeitung vollzogen, wie er auch in realen cloudbasierten Video-on-Demand-Systemen üblich ist.
 
@@ -44,15 +44,15 @@ Enter new values or accept defaults in brackets with Enter.
 Refer to user manual for detailed description of all options.
 
 Access Key and Secret Key are your identifiers for Amazon S3. Leave them empty for using the env variables.
-Access Key: **<Ihr Public Key>**
-Secret Key: **<Ihr Private Key>**
-Default Region [US]: **eu01**
+Access Key: <Ihr Access Key>
+Secret Key: <Ihr Secret Key>
+Default Region [US]: eu01
 
 Use "s3.amazonaws.com" for S3 Endpoint and do not modify it to the target Amazon S3.
-S3 Endpoint [s3.amazonaws.com]: **object.storage.eu01.onstackit.cloud**
+S3 Endpoint [s3.amazonaws.com]: object.storage.eu01.onstackit.cloud
 Use "%(bucket)s.s3.amazonaws.com" to the target Amazon S3. "%(bucket)s" and "%(location)s" vars can be used
 if the target S3 system supports dns based buckets.
-DNS-style bucket+hostname:port template for accessing a bucket [%(bucket)s.s3.amazonaws.com]: **%(bucket)s.object.storage.eu01.onstackit.cloud**
+DNS-style bucket+hostname:port template for accessing a bucket [%(bucket)s.s3.amazonaws.com]: %(bucket)s.object.storage.eu01.onstackit.cloud
 
 
 ```
@@ -64,19 +64,15 @@ Nach Abschluss der Konfiguration sollte von s3cmd folgende Meldung ausgegeben we
 Success. Your access key and secret key worked fine :-)
 ```
 
-
-
 !!! info
     Access Key und Secret Key sind jene, die Sie zu Beginn in STACKIT angelegt haben.
     Es wird vorausgesetzt, dass Sie sich diese sorgfältig notiert haben.
     Falls dies nicht der Fall ist, können die Zugangsdaten jederzeit erneut erstellt werden.
     Eine Anleitung dazu finden Sie im vorherigen Kapitel. 🙂
 
-![S3 Dashboard](../assets/Versuch1/awskeys1.jpg)
-
 ### Test des Zugriffs auf den Object Storage von StackIT
 
-Nach der erfolgreichen Konfiguration wird überprüft, ob die virtuelle Maschine auf den Object Storage zugreifen kann. Dazu wird der zuvor erstellte Bucket aufgelistet.
+Nach der erfolgreichen Konfiguration wird überprüft, ob die virtuelle Maschine auf das Bucket zugreifen kann. Dazu wird der zuvor erstellte Bucket aufgelistet.
 
 **Bitte geben sie folgende Befehle in die VM Console ein:**  
 
@@ -84,11 +80,11 @@ Nach der erfolgreichen Konfiguration wird überprüft, ob die virtuelle Maschine
 s3cmd ls s3://<DEINBUCKETNAME>
 ```
 
-## Bereitstellen der Quelldatei auf dem Object Storage
+## Bereitstellen der Quelldatei auf dem Bucket
 
-Im nächsten Schritt wird eine per URL verfügbare Quelldatei auf dem  Object Storage abgelegt.
+Im nächsten Schritt wird eine per URL verfügbare Quelldatei auf dem  Bucket abgelegt.
 
-### Kopieren der Datei in den Object Storage
+### Kopieren der Datei in das Bucket
 
 Das Kopieren erfolgt mittels `curl`und `s3cmd`.
 
@@ -96,7 +92,7 @@ Das Kopieren erfolgt mittels `curl`und `s3cmd`.
 curl -k https://www.mt.hs-rm.de/testsignals/mvs-2026S/STEM2-Clip-MVS-STACKIT.mxf | s3cmd put - s3://<DEINBUCKETNAME>/Versuch1/STEM2-Clip-MVS-STACKIT.mxf
 ```
 
-Überprüfen Sie, ob die Datei im Object Storage vorliegt:
+Überprüfen Sie, ob die Datei im Bucket vorliegt:
 
 ```bash
 s3cmd ls s3://<DEINBUCKETNAME>/Versuch1/
@@ -104,10 +100,13 @@ s3cmd ls s3://<DEINBUCKETNAME>/Versuch1/
 
 ### Erzeugen einer signierten URL zum Zugriff auf die Quelldatei
 
-Die Daten in einem Object Storage sind standardmäßig gegen den Zugriff aus dem Internet geschützt.
-Um die Quelldatei nun mit ffmpeg verarbeiten zu können, wir eine temporär gültige signierte URL (Pre-signed URL) erzeugt.
+Die Daten in einem Bucket sind standardmäßig gegen den Zugriff aus dem Internet geschützt.
+Um die Quelldatei nun mit ffmpeg verarbeiten zu können, wird eine temporär gültige signierte URL (Pre-signed URL) erzeugt.
 
-Dazu geben Sie folgenden Befehl ein:
+Pre-signed URLs sind eine Möglichkeit, zeitbegrenzt Zugriff auf eine Datei in eimem S3-Bucket einzuräumen, ohne dazu den Access Key und den Secret Key preiszugeben.
+
+Dazu geben Sie folgenden Befehl ein, das Argument "+3600" is der Gültigkeitszeitraum in Sekunden, hier also 60 Minuten:
+
 ```bash
 s3cmd signurl s3://<DEINBUCKETNAME>/Versuch1/STEM2-Clip-MVS-STACKIT.mxf +3600
 ```
@@ -115,7 +114,8 @@ s3cmd signurl s3://<DEINBUCKETNAME>/Versuch1/STEM2-Clip-MVS-STACKIT.mxf +3600
 !!! info
     Kopieren Sie sich die erzeugte URL!
 
-    Wichtig: ersetzen Sie bei der späteren Verwendung der URL `http` durch `https`.
+    Wichtig: Ersetzen Sie bei der späteren Verwendung der URL `http` durch `https`.
+
 
 
 
@@ -207,7 +207,7 @@ Mit -maxrate wird eine Obergrenze für kurzfristige Bitratenspitzen definiert. D
 
 Der Parameter -bufsize beschreibt die Größe des Rate-Control-Puffers und bestimmt, über welchen Zeitraum Bitratenschwankungen ausgeglichen werden dürfen. In Kombination mit -b:v und -maxrate sorgt dieser Mechanismus für ein gleichmäßiges und vorhersagbares Bitratenverhalten der HLS-Segmente.
 
-**Sie sollten sowas in etwa sehen:**
+**Die Ausgabe sollte vergleichbar zu diesem Beispiel sein:**
 
 ![S3 Dashboard](../assets/Versuch1/hlsladder.jpg)
 
@@ -247,17 +247,17 @@ cat hls_output/master.m3u8
     in der Manifestdatei enthalten sind.
 
 
-## Einspeisung der Manifest- und Segmentdateien in den STACKIT Object Storage
+## Einspeisung der Manifest- und Segmentdateien in den STACKIT Bucket
 
 Nach der Untersuchung der Manifestdatei werden die erzeugten HLS-Dateien wieder
-in den Object Storage übertragen.
+in das Bucket übertragen.
 Dazu wird das gesamte Verzeichnis hls_output in einen Unterordner des zuvor
 erstellten Buckets kopiert.
 
 Upload der HLS-Dateien
 
 ```bash
-s3cmd sync hls_output/ s3://<DEINBUCKETNAME>/export/ 
+s3cmd sync hls_output s3://<DEINBUCKETNAME>/export/ 
 ```
 
 Dabei werden sowohl die Manifestdatei (master.m3u8) als auch alle zugehörigen
@@ -265,11 +265,11 @@ Segmentdateien (.ts) übertragen.
 
 # Überprüfung des Uploads
 
-Um zu prüfen, ob die Dateien erfolgreich im Object Storage abgelegt wurden,
+Um zu prüfen, ob die Dateien erfolgreich im Bucket abgelegt wurden,
 wird der Inhalt des Zielverzeichnisses aufgelistet:
 
 ```bash
-s3cmd ls s3://<DEINBUCKETNAME>/export/
+s3cmd ls s3://<DEINBUCKETNAME>/export/hls_upload/
 ```
 
 In der Ausgabe sollten nun sowohl die Manifestdatei als auch mehrere
@@ -293,7 +293,7 @@ sudo apt-get install mediainfo -y
 
 ### Analyse über die grafische Oberfläche
 
-Die erzeugten Segemnte können über die Kommandozeile analysiert werden, Beispiel:
+Die erzeugten Segmente können über die Kommandozeile analysiert werden, Beispiel:
 
 ```bash
 mediainfo hls_output/stream_1080p4.ts
@@ -305,7 +305,7 @@ Dokumentieren Sie für alle Qualitätsstufen (also 480p, 720p, 1080p) die folgen
 - Framerate
 - Containerformat
 
-Dokumentierten Sie für alle Segemnte die folgende Parameter:
+Dokumentierten Sie für alle Segmente die folgende Parameter:
 - Dauer (Duration)
 - Bitrate
 
@@ -337,7 +337,7 @@ Dokumentierten Sie für alle Segemnte die folgende Parameter:
     Der benötigte FFmpeg-Befehl kann durch Abwandlung des obigen ffmpeg-Befehls erstellt werden.
     Wichtig: Wählen Sie einen anderen Ausgabe-Ordner, z.B. `hls_output_2
 
-    Kopieren Sie den erstellten Unterordner wiederum in den export/ Ordner Ihres Object Storage. 
+    Kopieren Sie den erstellten Unterordner wiederum in den export/ Ordner Ihres Bucket. 
 
     Analysieren Sie die erzeugte Ausgabedatei anschließend mit <em>MediaInfo</em> und dokumentieren Sie:
     <ul>
