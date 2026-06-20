@@ -19,84 +19,12 @@ Der erfolgreiche Verbindungsaufbau per SSH bestätigt, dass die virtuelle Maschi
 Im folgenden Abschnitt beginnt der zentrale Verarbeitungsschritt des Video-on-Demand-Workflows. Eine im Bucket verfügbare Videodatei wird auf der virtuellen Maschine mithilfe einer Transcoding-Software verarbeitet.
 
 **Konkret werden in den nächsten Schritten:**
-- die zu transcodierende MXF-Datei 
-- die benötigte Software zur Medienverarbeitung eingesetzt,
-- die Quelldatei aus dem Bucket geladen,
-- eine Manifestdatei aus dem dort hinterlegten Video erzeugt
+- der Zugriff auf die zu transcodierende MXF-Quelldatei konfiguriert
+- Streaming-Dateien bestehend aus Manifestdatein und Transportstrom-Chunks aus der MXF-Quelldatei erzeugt
 - und die transcodierten Ergebnisse wieder im Bucket abgelegt.
 
 Damit wird der Übergang von der reinen Infrastruktur- und Speicherbereitstellung zur eigentlichen Medienverarbeitung vollzogen, wie er auch in realen cloudbasierten Video-on-Demand-Systemen üblich ist.
 
-
-
-**Nun geht es an das Konfigurieren, hierfür benötigen wir den Befehl:**
-
-```bash
-s3cmd --configure
-```
-
-**Hier werden seriell der Access Key und Secret Key abgefragt, sowie Default Region Name und Default Output Format**
-
-**Die Ausgabe sollte so aussehen:**
-
-```console
-Enter new values or accept defaults in brackets with Enter.
-Refer to user manual for detailed description of all options.
-
-Access Key and Secret Key are your identifiers for Amazon S3. Leave them empty for using the env variables.
-Access Key: <Ihr Access Key>
-Secret Key: <Ihr Secret Key>
-Default Region [US]: eu01
-
-Use "s3.amazonaws.com" for S3 Endpoint and do not modify it to the target Amazon S3.
-S3 Endpoint [s3.amazonaws.com]: object.storage.eu01.onstackit.cloud
-Use "%(bucket)s.s3.amazonaws.com" to the target Amazon S3. "%(bucket)s" and "%(location)s" vars can be used
-if the target S3 system supports dns based buckets.
-DNS-style bucket+hostname:port template for accessing a bucket [%(bucket)s.s3.amazonaws.com]: %(bucket)s.object.storage.eu01.onstackit.cloud
-
-
-```
-Alle weiteren Abfragen bitte unverändert bestätigen.
-
-Nach Abschluss der Konfiguration sollte von s3cmd folgende Meldung ausgegeben werden:
-
-```bash
-Success. Your access key and secret key worked fine :-)
-```
-
-!!! info
-    Access Key und Secret Key sind jene, die Sie zu Beginn in STACKIT angelegt haben.
-    Es wird vorausgesetzt, dass Sie sich diese sorgfältig notiert haben.
-    Falls dies nicht der Fall ist, können die Zugangsdaten jederzeit erneut erstellt werden.
-    Eine Anleitung dazu finden Sie im vorherigen Kapitel. 🙂
-
-### Test des Zugriffs auf den Object Storage von StackIT
-
-Nach der erfolgreichen Konfiguration wird überprüft, ob die virtuelle Maschine auf das Bucket zugreifen kann. Dazu wird der zuvor erstellte Bucket aufgelistet.
-
-**Bitte geben sie folgende Befehle in die VM Console ein:**  
-
-```bash
-s3cmd ls s3://<DEINBUCKETNAME>
-```
-
-## Bereitstellen der Quelldatei auf dem Bucket
-
-Im nächsten Schritt wird eine per URL verfügbare Quelldatei auf dem  Bucket abgelegt.
-
-### Kopieren der Datei in das Bucket
-
-Das Kopieren erfolgt mittels `curl`und `s3cmd`.
-
-```bash
-curl -k https://www.mt.hs-rm.de/testsignals/mvs-2026S/STEM2-Clip-MVS-STACKIT.mxf | s3cmd put - s3://<DEINBUCKETNAME>/Versuch1/STEM2-Clip-MVS-STACKIT.mxf
-```
-
-Überprüfen Sie, ob die Datei im Bucket vorliegt:
-
-```bash
-s3cmd ls s3://<DEINBUCKETNAME>/Versuch1/
-```
 
 ### Erzeugen einer signierten URL zum Zugriff auf die Quelldatei
 
@@ -115,7 +43,6 @@ s3cmd signurl s3://<DEINBUCKETNAME>/Versuch1/STEM2-Clip-MVS-STACKIT.mxf +3600
     Kopieren Sie sich die erzeugte URL!
 
     Wichtig: Ersetzen Sie bei der späteren Verwendung der URL `http` durch `https`.
-
 
 
 

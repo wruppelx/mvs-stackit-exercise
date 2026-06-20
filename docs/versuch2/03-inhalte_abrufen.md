@@ -104,7 +104,7 @@ Nach Aktivierung der Extension:
 ### URL-Struktur
 
 
-**https://bucket-<HDS-Nutzername>.object.storage.eu01.onstackit.cloud/export/hls_export/master.m3u8**
+**https://bucket-[HDS-Nutzername].object.storage.eu01.onstackit.cloud/export/hls_export/master.m3u8**
 
 ![ObjectSTorage](../assets/Versuch2/runningvid.jpg)
 

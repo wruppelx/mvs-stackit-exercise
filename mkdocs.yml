@@ -38,6 +38,9 @@ markdown_extensions:
 plugins:
   - search:
       lang: de
+  - privacy:
+      links_attr_map:
+        target: _blank
 
 nav:
   - Übersicht: index.md

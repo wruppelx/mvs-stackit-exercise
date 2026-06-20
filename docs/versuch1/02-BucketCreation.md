@@ -25,7 +25,7 @@ Dazu wird der **STACKIT Object Storage** verwendet, ein S3-kompatibler Objektspe
 
 Die Namensvergabe soll nach einem einheitlichen Schema erfolgen:  
 
-<span style="color:orange; font-weight:bold; font-size:1.2em;">`bucket-<HDS-Nutzername>`  Beispiel: `bucket-musterax`  </span><br>
+<span style="color:orange; font-weight:bold; font-size:1.2em;">`bucket-[HDS-Nutzername]`  Beispiel: `bucket-musterax`  </span><br>
 
 
 !!! info
@@ -67,57 +67,7 @@ Nach dem Erstellen werden **zwei Schlüssel angezeigt**:
 !!! info
     ⚠️ **Wichtig:**  
     Der **Secret Key wird nur einmal angezeigt**.  
-    Notieren oder speichern Sie beide Keys sorgfältig. Diese werden gleich noch **sehr relevant** sein.
-
-## Upload von Dateien in den STACKIT Bucket (CLI)
-
-Da der Upload von Dateien **nicht über die Weboberfläche** erfolgt, wird in diesem Versuch ein Kommandozeilen-Werkzeug verwendet.
+    Notieren oder speichern Sie beide Keys sorgfältig. Diese werden im weiteren Verlauf der praktischen Übung benötigt.** sein.
 
 
-### Voraussetzungen für den Upload
-
-Für den Upload wird das **s3 cmd Tool** benötigt.
-
-- Download: https://s3tools.org/s3cmd
-- Installation mit **Standard-Einstellungen** durchführen
-- Nach der Installation ein **neues Terminal / Eingabeaufforderung** öffnen
-
-**Im Terminal folgenden Befehl ausführen:**
-
-```bash
-s3cmd --configure
-```
-
-**Geben Sie die Werte wie folgt ein:**
-
-```bash
-Access Key → eigener Access Key
-Secret Key → eigener Secret Key
-Default region name   → eu01
-S3-Endpoint → object.storage.eu01.onstackit.cloud
-DNS-style bucket+hostname: %(bucket)s.object.storage.eu01.onstackit.cloud
-Encryption password: **Enter drücken**
-Path to GPG program [/usr/bin/gpg]: **Enter drücken**
-Use HTTPS Protocol: Yes
-HTTP Proxy server name: **Enter drücken**
-Test access with supplied credentials? [Y/n]: n
-Save settings? [y/N]: y
-```
-## Upload des Videos in das Bucket
-
- Laden Sie das unter folgender URL verfügbare Testvideo herunter:
- https://www.mt.hs-rm.de/testsignals/mvs-2026S/STEM2-Clip-MVS-STACKIT.mxf
-
-
-Geben Sie in der Console nun folgenden Befehl ein 
-
-```bash
-s3cmd put STEM2-Clip-MVS-STACKIT.mxf s3://IHR_BUCKETNAME/Versuch1/
-```
-**Auf der Weboberfläche unter dem dem Reiter Bucket wird diese Datei nicht angezeigt!**
-
-!!! question "Frage 1.2"
-    Wie können Sie nun herausfinden, ob der Upload wie geplant funktioniert hat? 
-    
-    Recherchieren Sie den benötigten s3cmd Befehl und nehmen Sie einen Screenshot der Ausgabe in Ihre Ausarbeitung auf
 

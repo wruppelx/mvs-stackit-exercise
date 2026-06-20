@@ -90,7 +90,7 @@ Alle Programme sind sowohl für Windows und MacOS, als auch für diverse Linux-D
 
 ### Mediaplayer
 
-Zur Wiedergabe von transcodierten Videodateien sollte ein aktueller Mediaplayer vorhanden sein. Empfohlen wird [VLC Mediaplayer](https://www.videolan.org/vlc/index.de.html) oder [mpv](https://mpv.io/).
+Zur Wiedergabe von transcodierten Videodateien sollte ein aktueller Mediaplayer vorhanden sein. Empfohlen wird [VLC Mediaplayer](https://www.videolan.org/vlc/index.de.html){:target="_blank"} oder [mpv](https://mpv.io/){:target="_blank"}.
 
 ### MediaInfo
 

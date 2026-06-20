@@ -30,7 +30,7 @@ Die Syntax des HDS-Nutzernamens entspricht derjenigen, die auch bei der Anmeldun
 
 Der HDS-Nutzername wird im Verlauf der Versuche mehrfach verwendet und ist daher als fester Bestandteil der jeweiligen Konfigurationen zu verstehen. 
 
-Wennin der Anleitung `<HDS-Nutzername>` als Bezeichner verwendet wird, ersetzen Sie diesen bitte durch Ihren HDS-Nutzernamen.
+Wennin der Anleitung `[HDS-Nutzername]` als Bezeichner verwendet wird, ersetzen Sie diesen bitte durch Ihren HDS-Nutzernamen.
 
 ![HDS](../assets/Versuch1/hdsname.jpg)
 
@@ -77,10 +77,10 @@ Zur Anmeldung auf StackIT gelangt man über diesen Link: https://portal.stackit.
 
 ![Login mfa](../assets/Versuch1/mfa-login.jpg)
 
-**Hier besteht die Möglichkeit eine 2 Faktor Authentifizierung einzugeben. Dies kann wahlweise mit der Uni-Mail oder mit einer App erfolgen. Als App für das Handy empfiehlt sich hier Microsoft Authenticator https://support.microsoft.com/de-de/account-billing/microsoft-authenticator-herunterladen-351498fc-850a-45da-b7b6-27e523b8702a**
+Hier besteht die Möglichkeit eine Zwei-Faktor-Authentifizierung zu konfigurieren. Diese kann wahlweise über einen E-mail-Code oder eine Authenticator-App erfolgen.
 
 ![Landingpage region](../assets/Versuch1/Landingpage-region.jpg)
 
-**Auf der Landingpage sollte in der oberen Leiste das richtige Projekt und die region EU01 - (Deutschland Süd) ausgewählt werden. Hierfür sollte für Sie bereits ein Projekt vorhanden sein, welches Ihren HDS-Nutzernamen beinhaltet**
+**Auf der Landingpage sollte in der oberen Leiste das richtige Projekt und die region EU01 - (Deutschland Süd) ausgewählt werden. Für Sie bereits ein Projekt vorhanden sein, welches Ihren HDS-Nutzernamen beinhaltet**
 
 

@@ -45,7 +45,7 @@ Die jeweilige Ressource wird dadurch automatisch Teil des Netzwerks.
 
 Eine separate Kopplung oder zusätzliche Konfiguration des Netzwerks ist nicht erforderlich.
 
-!!! question "Frage 1.3"
+!!! question "Frage 1.2"
     Dokumentieren Sie den Ihnen zugewiesenen Adressbereich, die Netzmaske, die konfigurierten DNS-Server sowie die Routing-Tabelle. 
     
 
@@ -105,7 +105,7 @@ Ds erzeugte Keypaar soll nun mit Ihrem STACKIT-Konto verknüpft werden.
 
 ![S3 Dashboard](../assets/Versuch1/keyname.jpg)
 
-**Geben Sie als Namen key-<HDS-Nutzernamen> ein. Zum Beispiel: *key-musterax***
+**Geben Sie als Namen key-[HDS-Nutzername] ein. Zum Beispiel: *key-musterax***
 
 **In das Feld Schlüssel kopieren Sie Ihren Public Key**
 
@@ -244,7 +244,7 @@ ssh -i <PFAD_ZUM_PRIVATE_KEY> ubuntu@<PUBLIC-IP-DER-VM>
 
 ![S3 Dashboard](../assets/Versuch1/cmdsuccesful.jpg)
 
-!!! question "Frage 1.4"
+!!! question "Frage 1.3"
     Was passiert technisch, wenn der zuvor ausgeführte Befehl eingegeben wird?
 
     Beschreiben Sie, welche Komponenten beteiligt sind und welche Aktionen im Hintergrund ablaufen.
@@ -321,6 +321,87 @@ sudo apt-get install s3cmd -y
 ```bash
 s3cmd --version
 ```
+
+
+
+**Nun geht es an das Konfigurieren, hierfür benötigen wir den Befehl:**
+
+```bash
+s3cmd --configure
+```
+
+**Hier werden seriell der Access Key und Secret Key abgefragt, sowie Default Region Name und Default Output Format**
+
+**Die Ausgabe sollte so aussehen:**
+
+| Feld                           | Eingabe                                         |
+|--------------------------------|-------------------------------------------------|
+| Access Key                     | <Ihr Access Key>                                |
+| Secret Key                     | <Ihr Secret Key>                                |
+| Default Region [US]            | eu01                                            |
+| S3 Endpoint [s3.amazonaws.com] | object.storage.eu01.onstackit.cloud             |
+| DNS-style bucket+hostname      | %(bucket)s.object.storage.eu01.onstackit.cloud. |
+| Encryption password            | **Enter drücken**  |
+| Path to GPG program            | **Enter drücken**  |
+| Use HTTPS Protocol             | Yes  |
+| HTTP Proxy server name         | **Enter drücken**  |
+| Test access with supplied credentials? | [Y/n]: Y  |
+| Save settings? [y/N] | y  |
+
+Access Key → eigener Access Key
+Secret Key → eigener Secret Key
+Default region name   → eu01
+S3-Endpoint → object.storage.eu01.onstackit.cloud
+DNS-style bucket+hostname: %(bucket)s.object.storage.eu01.onstackit.cloud
+Encryption password: **Enter drücken**
+Path to GPG program [/usr/bin/gpg]: **Enter drücken**
+Use HTTPS Protocol: Yes
+HTTP Proxy server name: **Enter drücken**
+Test access with supplied credentials? [Y/n]: n
+Save settings? [y/N]: y
+
+
+
+Alle weiteren Abfragen bitte unverändert bestätigen.
+
+Nach Abschluss der Konfiguration sollte von s3cmd folgende Meldung ausgegeben werden:
+
+```bash
+Success. Your access key and secret key worked fine :-)
+```
+
+!!! info
+    Access Key und Secret Key sind jene, die Sie zu Beginn in STACKIT angelegt haben.
+    Es wird vorausgesetzt, dass Sie sich diese sorgfältig notiert haben.
+    Falls dies nicht der Fall ist, können die Zugangsdaten jederzeit erneut erstellt werden.
+    Eine Anleitung dazu finden Sie im vorherigen Kapitel. 🙂
+
+### Test des Zugriffs auf den Object Storage von StackIT
+
+Nach der erfolgreichen Konfiguration wird überprüft, ob die virtuelle Maschine auf das Bucket zugreifen kann. Dazu wird der zuvor erstellte Bucket aufgelistet.
+
+**Bitte geben sie folgende Befehle in die VM Console ein:**  
+
+```bash
+s3cmd ls s3://<DEINBUCKETNAME>
+```
+
+## Bereitstellen der Quelldatei auf dem Bucket
+
+Im nächsten Schritt wird eine per URL verfügbare Quelldatei auf dem  Bucket abgelegt.
+
+### Kopieren der Datei in das Bucket
+
+Das Kopieren erfolgt mittels `curl`und `s3cmd`.
+
+```bash
+curl -k https://www.mt.hs-rm.de/testsignals/mvs-2026S/STEM2-Clip-MVS-STACKIT.mxf | s3cmd put - s3://<DEINBUCKETNAME>/Versuch1/STEM2-Clip-MVS-STACKIT.mxf
+```
+
+!!! question "Frage 1.4"
+    Wie können Sie nun herausfinden, ob der Upload wie geplant funktioniert hat? 
+    
+    Recherchieren Sie den benötigten s3cmd Befehl und nehmen Sie einen Screenshot der Ausgabe in Ihre Ausarbeitung auf
 
 
 

@@ -55,9 +55,9 @@ Im oberen rechten Bereich des Dashboards wird der Button **Create service** ausg
 
 | Feld         | Eingabe                               |
 |----------------------|----------------------------------------|
-| Service name         | `service2-<HDS-Nutzername>`           |
-| Eigene Domain        | `svc2-<HDS-Nutzername>.global.ssl.fastly.net` |
-| Origin Host          | `https://bucket-<HDS-Nutzername>.object.storage.eu01.onstackit.cloud`|
+| Service name         | `service2-[HDS-Nutzername]`           |
+| Eigene Domain        | `svc2-[HDS-Nutzername].global.ssl.fastly.net` |
+| Origin Host          | `https://bucket-[HDS-Nutzername].object.storage.eu01.onstackit.cloud`|
 | Override default host| aktiviert                              |
 | Default compression  | aktiviert                              |
 | Force TLS & HSTS  | aktiviert                                 |
@@ -71,7 +71,7 @@ Danach **noch nicht** auf Aktivieren klicken!
 
 
 **Es wurde nun ein eigener DNS-Eintrag für Sie angelegt:
- svc2-<HDS-Nutzername>.global.ssl.fastly.net**
+ svc2-[HDS-Nutzername].global.ssl.fastly.net**
 
 
 
@@ -131,7 +131,7 @@ zugewiesene Domain abgerufen werden.
 **Gehen Sie nun in den Browser und geben Sie dort folgendes ein:**
 
 ```bash
-https://svc2-<HDS-Nutzername>.global.ssl.fastly.net/hls_ouput/master.m3u8
+https://svc2-[HDS-Nutzername].global.ssl.fastly.net/hls_ouput/master.m3u8
 ```
 
 !!! question "Frage 2.1"
@@ -202,7 +202,7 @@ s3cmd setpolicy public-read.json s3://<DeinBucketname>
 ***Navigieren Sie bitte jetzt zu dem Internetbrowser firefox und geben sie erneut die URL ein:**
 
 ```bash
-https://svc2-<HDS-Nutzername>.global.ssl.fastly.net/hls_output/master.m3u8
+https://svc2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/master.m3u8
 ```
 
 **Wichtig ist hierbei das sie den Browser Firefox benutzen. Chrome unterstützt dieses Feature nicht**
