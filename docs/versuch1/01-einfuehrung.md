@@ -30,7 +30,7 @@ Die Syntax des HDS-Nutzernamens entspricht derjenigen, die auch bei der Anmeldun
 
 Der HDS-Nutzername wird im Verlauf der Versuche mehrfach verwendet und ist daher als fester Bestandteil der jeweiligen Konfigurationen zu verstehen. 
 
-Wennin der Anleitung `[HDS-Nutzername]` als Bezeichner verwendet wird, ersetzen Sie diesen bitte durch Ihren HDS-Nutzernamen.
+Wenn in der Anleitung `[HDS-Nutzername]` als Bezeichner verwendet wird, ersetzen Sie diesen bitte durch Ihren HDS-Nutzernamen.
 
 ![HDS](../assets/Versuch1/hdsname.jpg)
 
@@ -81,6 +81,6 @@ Hier besteht die Möglichkeit eine Zwei-Faktor-Authentifizierung zu konfiguriere
 
 ![Landingpage region](../assets/Versuch1/Landingpage-region.jpg)
 
-**Auf der Landingpage sollte in der oberen Leiste das richtige Projekt und die region EU01 - (Deutschland Süd) ausgewählt werden. Für Sie bereits ein Projekt vorhanden sein, welches Ihren HDS-Nutzernamen beinhaltet**
+**Auf der Landingpage sollte in der oberen Leiste das richtige Projekt und die region EU01 - (Deutschland Süd) ausgewählt werden. Für Sie sollte bereits ein Projekt vorbereitet sein, welches Ihren HDS-Nutzernamen beinhaltet**
 
 

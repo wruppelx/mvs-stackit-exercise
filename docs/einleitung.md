@@ -102,10 +102,6 @@ Bereitstellung vollständig betriebener Anwendungen[^1].
     Verarbeitung und Monitoring sowie das Content Delivery Network (CDN) von Fastly
     verwendet.
 
-⚠️
-    Die genutzten Cloud- und CDN-Dienste sind nutzungsabhängig kostenpflichtig.
-    Nach Abschluss eines Versuchs müssen alle nicht mehr benötigten Ressourcen
-    überprüft und gegebenenfalls gelöscht werden.
 
 ### Weboberfläche
 
