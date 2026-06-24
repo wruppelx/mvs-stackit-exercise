@@ -20,7 +20,7 @@ Im nächsten Schritt soll nun praktisch überprüft werden, wie sich dieses Cach
 
 
 
-## Schritt 1: Erster Abruf 
+## Erster Abruf 
 
 1. Öffnen Sie eine Kommandozeile
 2. Führen Sie folgenden Befehl aus:
@@ -31,7 +31,7 @@ curl.exe -I "https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/stre
 **Navigieren Sie zu der Line "X-Cache". Was sehen Sie dort? Machen Sie einen Screenshot**
 
 
-## Schritt 2: Zweiter abruf
+## Zweiter Abruf
 
 1. Führen Sie bitte den gleichen Befehl ein erneutes mal aus:
 
@@ -65,7 +65,7 @@ Der Player ist erreichbar unter:
 ![ObjectSTorage](../assets/Versuch2/hlsplayer.jpg)
 
 ---
-## ⚠️ Wichtiger Hinweis zu CORS (zwingend erforderlich)
+## ⚠️ Wichtiger Hinweis zu CORS
 
 Der Demo-Player wird von einer anderen Domain geladen als der HLS-Stream (Fastly).  
 Aufgrund der Same-Origin-Policy blockiert der Browser standardmäßig die Segment-Dateien.
@@ -79,7 +79,7 @@ Typische Fehlermeldungen:
 
 ### Lösung: CORS-Browser-Extension
 
-Für diesen Versuch ist die Verwendung einer CORS-Extension erforderlich.
+Für diesen Versuch ist die Verwendung einer CORS-Extension erforderlich, falls die obigen Fehlermeldungen erscheinen.
 
 Beispiel (Chrome):
 
@@ -115,12 +115,11 @@ Nach Aktivierung der Extension:
 
 Transcodierte Videodateien wurden erfolgreich über ein CDN ausgeliefert
 
-Der Bucket fungierte als reiner Origin, nicht als direkter Auslieferungspunkt
+Das STACKIt S3 Bucket fungierte als  Origin
 
-Ein öffentlicher CDN-Hostname ermöglichte den Zugriff ohne direkten Speicherzugang
+Ein öffentlicher CDN-Hostname ermöglichte den Abruf der Inhalte
 
 Die Auslieferung konnte sowohl im Browser als auch über Kommandozeilenwerkzeuge getestet werden
 
 Besonders wichtig war die Erkenntnis, dass ein funktionierender Abruf nicht nur von der Datei selbst, sondern von korrekten Zugriffsrechten, DNS-Auflösung und CDN-Konfiguration abhängt.
-
 

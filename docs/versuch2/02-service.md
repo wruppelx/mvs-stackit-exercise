@@ -13,7 +13,7 @@ Als CDN-Anbieter wird **Fastly** verwendet.
 
 **Verstanden? Dann kann es nun losgehen! Wir gehen das wieder Schritt für Schritt durch!**
 
-## Schritt 1: Ausgangslage
+## Ausgangslage
 
 Die transcodierten Videodateien liegen im STACKIT Bucket im Unterordner `export/`.
 
@@ -27,13 +27,12 @@ Navigieren Sie bitte zur Internetseite von Fastly [https://www.fastly.com/](http
 
 ![ObjectSTorage](../assets/Versuch2/fastlylogin.jpg)
 
-*leave blank for further instructions*
 
 **Sie sollten nun die folgende Fastly Startseite vor sich sehen.**
 
 ![ObjectSTorage](../assets/Versuch2/mainfastly.jpg)
 
-## Schritt 1: Neuen Fastly Service erstellen
+## Neuen Fastly Service erstellen
 
 Nach dem Login befindet man sich im Fastly-Dashboard des Kurses.  
 Da für diesen Versuch noch kein CDN-Service existiert, muss zunächst ein neuer Service angelegt werden.
@@ -99,6 +98,8 @@ Navigieren Sie unter **LOGGING** zu dem Reiter Snippets
 **Subroutine:** recv(vcl_recv)
 
 **Priority:** 100
+
+Kopieren Sie den folgenden Code in das vorgesehen Feld. Der Code ergänzt zusätzlich /export in den Request-URLs.
 
 ```bash
 # Modify request URL
