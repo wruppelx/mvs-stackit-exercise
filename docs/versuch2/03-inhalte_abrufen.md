@@ -26,7 +26,7 @@ Im nächsten Schritt soll nun praktisch überprüft werden, wie sich dieses Cach
 2. Führen Sie folgenden Befehl aus:
 
 ```bash
-curl.exe -I "https://<namenachname>.global.ssl.fastly.net/testvideo_1080p.mp4"
+curl.exe -I "https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/stream_1080p0.ts"
 ```
 **Navigieren Sie zu der Line "X-Cache". Was sehen Sie dort? Machen Sie einen Screenshot**
 
@@ -36,7 +36,7 @@ curl.exe -I "https://<namenachname>.global.ssl.fastly.net/testvideo_1080p.mp4"
 1. Führen Sie bitte den gleichen Befehl ein erneutes mal aus:
 
 ```bash
-curl.exe -I "https://<username>.global.ssl.fastly.net/testvideo_1080p.mp4"
+curl.exe -I "https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/stream_1080p0.ts"
 ```
 **Die Ausgabe sollte nun wie folgt aussehen:**
 
