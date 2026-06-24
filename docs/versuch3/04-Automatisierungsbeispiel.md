@@ -1,16 +1,13 @@
 # Automatische Reaktion auf neue Inhalte
 
 In diesem abschließenden Versuch soll gezeigt werden, wie ein einfacher
-automatisierter Workflow ohne Cloud Functions umgesetzt werden kann.
+automatisierter Workflow umgesetzt werden kann.
 
-Dazu wird regelmäßig geprüft, ob sich Inhalte im Bucket geändert haben.
-Wird eine Änderung erkannt, wird automatisch eine Überprüfung der CDN-Auslieferung durchgeführt.
+Dazu wird regelmäßig geprüft, ob Ihrem S3-Buckets eine Datei im Ordner Versuch3/ hinzugefügt wurde.
+Wird eine Änderung erkannt, wird  eine Transcodierung durchgeführt und die Streaming-Dateien werden auf den Origin-Server des SDN kopiert.
 
-Dieses Vorgehen ist typisch für einfache produktive Medienworkflows
-und wird häufig in Kombination mit Cronjobs oder Monitoring-Skripten eingesetzt.
 
-## Architekturidee
-## Beispiel-Workflow
+## Workflow
 
 1. Aktuellen Zustand des Bucket erfassen
 2. Änderung im Bucket erzeugen

@@ -1,77 +1,43 @@
 # Mini-Test: Ingest → Analyse → CDN-Abruf
 
-## Kurzbriefing
+## Kurzinfo
 
-Sie bauen in diesem Versuch einen kleinen, selbstgeschriebenen Workflow.
-Dieser überprüft automatisch, ob ein Video korrekt über ein CDN ausgeliefert wird und dokumentiert die wichtigsten technischen Informationen in einer Logdatei.
+In dieser Teilaufgabe sollen die transcodierten Dateien und die CDN-Auslieferung weiter analysiert werden
 
-### Voraussetzungen
+## Voraussetzungen
 
--Eine transcodierte Videodatei liegt im STACKIT Bucket
-(z. B. testvideo_1080p.mp4)
+- Eine transcodierte Videodatei liegt im STACKIT Bucket
+(z. B. stream_1080p0.ts)
 
--Die Datei ist über Fastly erreichbar
-(z. B. https://<username>.global.ssl.fastly.net/testvideo_1080p.mp4)
+- Die Datei ist über Fastly erreichbar
+(z. B. https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/stream_1080p0.ts)
 
--Zugriff auf: eine Linux-VM oder ein lokales System mit curl und ffmpeg/ffprobe
+- Zugriff auf eine Linux-VM  mit curl und ffmpeg/ffprobe
 
-## Ablaufplan zu dem Versuch 
+## Ablaufplan
 
-Die folgenden Schritte können entweder  
-    **lokal in der Windows PowerShell** oder  
-    **auf der Linux-VM** durchgeführt werden.
 
-    Für diesen Versuch wird empfohlen, die Schritte **lokal auszuführen**,  
-    da kein Zugriff auf die VM erforderlich ist und alle benötigten Werkzeuge
-    (curl, ffprobe) lokal verfügbar sind.
-
-**Öffnen Sie Windows PowwerShell (lokal)**
-**Geben Sie folgendes in die PowerShell ein:**
-
+Öffnen Sie erneut mit `ssh`die Verbindung zu Ihrer STACKIT-VM und legen Sie ein Verzeichnis an:
 
 ```bash
 mkdir workflow-test
 cd workflow-test
 ```
 
-**Dies sollte nun folgendermaßen ausshen:**
 
-![ObjectSTorage](../assets/Versuch3/mkdir.jpg)
+### CDN-Antwort abrufen
 
-**Nun erstellen wir ein neues Item. Dieses nennen wir Workflow.log und wird folgendermaßen angelegt:**
+Ziel dieses Schrittes:
 
-```bash
-New-Item workflow.log
-```
+- Prüfen ob die Datei erreichbar ist
 
-![ObjectSTorage](../assets/Versuch3/newitem.jpg)
+- Die CDN-Antwort analysieren
 
 
-**Geben Sie den folgenden Befehl ein:**
+**Führen Sie bitte diesen Befehl aus:**
 
 ```bash
-$URL = "https://<DeineDomain>.global.ssl.fastly.net/testvideo_1080p.mp4"
-```
-
-
-**Mit diesem Befehl wurde eine Variable in der PowerShell angelegt. Statt die vollständige URL bei jedem weiteren Befehl erneut eingeben zu müssen, kann sie nun wiederverwendet werden.**
-
-
-**Nächster Schritt: CDN-Antwort abrufen**
-Ziel dieses Schritts:
-
--prüfen ob die Datei erreichabr ist
-
--sehen, welches System antwortet (CDN)
-
--noch keine Datei herunterladen
-
-**Schritt 2: Header der CDN-Antowrt anzeigen**
-
-**Führen Sie bitte jetzt genau diesen Befehl aus:**
-
-```bash
-curl.exe -I $URL
+curl.exe -I "https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/stream_1080p0.ts"
 ```
 
 **Sie sollten jetzt eine Auflistung sehen:**
@@ -101,78 +67,36 @@ curl.exe -I $URL
 | X-Timer                     |                                     |
 | Strict-Transport-Security   |                                     |
 
+### Analyse der Streaming-Dateien 
 
-**Nächster Schritt: Videodatei auf der VirutalMachien inspizieren**
-
-**Schritt 1: Verbinden Sie sich bitte wieder mit der VM**
-
-```bash
-ssh @Ubuntu<IpdesServers>
-```
-
-![ObjectSTorage](../assets/Versuch3/vmcon.jpg)
-
-**Erstellen Sie hier bitte ein neues Verzeichnis:**
-
-```bash
-mkdir ~/workflow-test
-cd ~/workflow-test
-```
-
-**Laden Sie sich bitte in dieses Verzeichnis die transcodierten Videodateien herunter:**
-
-```bash
-curl -o testvideo_1080p.mp4 https://<DeinDomainname>.global.ssl.fastly.net/testvideo_1080p.mp4
-curl -o testvideo_720p.mp4 https://<DeinDomainname>.global.ssl.fastly.net/testvideo_720p.mp4
-curl -o testvideo_460p.mp4 https://<DeinDomainname>.global.ssl.fastly.net/testvideo_460p.mp4
-```
-**Sie sollten folgenden Ausgabe erhalten:**
-
-![ObjectSTorage](../assets/Versuch3/downloadsuc.jpg)
-
-
-
- **Nun überprüfen ob die Videodateien abgelegt wurden:**
-
-**Als nächsten beschäftigen wir uns mit der ANalyse. Geben sie hierfür folgenden Command ein:**
+Zur Analyse der ersten Streaming-Datei geben sie  folgenden Befehl ein:**
 
 ```bash
 ffprobe -v error \
 -show_format \
 -show_streams \
-testvideo_1080p.mp4
+"https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/stream_1080p0.ts"
 ```
 
-**Dies sieht dann so aus:**
+**Die Ausgabe sieht so aus:**
 ![ObjectSTorage](../assets/Versuch3/stream.jpg)
 
-**Kopieren Sie sich die Ausgabe in ein separates Textdokument**
+Kopieren Sie die Ausgabe in ein  Textdokument `stream_1080p0.txt`.
 
-**Das gleiche bitte auch für die 720p Variante:**
-```bash
-ffprobe -v error `
--show_format `
--show_streams `
-testvideo_720p.mp4
-```
+Wiederholen Sie daen Befehl für die folgenden weiteren Dateien :
 
-**Kopieren Sie sich die Ausgabe in ein separates Textdokument**
+stream_720p0.ts
 
-**Das gleiche wiederholen wir nun für die 460p Variante:**
-```bash
-ffprobe -v error `
--show_format `
--show_streams `
-testvideo_460p.mp4
-```
-**Kopieren Sie sich die Ausgabe in ein separates Textdokument**
+stream_480p0.ts
+
+**Kopieren Sie die Ausgaben jeweils in die Textdokumente `stream_720p0.txt` und `stream_480p0.txt`**
 
 !!! question "Frage 3.1: Vergleich der Transcoding-Ergebnisse"
     Analysieren Sie die Ausgaben von <code>ffprobe</code> für die folgenden Dateien:
     <ul>
-      <li><code>testvideo_1080p.mp4</code></li>
-      <li><code>testvideo_720p.mp4</code></li>
-      <li><code>testvideo_460p.mp4</code></li>
+      <li><code>stream_1080p0.ts</code></li>
+      <li><code>stream_720p0.ts</code></li>
+      <li><code>stream_480p0.ts</code></li>
     </ul>
 
     Gehen Sie dabei insbesondere auf folgende Punkte ein:
@@ -183,21 +107,5 @@ testvideo_460p.mp4
       <li>Welche Auswirkungen haben diese Unterschiede auf Bandbreite und Speicherbedarf?</li>
     </ul>
 
-  <b>Hinweis:</b><br>
-  Nutzen Sie ausschließlich die mit <code>ffprobe</code> ermittelten Werte.
-  Eigene Annahmen ohne Messwerte sind kenntlich zu machen.
 
 
-![S3 Quellpfad](../assets/Versuch3/s3_quellpfad.png)
-
----
-
-⬅️ **Vorheriges Kapitel:**  
-[Einführung](01-einfuehrung.md)
-
-➡️ **Nächstes Kapitel:**  
-[CDN im Realbetrieb](03-CDN Im Realbetrieb.md)
-
-![S3 Kopie Zielpfad](../assets/Versuch3/s3_zielpfad.png)
-
-Kontrollieren Sie, dass die Datei in das richtige Verzeichnis kopiert wurde.

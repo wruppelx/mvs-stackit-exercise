@@ -204,7 +204,7 @@ s3cmd setpolicy public-read.json s3://<DeinBucketname>
 ```
 
 
-***Navigieren Sie bitte jetzt zu dem Internetbrowser firefox und geben sie erneut die URL ein:**
+**Navigieren Sie bitte jetzt zu dem Internetbrowser und geben sie erneut die URL ein:**
 
 ```bash
 https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/master.m3u8

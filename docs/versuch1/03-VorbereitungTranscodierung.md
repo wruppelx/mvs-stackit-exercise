@@ -160,8 +160,17 @@ Speichern Sie die Regel nach dem Eintragen der Werte. Die Änderung wird sofort 
 
 **Klicken Sie auf Create Server**
 
+---
+
+### General information
+
 - **Name:** vm-[HDS-Nutzername]
 - **Availability Zone:** EU01-1  
+
+---
+
+### Boot volume
+
 - **Betriebssystem:** Ubuntu  
 - **Version:** Ubuntu 24.04  
 - **STACKIT Server Agent:** aktiviert  
@@ -171,7 +180,7 @@ Speichern Sie die Regel nach dem Eintragen der Werte. Die Änderung wird sofort 
 
 ---
 
-### Flavors
+### Machine types
 
 - **Kategorie:** Allgemeine Zwecke  
 - **Auswahl:** g2i.2 2 CPU 8GB RAM  
@@ -183,17 +192,27 @@ Speichern Sie die Regel nach dem Eintragen der Werte. Die Änderung wird sofort 
 - **Server Backup Management Service:** deaktiviert  
 - **Server Update Management Service:** deaktiviert  
 
-**Network**
-**Wählen Sie hier das bereits angelegte Netzwerk aus**
+---
 
-**Initiale Zugangsdaten**
+### Network
 
-SSH-Schlüssel welcher vorher angelegt wurde eingeben.
+Wählen Sie hier das bereits angelegte Netzwerk aus
 
-**Bestellung**
-Einstellungen prüfen
+---
 
-**Kostenpflichtig bestellen anklicken**
+### Initial Credentials
+
+SSH-Schlüssel, welcher vorher angelegt wurde, auswählen.
+
+---
+
+### User authentication
+
+(Keine Eingabe)
+
+---
+
+### Kostenpflichtig bestellen anklicken
 
 Nun sollten SIe ihren erstellten Server sehen können
 
@@ -333,11 +352,11 @@ s3cmd --configure
 
 | Feld                           | Eingabe                                         |
 |--------------------------------|-------------------------------------------------|
-| Access Key                     | \<Ihr Access Key\>                                |
-| Secret Key                     | \<Ihr Secret Key\>                                |
+| Access Key                     | <Ihr Access Key\>                                |
+| Secret Key                     | <Ihr Secret Key\>                                |
 | Default Region [US]            | eu01                                            |
 | S3 Endpoint [s3.amazonaws.com] | object.storage.eu01.onstackit.cloud             |
-| DNS-style bucket+hostname      | %(bucket)s.object.storage.eu01.onstackit.cloud. |
+| DNS-style bucket+hostname      | %(bucket)s.object.storage.eu01.onstackit.cloud |
 | Encryption password            | **Enter drücken**  |
 | Path to GPG program            | **Enter drücken**  |
 | Use HTTPS Protocol             | Yes  |

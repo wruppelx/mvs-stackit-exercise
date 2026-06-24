@@ -57,8 +57,4 @@ nav:
     - Caching: versuch2/03-inhalte_abrufen.md
     - Fazit: versuch2/05-fazit.md
   - Versuch 3:
-    - Einführung Versuch 3: versuch3/01-einfuehrung.md
     - Ingestanalyse: versuch3/02-Ingest_Analyse.md
-    - CDN im Realbetrieb: versuch3/03-CDNRealbetrieb.md
-    - Automatisierung: versuch3/04-Automatisierungsbeispiel.md
-    - Fazit: versuch3/05-fazit.md

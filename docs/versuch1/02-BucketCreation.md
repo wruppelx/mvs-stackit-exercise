@@ -61,8 +61,8 @@ Diese werden später in der Kommandozeile verwendet.
 
 
 Nach dem Erstellen werden **zwei Schlüssel angezeigt**:
-- **Access Key** (öffentlicher Schlüssel)
-- **Secret Key** (privater Schlüssel)
+- **Access Key**
+- **Secret Key**
 
 !!! info
     ⚠️ **Wichtig:**  
