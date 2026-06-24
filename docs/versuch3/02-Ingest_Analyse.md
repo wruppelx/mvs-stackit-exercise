@@ -1,6 +1,4 @@
-# Mini-Test: Ingest → Analyse → CDN-Abruf
-
-## Kurzinfo
+# Kurzinfo
 
 In dieser Teilaufgabe sollen die transcodierten Dateien und die CDN-Auslieferung weiter analysiert werden
 
@@ -17,13 +15,7 @@ In dieser Teilaufgabe sollen die transcodierten Dateien und die CDN-Auslieferung
 ## Ablaufplan
 
 
-Öffnen Sie erneut mit `ssh`die Verbindung zu Ihrer STACKIT-VM und legen Sie ein Verzeichnis an:
-
-```bash
-mkdir workflow-test
-cd workflow-test
-```
-
+Öffnen Sie erneut mit `ssh`die Verbindung zu Ihrer STACKIT-VM.
 
 ### CDN-Antwort abrufen
 
@@ -37,35 +29,13 @@ Ziel dieses Schrittes:
 **Führen Sie bitte diesen Befehl aus:**
 
 ```bash
-curl.exe -I "https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/stream_1080p0.ts"
+curl -I "https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/stream_1080p0.ts"
 ```
 
 **Sie sollten jetzt eine Auflistung sehen:**
 
-**Tragen Sie die die übergeben Prameter in eine Tabelle wie unten dargestellt ein:**
-
-| HTTP-Header / Feld           | Bedeutung / Beobachtung (ausfüllen) |
-|-----------------------------|-------------------------------------|
-| HTTP/1.1 200 OK             |                                     |
-| Connection                  |                                     |
-| Content-Length              |                                     |
-| Content-Type                |                                     |
-| Server                      |                                     |
-| x-amz-request-id            |                                     |
-| x-amz-id-2                  |                                     |
-| x-ntap-sg-trace-id          |                                     |
-| ETag                        |                                     |
-| x-amz-server-side-encryption|                                     |
-| Last-Modified               |                                     |
-| Accept-Ranges               |                                     |
-| Age                         |                                     |
-| Date                        |                                     |
-| Via                         |                                     |
-| X-Served-By                 |                                     |
-| X-Cache                     |                                     |
-| X-Cache-Hits                |                                     |
-| X-Timer                     |                                     |
-| Strict-Transport-Security   |                                     |
+!!! question "Aufgabe 3.1"
+    Dokumentieren Sie die Ausgabe von curl in Ihrer Ausarbeitung und interpretieren Sie diese.
 
 ### Analyse der Streaming-Dateien 
 
@@ -78,10 +48,8 @@ ffprobe -v error \
 "https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/stream_1080p0.ts"
 ```
 
-**Die Ausgabe sieht so aus:**
+**Die Ausgabe sieht etwa so aus:**
 ![ObjectSTorage](../assets/Versuch3/stream.jpg)
-
-Kopieren Sie die Ausgabe in ein  Textdokument `stream_1080p0.txt`.
 
 Wiederholen Sie daen Befehl für die folgenden weiteren Dateien :
 
@@ -89,9 +57,7 @@ stream_720p0.ts
 
 stream_480p0.ts
 
-**Kopieren Sie die Ausgaben jeweils in die Textdokumente `stream_720p0.txt` und `stream_480p0.txt`**
-
-!!! question "Frage 3.1: Vergleich der Transcoding-Ergebnisse"
+!!! question "Aufgabe 3.2: Vergleich der Transcoding-Ergebnisse"
     Analysieren Sie die Ausgaben von <code>ffprobe</code> für die folgenden Dateien:
     <ul>
       <li><code>stream_1080p0.ts</code></li>
@@ -106,6 +72,4 @@ stream_480p0.ts
       <li>Wie verändert sich die Bitrate im Verhältnis zur Auflösung?</li>
       <li>Welche Auswirkungen haben diese Unterschiede auf Bandbreite und Speicherbedarf?</li>
     </ul>
-
-
 
