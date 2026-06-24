@@ -26,11 +26,11 @@ In der Abgabe sollten die im Laufe des Versuchs erzeugten transcodierten Dateien
 ```
 📁 
     📁 Versuch1
-        📄 testvideo_1080p.mp4
-        📄 testvideo_720p.mp4
-        📄 testvideo_480p.mp4
-    📁 Experimente
-        📄 testvideo_eigenes_experiment.mp4
+        📄 STEM2-Clip-MVS-STACKIT.mxf
+    📁 export
+        📄 hls_output
+        📄 hls_output_2
+        📄 hls_output_3
 ```
 
 

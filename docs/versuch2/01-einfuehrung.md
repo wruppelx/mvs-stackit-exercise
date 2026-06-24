@@ -45,9 +45,8 @@ Fastly speichert abgerufene Inhalte temporär auf seinen weltweit verteilten Edg
 Dieses sogenannte *Caching* sorgt dafür, dass häufig abgerufene Mediendateien nicht bei jeder Anfrage erneut vom Origin geladen werden müssen.
 
 Gerade bei Video-on-Demand-Inhalten ist Caching ein zentraler Mechanismus zur Reduktion von Latenzen und Serverlast.
----
----
 
+---
 ### Service
 
 Die Konfiguration eines CDNs wird bei Fastly in sogenannten *Services* abgebildet.  
@@ -113,9 +112,9 @@ Dies kann zu höheren Ladezeiten und einer stärkeren Belastung des Speichers f�
 In diesem Versuch wird das Zusammenspiel beider Konzepte deutlich:
 
 - **Cloud Computing:**  
-  STACKIT Bucket dient als zentraler Speicherort für die transcodierten Mediendateien.
+  Ihr STACKIT-Bucket dient als zentraler Speicherort für die transcodierten Mediendateien.
 
 
 Dieses Zusammenspiel ist typisch für moderne Video-on-Demand-Systeme.  
-Die Cloud stellt die Inhalte bereit, während das CDN mit Edge Computing für eine schnelle, skalierbare und zuverlässige Auslieferung an Endnutzer sorgt.
+Ein Cloud-Service stellt die Inhalte bereit, während das CDN mit Edge Computing für eine schnelle, skalierbare und zuverlässige Auslieferung an Endnutzer sorgt.
 

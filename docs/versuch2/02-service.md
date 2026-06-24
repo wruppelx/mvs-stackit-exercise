@@ -23,7 +23,7 @@ Der Bucket übernimmt die Rolle des **Origin Servers**.
 **Soweit ist alles vorbereitet für die Kopplung an das CDN. im nächsten Schritt wird die Bedienung für Fastly erklärt**
 
 
-Navigieren Sie bitte zur Internetseite von Fastly https://www.fastly.com/ und melden Sie sich dort mit ihren Credentials an:
+Navigieren Sie bitte zur Internetseite von Fastly [https://www.fastly.com/](https://www.fastly.com/){:target="_blank"} und melden Sie sich dort mit ihren Credentials an:
 
 ![ObjectSTorage](../assets/Versuch2/fastlylogin.jpg)
 
@@ -55,14 +55,16 @@ Im oberen rechten Bereich des Dashboards wird der Button **Create service** ausg
 
 | Feld         | Eingabe                               |
 |----------------------|----------------------------------------|
-| Service name         | `service2-[HDS-Nutzername]`           |
-| Eigene Domain        | `svc2-[HDS-Nutzername].global.ssl.fastly.net` |
-| Origin Host          | `https://bucket-[HDS-Nutzername].object.storage.eu01.onstackit.cloud`|
+| Service name         | `cdn2-[HDS-Nutzername]`           |
+| Eigene Domain        | `cdn2-[HDS-Nutzername].global.ssl.fastly.net` |
+| Origin Host          | `bucket-[HDS-Nutzername].object.storage.eu01.onstackit.cloud`|
 | Override default host| aktiviert                              |
 | Default compression  | aktiviert                              |
 | Force TLS & HSTS  | aktiviert                                 |
 
-Danach **noch nicht** auf Aktivieren klicken!
+Klicken Sie auf **Activate**.
+
+Anschließend klicken Sie  **Clone to edit** und fahren Sie in der Anleitung fort.
 
 **So sollte es nun bei Ihnene aussehen:**
 
@@ -71,7 +73,7 @@ Danach **noch nicht** auf Aktivieren klicken!
 
 
 **Es wurde nun ein eigener DNS-Eintrag für Sie angelegt:
- svc2-[HDS-Nutzername].global.ssl.fastly.net**
+ cdn2-[HDS-Nutzername].global.ssl.fastly.net**
 
 
 
@@ -90,9 +92,12 @@ Navigieren Sie unter **LOGGING** zu dem Reiter Snippets
 
 Übergeben Sie auf der Einrichtungsmaske folgende Parameter:
 
-**Name:** enable-segmented-caching.mp4
+**Name:** enable-segmented-caching
+
 **Placement:** Within subroutine
+
 **Subroutine:** recv(vcl_recv)
+
 **Priority:** 100
 
 ```bash
@@ -113,7 +118,7 @@ Cross-origin resource sharing (CORS) ist für die Stream-Analyse mit einem HLS-P
 
 Aktivieren Sie CORS in den Einstellungen Ihres Service wie im folgenden beschrieben:
 
-[Enabling CORS](https://www.fastly.com/documentation/guides/full-site-delivery/headers/enabling-cross-origin-resource-sharing/)
+[Enabling CORS](https://www.fastly.com/documentation/guides/full-site-delivery/headers/enabling-cross-origin-resource-sharing/){:target="_blank"}
 
 Übernehmen Sie dabei alle Einstellungen wie unter "5. Create header" beschrieben.
 
@@ -126,12 +131,12 @@ Aktivieren Sie dann Ihren CDN Service durch Klicken auf **Activate**.
 Nach der Aktivierung ist der Service aktiv und die Inhalte können über die
 zugewiesene Domain abgerufen werden.
 
-### Erster Test des Fastly CDN
+## Erster Test des Fastly CDN
 
 **Gehen Sie nun in den Browser und geben Sie dort folgendes ein:**
 
 ```bash
-https://svc2-[HDS-Nutzername].global.ssl.fastly.net/hls_ouput/master.m3u8
+https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_ouput/master.m3u8
 ```
 
 !!! question "Frage 2.1"
@@ -139,14 +144,14 @@ https://svc2-[HDS-Nutzername].global.ssl.fastly.net/hls_ouput/master.m3u8
 
     Interpretieren Sie die angegebene Nachricht 
 
-**Das Problem lässt sich lösen indem wir nun Zugriffsrechte auf das Origin-Bucket konfigurieren.
+Das Problem lässt sich lösen indem wir nun Zugriffsrechte auf das Origin-Bucket konfigurieren.
 
-### 3. Zugriffsrechte erstellen:
+## Zugriffsrechte auf Origin-Server erstellen
 
-**STACKIT erlaubt es anders als AWS nicht, die Zugriffsrechte auf dem Web-Portal anzupassen. Hierfür müssen wir der VM die Rechte händisch mitgeben. Das klingt komplizierter, als es eigentlich ist. In ein paar Schritten ist dies getan**
+**STACKIT erlaubt es, anders als AWS, nicht, die Zugriffsrechte auf dem Web-Portal anzupassen. Hierfür müssen wir der VM die Rechte händisch mitgeben. Das klingt komplizierter, als es eigentlich ist. In ein paar Schritten ist dies getan**
 
 
-**Verbinden sie sich mit der VM von StackIT**
+**Verbinden sie sich mit der VM von STACKIT**
 
 ```bash
 ssh ubuntu@<IP-DEINER-VM>
@@ -164,7 +169,7 @@ nano public-read.json
 
 ![ObjectSTorage](../assets/Versuch2/nano.jpg)
 
-**Geben Sie nun folgendenn Code in nano ein:**
+**Geben Sie nun folgenden Code in nano ein:**
 
 ```bash
 {
@@ -202,18 +207,16 @@ s3cmd setpolicy public-read.json s3://<DeinBucketname>
 ***Navigieren Sie bitte jetzt zu dem Internetbrowser firefox und geben sie erneut die URL ein:**
 
 ```bash
-https://svc2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/master.m3u8
+https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/master.m3u8
 ```
-
-**Wichtig ist hierbei das sie den Browser Firefox benutzen. Chrome unterstützt dieses Feature nicht**
 
 Je nach Browser wird entwede die m3u8-Datei heruntergeladen, oder das Abspielen des Streams gestartet.
 
-**Sie sollten folgende Ausgabe im Browser erhalten:**
+**Falls Ihr Browser den Stream abspielt, sollten Sie folgende Ausgabe erhalten:**
 
-![ObjectSTorage](../assets/Versuch2/rabbitfastly.jpg)
+![STEM2 Playback](../assets/Versuch2/stem2_fastly.jpg)
 
-**Jetzt interessiert uns noch, von wo diese Ablieferung stattfindet. Hierfür erinnern wir uns wieder an das Modul CM1 bei dem wir verschiedene Tools kenennlernern durften um eine Hostdadresse genauer zu inspizieren**
+Jetzt interessiert uns noch, von wo diese Ablieferung stattfindet. 
 
 !!! question "Frage 2.2"
     Mit welchem Kommandozeilenbefehl können Sie überprüfen, auf welche IP-Adressen der CDN-Hostname aufgelöst wird und welcher Edge-Server für die Auslieferung der Inhalte verwendet wird? 
@@ -221,20 +224,11 @@ Je nach Browser wird entwede die m3u8-Datei heruntergeladen, oder das Abspielen 
     Fertigen Sie hierzu einen Screenshot der Ausgabe an.
 
 
-<div style="
-  border: 2px solid #ffffff;
-  padding: 14px;
-  border-radius: 6px;
-  margin: 14px 0;
-">
-  <span style="color:cyan; font-weight:bold; font-size:1.2em;">
-    Info:
-  </span><br>
-  Bei DNS-Abfragen kann es sinnvoll sein, einen öffentlichen DNS-Resolver wie
-  <code>1.1.1.1</code> (Cloudflare) anzugeben, da lokale Router oder
-  Provider-DNS bei CDN-Hostnamen zu Timeouts oder unerwarteten Ergebnissen
-  führen können.
-</div>
+!!! info
+    Bei DNS-Abfragen kann es sinnvoll sein, einen öffentlichen DNS-Resolver wie
+    <code>1.1.1.1</code> (Cloudflare) anzugeben, da lokale Router oder
+    Provider-DNS bei CDN-Hostnamen zu Timeouts oder unerwarteten Ergebnissen
+    führen können.
 
 
 

@@ -67,7 +67,7 @@ Nach dem Erstellen werden **zwei Schlüssel angezeigt**:
 !!! info
     ⚠️ **Wichtig:**  
     Der **Secret Key wird nur einmal angezeigt**.  
-    Notieren oder speichern Sie beide Keys sorgfältig. Diese werden im weiteren Verlauf der praktischen Übung benötigt.** sein.
+    Notieren oder speichern Sie beide Keys sorgfältig. Diese werden im weiteren Verlauf der praktischen Übung benötigt.
 
 
 

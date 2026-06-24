@@ -64,7 +64,7 @@ Dieses Vorgehen entspricht einem typischen cloudbasierten Video-on-Demand-Workfl
 
 Für diesen Praktikumsversuch erhalten die Studierenden die benötigten Zugangsdaten (Credentials) direkt vom Dozenten. Eine eigene Registrierung ist nicht erforderlich.
 
-Zur Anmeldung auf StackIT gelangt man über diesen Link: https://portal.stackit.cloud/
+Zur Anmeldung auf STACKIT gelangt man über diesen Link: [STACKIT-Portal](https://portal.stackit.cloud/){:target="_blank"}
 
 
 ![Login User](../assets/Versuch1/login-user.jpg)

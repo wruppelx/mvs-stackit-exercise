@@ -38,9 +38,7 @@ Der Transcoding-Prozess besteht aus den folgenden Schritten:
 
 ![S3 Dashboard](../assets/Versuch1/navinet.jpg)
 
-Das vorhandene Netzwerk muss nicht manuell mit anderen Komponenten verbunden werden.
-
-Bei der späteren Erstellung von Rechenressourcen (z. B. Compute-Instanzen, Transcoder oder Services) wird dieses Netzwerk direkt ausgewählt.
+Bei der Erstellung von Rechenressourcen (z. B. Compute-Instanzen, Transcoder oder Services) wird dieses Netzwerk direkt ausgewählt.
 Die jeweilige Ressource wird dadurch automatisch Teil des Netzwerks.
 
 Eine separate Kopplung oder zusätzliche Konfiguration des Netzwerks ist nicht erforderlich.
@@ -58,16 +56,15 @@ Für den Zugriff auf den Linux-Server wird eine Anmeldung per **SSH-Schlüssel**
 
 Das SSH-Schlüsselpaar wird über den folgenden Online-Generator erzeugt:
 
-[https://8gwifi.org/sshfunctions.jsp](https://8gwifi.org/sshfunctions.jsp)
+[https://8gwifi.org/sshfunctions.jsp](https://8gwifi.org/sshfunctions.jsp){:target="_blank"}
 
 ![S3 Dashboard](../assets/Versuch1/keykeykey.jpg)
 
 1.Öffnen Sie die oben genannte Webseite.
+
 2.Wählen Sie als Algorithmus RSA.
+
 3.Erzeugen Sie ein neues Schlüsselpaar.
-4. Laden Sie:
-- den Public Key
-- den Private Key
 
 ### Schritt 2: Key in STACKIT ablegen
 
@@ -80,7 +77,7 @@ priv-key-stackit.txt
 
 Bei der Servererstellung kann hierfür später das erstellte Schlüsselpaar verwendet werden.
 
-**Wichtig: Unter Linux und macOS müssen Sie die Zugriffsrechte auf die Datei ändern:**
+**Wichtig: Unter Linux und macOS müssen Sie die Zugriffsrechte auf die Datei, die den privaten Schlüssel enthält, ändern:**
 
 ```bash
 chmod 400 <priv-key-file>
@@ -95,7 +92,7 @@ ssh -i <priv-key-file> ubuntu@<public ip der vm>
 
 ### Schritt 3: Einrichtung des Keys auf der STACKIT Weboberfläche
 
-Ds erzeugte Keypaar soll nun mit Ihrem STACKIT-Konto verknüpft werden.
+Der öffentliche Schlüssel soll nun mit Ihrem STACKIT-Konto verknüpft werden.
 
 **Navigieren sie hierzu  zu ihren Nutzereinstellungen:**
 
@@ -163,7 +160,7 @@ Speichern Sie die Regel nach dem Eintragen der Werte. Die Änderung wird sofort 
 
 **Klicken Sie auf Create Server**
 
-- **Name:** vm-<HDR-Nutzername>  
+- **Name:** vm-[HDS-Nutzername]
 - **Availability Zone:** EU01-1  
 - **Betriebssystem:** Ubuntu  
 - **Version:** Ubuntu 24.04  
@@ -234,18 +231,18 @@ ssh -i <PFAD_ZUM_PRIVATE_KEY> ubuntu@<PUBLIC-IP-DER-VM>
 
 !!! info
       ℹ️ <strong>Hinweis:</strong>
-   Beim ersten Verbindungsaufbau per SSH erscheint eine Sicherheitsabfrage zum sogenannten <em>Host-Fingerprint</em>.
-   Diese Abfrage dient dazu, die Identität des entfernten Servers zu überprüfen.
-   Da es sich hierbei um eine neu erstellte virtuelle Maschine handelt, ist der Fingerprint dem lokalen System noch nicht bekannt.
-   In diesem Fall genügt es, die Abfrage mit <code>yes</code> zu bestätigen.
-   Der Fingerprint wird anschließend gespeichert, sodass diese Abfrage bei zukünftigen Verbindungen nicht erneut erscheint.
+      Beim ersten Verbindungsaufbau per SSH erscheint eine Sicherheitsabfrage zum sogenannten <em>Host-Fingerprint</em>.
+      Diese Abfrage dient dazu, die Identität des entfernten Servers zu überprüfen.
+      Da es sich hierbei um eine neu erstellte virtuelle Maschine handelt, ist der Fingerprint dem lokalen System noch nicht bekannt.
+      In diesem Fall genügt es, die Abfrage mit <code>yes</code> zu bestätigen.
+      Der Fingerprint wird anschließend gespeichert, sodass diese Abfrage bei zukünftigen Verbindungen nicht erneut erscheint.
 
 **Nach erfolgreicher Eingabe sollte folgende Ausgabe in der lokalen Shell zu sehen sein**
 
 ![S3 Dashboard](../assets/Versuch1/cmdsuccesful.jpg)
 
 !!! question "Frage 1.3"
-    Was passiert technisch, wenn der zuvor ausgeführte Befehl eingegeben wird?
+    Was passiert technisch, wenn der zuvor ausgeführte `ssh`-Befehl eingegeben wird?
 
     Beschreiben Sie, welche Komponenten beteiligt sind und welche Aktionen im Hintergrund ablaufen.
 
@@ -257,7 +254,7 @@ Nach erfolgreicher Anmeldung befindet man sich auf dem Linux-System der virtuell
 
 ## Einrichten der Laufzeitumgebung
 
-In den folgenden Abschnitten weerden das Betriebssystem  aktualisiert und die Anwendungen `s3cmd` sowie `ffmpeg`  installiert.
+In den folgenden Abschnitten werden das Betriebssystem  aktualisiert und die Anwendungen `s3cmd` sowie `ffmpeg`  installiert.
 
 ### Aktualisierung des Betriebssystems
 
@@ -336,8 +333,8 @@ s3cmd --configure
 
 | Feld                           | Eingabe                                         |
 |--------------------------------|-------------------------------------------------|
-| Access Key                     | <Ihr Access Key>                                |
-| Secret Key                     | <Ihr Secret Key>                                |
+| Access Key                     | \<Ihr Access Key\>                                |
+| Secret Key                     | \<Ihr Secret Key\>                                |
 | Default Region [US]            | eu01                                            |
 | S3 Endpoint [s3.amazonaws.com] | object.storage.eu01.onstackit.cloud             |
 | DNS-style bucket+hostname      | %(bucket)s.object.storage.eu01.onstackit.cloud. |
@@ -345,21 +342,8 @@ s3cmd --configure
 | Path to GPG program            | **Enter drücken**  |
 | Use HTTPS Protocol             | Yes  |
 | HTTP Proxy server name         | **Enter drücken**  |
-| Test access with supplied credentials? | [Y/n]: Y  |
-| Save settings? [y/N] | y  |
-
-Access Key → eigener Access Key
-Secret Key → eigener Secret Key
-Default region name   → eu01
-S3-Endpoint → object.storage.eu01.onstackit.cloud
-DNS-style bucket+hostname: %(bucket)s.object.storage.eu01.onstackit.cloud
-Encryption password: **Enter drücken**
-Path to GPG program [/usr/bin/gpg]: **Enter drücken**
-Use HTTPS Protocol: Yes
-HTTP Proxy server name: **Enter drücken**
-Test access with supplied credentials? [Y/n]: n
-Save settings? [y/N]: y
-
+| Test access with supplied credentials? | Y  |
+| Save settings? | y  |
 
 
 Alle weiteren Abfragen bitte unverändert bestätigen.
@@ -376,7 +360,7 @@ Success. Your access key and secret key worked fine :-)
     Falls dies nicht der Fall ist, können die Zugangsdaten jederzeit erneut erstellt werden.
     Eine Anleitung dazu finden Sie im vorherigen Kapitel. 🙂
 
-### Test des Zugriffs auf den Object Storage von StackIT
+### Test des Zugriffs auf den Object Storage von STACKIT
 
 Nach der erfolgreichen Konfiguration wird überprüft, ob die virtuelle Maschine auf das Bucket zugreifen kann. Dazu wird der zuvor erstellte Bucket aufgelistet.
 
@@ -392,7 +376,7 @@ Im nächsten Schritt wird eine per URL verfügbare Quelldatei auf dem  Bucket ab
 
 ### Kopieren der Datei in das Bucket
 
-Das Kopieren erfolgt mittels `curl`und `s3cmd`.
+Das Kopieren erfolgt mittels `curl`und `s3cmd`. Geben Sie den folgenden Befehl ein:
 
 ```bash
 curl -k https://www.mt.hs-rm.de/testsignals/mvs-2026S/STEM2-Clip-MVS-STACKIT.mxf | s3cmd put - s3://<DEINBUCKETNAME>/Versuch1/STEM2-Clip-MVS-STACKIT.mxf

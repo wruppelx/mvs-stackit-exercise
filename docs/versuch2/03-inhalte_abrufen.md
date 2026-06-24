@@ -60,7 +60,7 @@ Zur Überprüfung der adaptiven HLS-Wiedergabe wird die offizielle Demo-Instanz 
 
 Der Player ist erreichbar unter:
 
-https://hlsjs.video-dev.org/demo/
+[https://hlsjs.video-dev.org/demo/](https://hlsjs.video-dev.org/demo/){:target="_blank"}
 
 ![ObjectSTorage](../assets/Versuch2/hlsplayer.jpg)
 
@@ -83,7 +83,7 @@ Für diesen Versuch ist die Verwendung einer CORS-Extension erforderlich.
 
 Beispiel (Chrome):
 
-https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf
+[https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf](https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf){:target="_blank"}
 
 ### Aktivierung von CORS
 

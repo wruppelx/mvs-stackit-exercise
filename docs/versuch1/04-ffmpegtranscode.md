@@ -19,8 +19,11 @@ Der erfolgreiche Verbindungsaufbau per SSH bestätigt, dass die virtuelle Maschi
 Im folgenden Abschnitt beginnt der zentrale Verarbeitungsschritt des Video-on-Demand-Workflows. Eine im Bucket verfügbare Videodatei wird auf der virtuellen Maschine mithilfe einer Transcoding-Software verarbeitet.
 
 **Konkret werden in den nächsten Schritten:**
+
 - der Zugriff auf die zu transcodierende MXF-Quelldatei konfiguriert
+
 - Streaming-Dateien bestehend aus Manifestdatein und Transportstrom-Chunks aus der MXF-Quelldatei erzeugt
+
 - und die transcodierten Ergebnisse wieder im Bucket abgelegt.
 
 Damit wird der Übergang von der reinen Infrastruktur- und Speicherbereitstellung zur eigentlichen Medienverarbeitung vollzogen, wie er auch in realen cloudbasierten Video-on-Demand-Systemen üblich ist.
@@ -76,11 +79,11 @@ mkdir hls_output
 
 **Erstellung der Manifest- und Segmentdateien**
 
-Die Transcodierung erfolgt erneut mithilfe von FFmpeg. Im Gegensatz zur
+Die Transcodierung erfolgt  mithilfe von FFmpeg. Im Gegensatz zur
 klassischen MP4-Ausgabe wird hierbei das HLS-Ausgabeformat verwendet.
 FFmpeg erzeugt dabei automatisch eine Manifestdatei sowie mehrere
-Videosegmente.
-`
+Transportstrom-Segmente.
+
 **Geben Sie folgenden Befehl in das von ihnen gerade erstellte Konsolenverzeichnis ein:**
 
 !!! info
@@ -217,8 +220,7 @@ Zunächst wird mediainfo auf der VM installiert:
 sudo apt-get install mediainfo -y
 ```
 
-
-### Analyse über die grafische Oberfläche
+### Analyse
 
 Die erzeugten Segmente können über die Kommandozeile analysiert werden, Beispiel:
 
@@ -227,13 +229,19 @@ mediainfo hls_output/stream_1080p4.ts
 ```
 
 Dokumentieren Sie für alle Qualitätsstufen (also 480p, 720p, 1080p) die folgende Parameter:
+
 - Auflösung
+
 - Codec
+
 - Framerate
+
 - Containerformat
 
 Dokumentierten Sie für alle Segmente die folgende Parameter:
+
 - Dauer (Duration)
+
 - Bitrate
 
 
@@ -245,12 +253,10 @@ Dokumentierten Sie für alle Segmente die folgende Parameter:
     Addieren Sie die Einzel-Dauern der Segmente. Stimmt die Summe mit der Dauer der Quelldatei überein?
 
 
-**Darunter sollten Sie jetzt Werte angezeigt bekommen wie bspw: Format, Formatprofil,...**
-**Fertigen Sie bitte einen Screenshot der verschiedenen transcodierten Versionen an und betten Sie diese in ihre Abgabemappe ein**
-
 
 !!! question "Frage 1.7"
     **Nun ist ihre Kreativität gefragt...**
+    Legen Sie einen oder mehrere zusätzliche Output-Ordner hls_output_2 etc. an.
     Transcodieren Sie die Quelldatei erneut mit <em>FFmpeg</em> und nehmen Sie dabei eigenständig Anpassungen an den Transcodierungsparametern vor.<br><br>
 
     Verändern Sie mindestens zwei der folgenden Punkte:
@@ -272,10 +278,3 @@ Dokumentierten Sie für alle Segmente die folgende Parameter:
       <li>den verwendeten FFmpeg-Befehl</li>
       <li>die Unterschiede zur vorherigen Transcodierung</li>
     </ul>
-
-
-
-
-
-
-

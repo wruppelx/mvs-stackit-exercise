@@ -15,12 +15,12 @@ Sie ist ein wichtiger Indikator für die wahrgenommene Ladegeschwindigkeit von M
 
 ### Schritt 1: Voraussetzungen prüfen
 
-- **Die Videodatei testvideo_1080p.mp4 liegt im STACKIT Bucket**
+- **Die Videodatei stream_1080p0.mp4 liegt im STACKIT Bucket**
 
 - **Die Datei ist öffentlich über Fastly erreichbar, z. B.:**
 
 ```bash
-https://<username>.global.ssl.fastly.net/testvideo_1080p.mp4
+https://cdn2-[HDS-Nutzername].global.ssl.fastly.net/hls_output/stream_1080p0.ts
 ```
 ### Schritt 2: TTFB direkt vom Origin messen
 
@@ -28,7 +28,7 @@ https://<username>.global.ssl.fastly.net/testvideo_1080p.mp4
 und führen Sie folgenden Befehl aus:
 
 ```bash
-curl -w "TTFB Origin: %{time_starttransfer}\n" -o /dev/null -s https://object.storage.eu01.onstackit.cloud/<DEIN BUCKETNAME>/testvideo_1080p.mp4
+curl -w "TTFB Origin: %{time_starttransfer}\n" -o /dev/null -s https://object.storage.eu01.onstackit.cloud/<DEIN BUCKETNAME>/export/hls_output/stream_1080p0.ts
 ```
 
 **Dieser misst die Zeit des Origin downloads:**
