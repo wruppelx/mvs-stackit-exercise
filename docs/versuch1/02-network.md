@@ -5,13 +5,13 @@
 Für diesen Praktikumsversuch erhalten die Studierenden die benötigten Zugangsdaten (Credentials) per E-mail (SPAM-Ordner checken!) von STACKIT.
 Folgen sie dem Link zur Aktivierung Ihres Accounts:
 
-![Login User](../assets/Versuch1/verify-email.jpg){ style="width:50%" }
+![Login User](../assets/Versuch1/verify-email.jpg){ width="50%" }
 
 **Der Benutzername ist Ihre studentische E-mail-Adresse**
 
 Aktivieren Sie Ihren Account:
 
-![Login password](../assets/Versuch1/activate_stackit_account.jpg){ style="width:50%" }
+![Login password](../assets/Versuch1/activate_stackit_account.jpg){ width="50%" }
 
 **Nun wählen Sie auf der Landingpage in der oberen Leiste das bereits für Sie angelegte Projekte und die Region EU01 - (Deutschland Süd) aus.**
 
