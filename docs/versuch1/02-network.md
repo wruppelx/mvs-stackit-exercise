@@ -20,7 +20,7 @@ Sie haben "Owner"-Rechte in Ihrem Projekt und können damit Instanzen in allen S
 
 Klicken Sie auf "Select project":
 
-![Select Project 1](../assets/Versuch1/stackit_select_project.jpg)
+![Select Project 1](../assets/Versuch1/stackit_select_project.jpg){ width="50%" }
 
 Dann auf "ALL RESOURCES":
 

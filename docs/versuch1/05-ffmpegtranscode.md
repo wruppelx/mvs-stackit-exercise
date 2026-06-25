@@ -211,7 +211,7 @@ Segmentdateien angezeigt werden.
 
 Im nächsten Schritt werden die transcodierten Dateien mit dem Analysewerkzeug *MediaInfo* untersucht.
 
-![S3 Dashboard](../assets/Versuch1/mediainfo.jpg)
+![S3 Dashboard](../assets/Versuch1/mediainfo.jpg){ width="50%" }
 
 ### Vorbereitung
 

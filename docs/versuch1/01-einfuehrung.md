@@ -32,11 +32,11 @@ Der HDS-Nutzername wird im Verlauf der Versuche mehrfach verwendet und ist daher
 
 Wenn in der Anleitung `[HDS-Nutzername]` als Bezeichner verwendet wird, ersetzen Sie diesen bitte durch Ihren HDS-Nutzernamen.
 
-![HDS](../assets/Versuch1/hdsname.jpg)
+![HDS](../assets/Versuch1/hdsname.jpg){ width="50%" }
 
 ### Cloud-Speicher (*Object-Storage*)
 
-![STACKIT Object Storage](../assets/Versuch1/object-storage.png)
+![STACKIT Object Storage](../assets/Versuch1/object-storage.png){ width="50%" }
 
 
 Cloud-Speicher funktioniert im Grundprinzip ähnlich wie bekannte Dienste wie Dropbox oder Google Drive: Dateien werden zentral gespeichert und können bei Bedarf wieder abgerufen werden. In professionellen Cloud-Umgebungen kommt dafür jedoch meist Objektspeicher (Object Storage) zum Einsatz. Objectspeicher weren auch als Buckets bezeichnet.

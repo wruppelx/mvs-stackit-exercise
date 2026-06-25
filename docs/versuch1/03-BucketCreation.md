@@ -5,7 +5,7 @@ Dazu wird der **STACKIT Object Storage** verwendet, ein S3-kompatibler Objektspe
 
 **Der Zugriff erfolgt über das STACKIT Portal im Browser. Auf der rechten Reiterseite. Hier findet man unter dem Reiter Computing den Unterpunkt "Object Storage"**
 
-![ObjectSTorage](../assets/Versuch1/enableobjectstorage.jpg)
+![ObjectSTorage](../assets/Versuch1/enableobjectstorage.jpg){ width="50%" }
 
 **Hier muss der Objektspeicher manuell aktiviert werden. Hierfür muss nur der vorhandene Button "Objektspeicher aktivieren" geklickt werden.**
 
@@ -21,7 +21,7 @@ Dazu wird der **STACKIT Object Storage** verwendet, ein S3-kompatibler Objektspe
   
 **Klicken Sie auf das Feld "+ Bucket erstellen"**
 
-![S3 Dashboard](../assets/Versuch1/testme.jpg)
+![Create Bucket](../assets/Versuch1/testme.jpg){ width="50%" }
 
 Die Namensvergabe soll nach einem einheitlichen Schema erfolgen:  
 
