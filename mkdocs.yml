@@ -47,7 +47,7 @@ nav:
   - Einleitung: einleitung.md
   - Versuch 1:
     - Einführung Versuch 1: versuch1/01-einfuehrung.md
-    - Netzwerk anlegen: versuch1/02-network.md
+    - Login und Netzwerk anlegen: versuch1/02-network.md
     - Bucket Creation: versuch1/03-BucketCreation.md
     - Vorbereitung Transcodierung: versuch1/04-VorbereitungTranscodierung.md
     - Transcodierung mit ffmpeg: versuch1/05-ffmpegtranscode.md

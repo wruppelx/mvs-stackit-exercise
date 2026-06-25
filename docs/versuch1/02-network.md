@@ -1,9 +1,39 @@
-# Netzwerk anlegen
+# Account aktivieren und Netzwerk anlegen
+
+## Account aktivieren und Projekt auswählen
+
+Für diesen Praktikumsversuch erhalten die Studierenden die benötigten Zugangsdaten (Credentials) per E-mail (SPAM-Ordner checken!) von STACKIT.
+Folgen sie dem Link zur Aktivierung Ihres Accounts:
+
+![Login User](../assets/Versuch1/verify-email.jpg)
+
+**Der Benutzername ist Ihre studentische E-mail-Adresse**
+
+Aktivieren Sie Ihren Account:
+
+![Login password](../assets/Versuch1/activate_stackit_account.jpg)
+
+**Nun wählen Sie auf der Landingpage in der oberen Leiste das bereits für Sie angelegte Projekte und die Region EU01 - (Deutschland Süd) aus.**
+
+Ein "Projekt" bei STACKIT ist eine abgegrenzte Arbeitsumgebung im Rahmen einer Organsiation.
+Sie haben "Owner"-Rechte in Ihrem Projekt und können damit INstanzen in allen STACKIT-Services anlegen, nutzen und auch löschen.
+
+Klicken Sie auf "Select project":
+
+![Select Project 1](../assets/Versuch1/stackit_select_project.jpg)
+
+Dann auf "ALL RESOURCES":
+
+![Select Project 2](../assets/Versuch1/stackit_all_resources.jpg)
+
+Dort sollte Ihr Projekt mit der Bezeichnung [HDS-Nutzername]-project angezeigt werden. Falls nicht kontaktieren Sie bitte den Dozenten!
+
+## Subnetz anlegen
+
 Für die Instanzen, mit denen Sie im Rahmen dieser praktischen Übungen arbeiten, muss zunächst ein Netzwerk angelegt werden.
 
 Achten Sie darauf, dass in der Statusleiste Ihr Projekt `[HDS-Nutzername]-project` und die Region `EU01` ausgewählt sind.
 
-## Subnetz anlegen
 
 Wählen Sie dann im STACKIT Portal im Bereich "NETWORKING" den Eintrag "Network" aus, klicken Sie auf "Create Network" und tragen Sie folgende Parameter ein:
 
