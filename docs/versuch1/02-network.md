@@ -5,18 +5,18 @@
 Für diesen Praktikumsversuch erhalten die Studierenden die benötigten Zugangsdaten (Credentials) per E-mail (SPAM-Ordner checken!) von STACKIT.
 Folgen sie dem Link zur Aktivierung Ihres Accounts:
 
-![Login User](../assets/Versuch1/verify-email.jpg)
+![Login User](../assets/Versuch1/verify-email.jpg){ style="width:50%" }
 
 **Der Benutzername ist Ihre studentische E-mail-Adresse**
 
 Aktivieren Sie Ihren Account:
 
-![Login password](../assets/Versuch1/activate_stackit_account.jpg)
+![Login password](../assets/Versuch1/activate_stackit_account.jpg){ style="width:50%" }
 
 **Nun wählen Sie auf der Landingpage in der oberen Leiste das bereits für Sie angelegte Projekte und die Region EU01 - (Deutschland Süd) aus.**
 
 Ein "Projekt" bei STACKIT ist eine abgegrenzte Arbeitsumgebung im Rahmen einer Organsiation.
-Sie haben "Owner"-Rechte in Ihrem Projekt und können damit INstanzen in allen STACKIT-Services anlegen, nutzen und auch löschen.
+Sie haben "Owner"-Rechte in Ihrem Projekt und können damit Instanzen in allen STACKIT-Services anlegen, nutzen und auch löschen.
 
 Klicken Sie auf "Select project":
 
