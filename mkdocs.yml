@@ -47,10 +47,11 @@ nav:
   - Einleitung: einleitung.md
   - Versuch 1:
     - Einführung Versuch 1: versuch1/01-einfuehrung.md
-    - Bucket Creation: versuch1/02-BucketCreation.md
-    - Vorbereitung Transcodierung: versuch1/03-VorbereitungTranscodierung.md
-    - Transcodierung mit ffmpeg: versuch1/04-ffmpegtranscode.md
-    - Fazit: versuch1/05-fazit.md
+    - Netzwerk anlegen: versuch1/02-network.md
+    - Bucket Creation: versuch1/03-BucketCreation.md
+    - Vorbereitung Transcodierung: versuch1/04-VorbereitungTranscodierung.md
+    - Transcodierung mit ffmpeg: versuch1/05-ffmpegtranscode.md
+    - Fazit: versuch1/06-fazit.md
   - Versuch 2:
     - Einführung Versuch 2: versuch2/01-einfuehrung.md
     - CDN Service: versuch2/02-service.md

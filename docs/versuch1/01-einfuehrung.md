@@ -62,25 +62,26 @@ Dieses Vorgehen entspricht einem typischen cloudbasierten Video-on-Demand-Workfl
 
 ### Log-in
 
-Für diesen Praktikumsversuch erhalten die Studierenden die benötigten Zugangsdaten (Credentials) direkt vom Dozenten. Eine eigene Registrierung ist nicht erforderlich.
-
-Zur Anmeldung auf STACKIT gelangt man über diesen Link: [STACKIT-Portal](https://portal.stackit.cloud/){:target="_blank"}
-
-
-![Login User](../assets/Versuch1/login-user.jpg)
-
-**Hier kann der bereitgestellte Username aus der E-Mail entnommen werden**
-
-![Login password](../assets/Versuch1/login-pw.jpg)
-
-**Hier kann das bereitgestellte Password aus der E-Mail entnommen werden**
-
-![Login mfa](../assets/Versuch1/mfa-login.jpg)
-
-Hier besteht die Möglichkeit eine Zwei-Faktor-Authentifizierung zu konfigurieren. Diese kann wahlweise über einen E-mail-Code oder eine Authenticator-App erfolgen.
-
-![Landingpage region](../assets/Versuch1/Landingpage-region.jpg)
-
-**Auf der Landingpage sollte in der oberen Leiste das richtige Projekt und die region EU01 - (Deutschland Süd) ausgewählt werden. Für Sie sollte bereits ein Projekt vorbereitet sein, welches Ihren HDS-Nutzernamen beinhaltet**
+Für diesen Praktikumsversuch erhalten die Studierenden die benötigten Zugangsdaten (Credentials) per E-mail (SPAM-Ordner checken!) von STACKIT.
+Folgen sie dem Link zur Aktivierung Ihres Accounts:
 
 
+![Login User](../assets/Versuch1/verify-email.jpg)
+
+**Der Benutzername ist Ihre studentische E-mail-Adresse**
+
+Aktivieren Sie Ihren Account:
+
+![Login password](../assets/Versuch1/activate_stackit_account.jpg)
+
+**Nun wählen Sie auf der Landingpage in der oberen Leiste das bereits für Sie angelegte Projekte und die Region EU01 - (Deutschland Süd) aus.**
+
+Klicken Sie auf "Select project":
+
+![Select Project 1](../assets/Versuch1/stackit_select_project.jpg)
+
+Dann auf "ALL RESOURCES":
+
+![Select Project 2](../assets/Versuch1/stackit_all_resources.jpg)
+
+Dort sollte Ihr Projekt mit der Bezeichnung [HDS-Nutzername]-project angezeigt werden. Falls nicht kontaktieren Sie bitte den Dozenten!

@@ -30,23 +30,6 @@ Der Transcoding-Prozess besteht aus den folgenden Schritten:
    Die transcodierte Videodatei wird in das Bucket hochgeladen und steht dort für die weitere Verarbeitung oder Auslieferung bereit.
 
 
-## Netzwerk
-
-**Für dieses Praktikum ist bereits ein virtuelles Netzwerk vorhanden, das verwendet werden soll.**
-
-**Bitte navigieren Sie an der linken Seite zu Networking: > Network**
-
-![S3 Dashboard](../assets/Versuch1/navinet.jpg)
-
-Bei der Erstellung von Rechenressourcen (z. B. Compute-Instanzen, Transcoder oder Services) wird dieses Netzwerk direkt ausgewählt.
-Die jeweilige Ressource wird dadurch automatisch Teil des Netzwerks.
-
-Eine separate Kopplung oder zusätzliche Konfiguration des Netzwerks ist nicht erforderlich.
-
-!!! question "Frage 1.2"
-    Dokumentieren Sie den Ihnen zugewiesenen Adressbereich, die Netzmaske, die konfigurierten DNS-Server sowie die Routing-Tabelle. 
-    
-
 
 ## SSH-Schlüssel für den Serverzugang erstellen
 

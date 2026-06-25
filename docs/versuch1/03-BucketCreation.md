@@ -14,7 +14,7 @@ Dazu wird der **STACKIT Object Storage** verwendet, ein S3-kompatibler Objektspe
 ![ObjectSTorage](../assets/Versuch1/Bucket-select.jpg)
 
 
-!!! question "Frage 1.1"
+!!! question "Frage 1.2"
     Wie erklären Sie sich, dass auch der Cloud-Anbieter STACKIT das S3-Protokoll für seinen Object Storage nutzt?
 
     Finden Sie die Spezifikation des S3-Protokolls und recherchieren Sie die Lizenzbedingungen.
