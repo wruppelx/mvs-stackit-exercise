@@ -378,10 +378,10 @@ Im nächsten Schritt wird eine per URL verfügbare Quelldatei auf dem  Bucket ab
 
 ### Kopieren der Datei in das Bucket
 
-Das Kopieren erfolgt mittels `curl`und `s3cmd`. Geben Sie den folgenden Befehl ein:
+Das Kopieren erfolgt mittels `curl`und `s3cmd`. Geben Sie den folgenden Befehl (aktualisiert am 27.06.26) ein:
 
 ```bash
-curl -k https://www.mt.hs-rm.de/testsignals/mvs-2026S/STEM2-Clip-MVS-STACKIT.mxf | s3cmd put - s3://<DEINBUCKETNAME>/Versuch1/STEM2-Clip-MVS-STACKIT.mxf
+curl -k https://mvs-public.s3.eu-central-1.amazonaws.com/STEM2-Clip-MVS-STACKIT.mxf | s3cmd put - s3://<DEINBUCKETNAME>/Versuch1/STEM2-Clip-MVS-STACKIT.mxf
 ```
 
 !!! question "Frage 1.4"
