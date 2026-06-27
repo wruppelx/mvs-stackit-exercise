@@ -1,0 +1,1235 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://wruppelx.github.io/mvs-stackit-exercise/versuch1/05-ffmpegtranscode/">
+      
+      
+        <link rel="prev" href="../04-VorbereitungTranscodierung/">
+      
+      
+        <link rel="next" href="../../versuch2/01-einfuehrung/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Transcodierung mit ffmpeg - Video-on-Demand (STACKIT/Fastly)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="../../assets/external/fonts.googleapis.com/css.49ea35f2.css">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#transcodierung-der-videodatei-auf-einer-virtuellen-maschine" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href="../.." title="Video-on-Demand (STACKIT/Fastly)" class="md-header__button md-logo" aria-label="Video-on-Demand (STACKIT/Fastly)" data-md-component="logo">
+      
+  <img src="../../assets/logo_hsrm_weiss.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Video-on-Demand (STACKIT/Fastly)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Transcodierung mit ffmpeg
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Umschalten zu Lightmode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Umschalten zu Lightmode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Umschalten zu Darkmode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Umschalten zu Darkmode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/wruppelx/mvs-stackit-exercise" title="Zum Repository" class="md-source" data-md-component="source" target="_blank" rel="noopener">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Video-on-Demand (STACKIT/Fastly)" class="md-nav__button md-logo" aria-label="Video-on-Demand (STACKIT/Fastly)" data-md-component="logo">
+      
+  <img src="../../assets/logo_hsrm_weiss.svg" alt="logo">
+
+    </a>
+    Video-on-Demand (STACKIT/Fastly)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/wruppelx/mvs-stackit-exercise" title="Zum Repository" class="md-source" data-md-component="source" target="_blank" rel="noopener">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Übersicht
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../einleitung/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Einleitung
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versuch 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Versuch 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-einfuehrung/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Einführung Versuch 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login und Netzwerk anlegen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-BucketCreation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bucket Creation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-VorbereitungTranscodierung/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vorbereitung Transcodierung
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transcodierung mit ffmpeg
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transcodierung mit ffmpeg
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aktueller-stand-des-versuchs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aktueller Stand des Versuchs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ziel-der-nachsten-schritte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ziel der nächsten Schritte
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ziel der nächsten Schritte">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erzeugen-einer-signierten-url-zum-zugriff-auf-die-quelldatei" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erzeugen einer signierten URL zum Zugriff auf die Quelldatei
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#der-transcodiervorgang" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Der Transcodiervorgang
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transcodierung-fur-adaptives-streaming-hls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transcodierung für adaptives Streaming (HLS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transcodierung für adaptives Streaming (HLS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vorbereitung-des-arbeitsverzeichnisses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vorbereitung des Arbeitsverzeichnisses
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#einspeisung-der-manifest-und-segmentdateien-in-den-stackit-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Einspeisung der Manifest- und Segmentdateien in den STACKIT Bucket
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-fazit.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fazit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versuch 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Versuch 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch2/01-einfuehrung/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Einführung Versuch 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch2/02-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CDN Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch2/03-inhalte_abrufen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch2/05-fazit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fazit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versuch 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Versuch 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versuch3/02-Ingest_Analyse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ingestanalyse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="transcodierung-der-videodatei-auf-einer-virtuellen-maschine">Transcodierung der Videodatei auf einer virtuellen Maschine</h1>
+<p>Nachdem der Bucket sowie die virtuelle Maschine eingerichtet wurden, erfolgt im nächsten Schritt die eigentliche Transcodierung einer Videodatei. In AWS würde dieser Schritt durch einen verwalteten Dienst wie AWS Elemental MediaConvert übernommen werden. Da STACKIT aktuell keinen eigenen spezialisierten Transcoding-Dienst bereitstellt, wird dieser Arbeitsschritt in diesem Versuch  auf einer virtuellen Maschine durchgeführt.</p>
+<p>Die virtuelle Maschine übernimmt dabei die Rolle eines dedizierten Rechenknotens. Sie greift auf die im Bucket abgelegte Quelldatei zu, verarbeitet diese lokal und speichert die erzeugten Ergebnisdateien anschließend wieder im Bucket ab. Dieses Vorgehen entspricht einem typischen cloudbasierten Workflow, bei dem Speicher und Rechenleistung  voneinander getrennt sind.</p>
+<h2 id="aktueller-stand-des-versuchs">Aktueller Stand des Versuchs</h2>
+<p><strong>Bis zu diesem Punkt wurden alle grundlegenden Voraussetzungen für einen cloudbasierten Transcoding-Workflow geschaffen. Die benötigte Infrastruktur ist vollständig eingerichtet und funktionsfähig.</strong></p>
+<p>Zunächst wurde ein Bucket als zentraler Speicherort für die Medieninhalte angelegt und erfolgreich getestet. Anschließend wurde eine virtuelle Maschine bereitgestellt, die als Rechenknoten für die Medienverarbeitung dient. Durch die Einrichtung von Netzwerk, Security Groups und einer öffentlichen IP-Adresse konnte der externe Zugriff auf die virtuelle Maschine ermöglicht werden.</p>
+<p>Der erfolgreiche Verbindungsaufbau per SSH bestätigt, dass die virtuelle Maschine korrekt konfiguriert ist und aus dem Internet erreichbar ist. Damit steht nun eine lauffähige Linux-Arbeitsumgebung zur Verfügung, auf der die eigentliche Transcodierung durchgeführt werden kann.</p>
+<h2 id="ziel-der-nachsten-schritte">Ziel der nächsten Schritte</h2>
+<p>Im folgenden Abschnitt beginnt der zentrale Verarbeitungsschritt des Video-on-Demand-Workflows. Eine im Bucket verfügbare Videodatei wird auf der virtuellen Maschine mithilfe einer Transcoding-Software verarbeitet.</p>
+<p><strong>Konkret werden in den nächsten Schritten:</strong></p>
+<ul>
+<li>
+<p>der Zugriff auf die zu transcodierende MXF-Quelldatei konfiguriert</p>
+</li>
+<li>
+<p>Streaming-Dateien bestehend aus Manifestdatein und Transportstrom-Chunks aus der MXF-Quelldatei erzeugt</p>
+</li>
+<li>
+<p>und die transcodierten Ergebnisse wieder im Bucket abgelegt.</p>
+</li>
+</ul>
+<p>Damit wird der Übergang von der reinen Infrastruktur- und Speicherbereitstellung zur eigentlichen Medienverarbeitung vollzogen, wie er auch in realen cloudbasierten Video-on-Demand-Systemen üblich ist.</p>
+<h3 id="erzeugen-einer-signierten-url-zum-zugriff-auf-die-quelldatei">Erzeugen einer signierten URL zum Zugriff auf die Quelldatei</h3>
+<p>Die Daten in einem Bucket sind standardmäßig gegen den Zugriff aus dem Internet geschützt.
+Um die Quelldatei nun mit ffmpeg verarbeiten zu können, wird eine temporär gültige signierte URL (Pre-signed URL) erzeugt.</p>
+<p>Pre-signed URLs sind eine Möglichkeit, zeitbegrenzt Zugriff auf eine Datei in eimem S3-Bucket einzuräumen, ohne dazu den Access Key und den Secret Key preiszugeben.</p>
+<p>Dazu geben Sie folgenden Befehl ein, das Argument "+3600" is der Gültigkeitszeitraum in Sekunden, hier also 60 Minuten:</p>
+<pre><code class="language-bash">s3cmd signurl s3://&lt;DEINBUCKETNAME&gt;/Versuch1/STEM2-Clip-MVS-STACKIT.mxf +3600
+</code></pre>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Kopieren Sie sich die erzeugte URL!</p>
+<p>Wichtig: Ersetzen Sie bei der späteren Verwendung der URL <code>http</code> durch <code>https</code>.</p>
+</div>
+<h2 id="der-transcodiervorgang">Der Transcodiervorgang</h2>
+<p>Nun kann die eigentliche Transcodierung durchgeführt werden. Ziel ist es, aus der hochauflösenden Quelldatei mehrere Distributionsformate mit unterschiedlichen Auflösungen und Bitraten zu erzeugen. Diese Formate sind für verschiedene Endgeräte und Netzwerkbedingungen optimiert.</p>
+<p>Für die Transcodierung wird das Kommandozeilenwerkzeug <strong>FFmpeg</strong> verwendet. FFmpeg liest die Quelldatei ein, dekodiert sie und erzeugt neue Ausgabedateien mit den vorgegebenen Parametern.</p>
+<h2 id="transcodierung-fur-adaptives-streaming-hls">Transcodierung für adaptives Streaming (HLS)</h2>
+<p>Neben der Erzeugung klassischer MP4-Distributionsdateien werden in modernen
+Video-on-Demand-Systemen häufig adaptive Streaming-Formate eingesetzt.
+Diese bestehen aus mehreren kurzen Videosegmenten sowie sogenannten
+Manifestdateien, die Informationen über verfügbare Auflösungen, Bitraten
+und Segmentabfolgen enthalten.</p>
+<p>Im folgenden Abschnitt wird gezeigt, wie mithilfe von FFmpeg aus der
+hochaufgelösten Quelldatei ein HLS-kompatibles Streaming-Format inklusive
+Manifestdatei erzeugt werden kann. Diese Ausgabeform eignet sich für die
+Auslieferung über ein Content Delivery Network (CDN).</p>
+<h3 id="vorbereitung-des-arbeitsverzeichnisses">Vorbereitung des Arbeitsverzeichnisses</h3>
+<p>Zunächst wird auf der virtuellen Maschine ein separates Ausgabeverzeichnis
+für die HLS-Dateien angelegt:</p>
+<pre><code class="language-bash">mkdir hls_output
+</code></pre>
+<p><strong>Erstellung der Manifest- und Segmentdateien</strong></p>
+<p>Die Transcodierung erfolgt  mithilfe von FFmpeg. Im Gegensatz zur
+klassischen MP4-Ausgabe wird hierbei das HLS-Ausgabeformat verwendet.
+FFmpeg erzeugt dabei automatisch eine Manifestdatei sowie mehrere
+Transportstrom-Segmente.</p>
+<p><strong>Geben Sie folgenden Befehl in das von ihnen gerade erstellte Konsolenverzeichnis ein:</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Wichtig: Die URL muss in Anführungszeichen angegeben werden! Ersetzen Sie auch <code>http</code> durch <code>https</code>.</p>
+</div>
+<pre><code class="language-bash">ffmpeg -i &quot;&lt;Secure URL aus dem vorherigen Schritt&gt;&quot; \
+  -map 0:v:0 \
+  -map 0:v:0 \
+  -map 0:v:0 \
+  -map 0:a:0 \
+  -map 0:a:0 \
+  -map 0:a:0 \
+  -c:v libx264 -profile:v high422 -crf 20 \
+  -filter:v:0 scale=854:480  -b:v:0 1200k -maxrate:v:0 1300k -bufsize:v:0 2600k \
+  -filter:v:1 scale=1280:720 -b:v:1 3000k -maxrate:v:1 3300k -bufsize:v:1 6600k \
+  -filter:v:2 scale=1920:1080 -b:v:2 5500k -maxrate:v:2 6000k -bufsize:v:2 12000k \
+  -c:a aac -b:a 128k -ac 2 -ar 48000 \
+  -var_stream_map &quot;v:0,a:0,name:480p v:1,a:1,name:720p v:2,a:2,name:1080p&quot; \
+  -f hls \
+  -hls_time 4 \
+  -hls_playlist_type vod \
+  -hls_flags independent_segments \
+  -master_pl_name master.m3u8 \
+  hls_output/stream_%v.m3u8
+</code></pre>
+<p><strong>Was genau bewirkt der Befehl?</strong>
+Der ausgeführte FFmpeg-Befehl erzeugt aus der Eingabedatei  mehrere Versionen desselben Videos mit unterschiedlichen Qualitätsstufen. Diese Gesamtheit der Varianten wird als HLS Bitrate-Ladder bezeichnet.</p>
+<p>Im vorliegenden Befehl werden der Video- und Audiostream der Quelldatei dreimal verwendet (<code>-map 0:v:0</code> bzw. <code>-map 0:a:0</code>). Jede dieser Kopien wird anschließend separat verarbeitet: Eine Variante wird auf <strong>480p</strong> skaliert, eine auf <strong>720p</strong> und eine auf <strong>1080p.</strong> Gleichzeitig werden für jede Auflösung passende Zielbitraten definiert, sodass jede Version eine eigene, klar abgegrenzte Qualitätsstufe darstellt.</p>
+<p>Mithilfe der Option <strong>-var_stream_map</strong> werden diese Varianten logisch zusammengefasst. FFmpeg erzeugt daraus ein Master-Manifest <strong>(master.m3u8)</strong> sowie jeweils eigene Manifeste und Segmentdateien pro Qualitätsstufe.</p>
+<p>Ein HLS-Player kann anhand dieser Struktur während der Wiedergabe zwischen den erzeugten Varianten wechseln und so die Videoqualität an die aktuelle Netzwerkverbindung anpassen. Der Transcoding-Schritt bildet damit die technische Grundlage für adaptives Streaming im Video-on-Demand-Workflow.</p>
+<p>Die folgenden Optionen definieren für jede erzeugte Rendition sowohl die Zielauflösung als auch das Bitratenverhalten des Videos:</p>
+<pre><code class="language-bash">-filter:v:0 scale=854:480  -b:v:0 1200k -maxrate:v:0 1300k -bufsize:v:0 2600k
+-filter:v:1 scale=1280:720 -b:v:1 3000k -maxrate:v:1 3300k -bufsize:v:1 6600k
+-filter:v:2 scale=1920:1080 -b:v:2 5500k -maxrate:v:2 6000k -bufsize:v:2 12000k
+</code></pre>
+<p>Für jede Qualitätsstufe wird das Video zunächst mit scale auf eine feste Zielauflösung umgerechnet. Dadurch entstehen drei klar voneinander getrennte Versionen des Inhalts, die für unterschiedliche Endgeräte und Bildschirmgrößen geeignet sind.</p>
+<p>Die Option -b:v legt die angestrebte durchschnittliche Videobitrate der jeweiligen Rendition fest. Niedrigere Auflösungen erhalten bewusst geringere Bitraten, während höhere Auflösungen entsprechend mehr Bandbreite nutzen dürfen. Dadurch bleibt das Verhältnis zwischen Bildqualität und Datenrate ausgewogen.</p>
+<p>Mit -maxrate wird eine Obergrenze für kurzfristige Bitratenspitzen definiert. Diese Begrenzung ist insbesondere für Streaming relevant, da starke Bitratenschwankungen zu Pufferproblemen beim Client führen können.</p>
+<p>Der Parameter -bufsize beschreibt die Größe des Rate-Control-Puffers und bestimmt, über welchen Zeitraum Bitratenschwankungen ausgeglichen werden dürfen. In Kombination mit -b:v und -maxrate sorgt dieser Mechanismus für ein gleichmäßiges und vorhersagbares Bitratenverhalten der HLS-Segmente.</p>
+<p><strong>Die Ausgabe sollte vergleichbar zu diesem Beispiel sein:</strong></p>
+<p><img alt="S3 Dashboard" src="../../assets/Versuch1/hlsladder.jpg" /></p>
+<p><strong>Danach kann geprüft werden ob die Manifest- und Segmentdateien angelegt worden sind:</strong></p>
+<pre><code class="language-bash">ls -lh hls_output
+</code></pre>
+<p><img alt="S3 Dashboard" src="../../assets/Versuch1/moremasterplaylists.jpg" /></p>
+<p>Anzeigen der Manifestdatei</p>
+<p>Die Manifestdatei ist eine reine Textdatei und kann mit einfachen
+Kommandozeilenwerkzeugen betrachtet werden.
+Dazu wird der Inhalt der Datei master.m3u8 mit dem Befehl cat ausgegeben:</p>
+<pre><code class="language-bash">cat hls_output/master.m3u8
+</code></pre>
+<p><strong>Die Ausgabe sieht so aus:</strong></p>
+<p><img alt="S3 Dashboard" src="../../assets/Versuch1/catinfo1.jpg" /></p>
+<div class="admonition question">
+<p class="admonition-title">Frage 1.5</p>
+<p>Analysieren Sie die Ausgabe der Datei <code>master.m3u8</code>, die mit dem
+Befehl <code>cat</code> angezeigt wurde.</p>
+<p>Erläutern Sie, welche Informationen in der Manifestdatei enthalten sind und
+welche Bedeutung die einzelnen Einträge (z. B. <code>#EXT</code>-Tags und
+Segmentreferenzen) für die Wiedergabe des Videos haben.</p>
+<p>Gehen Sie dabei insbesondere darauf ein, wie das Manifest den Aufbau des
+Videostreams beschreibt und warum die eigentlichen Mediendaten nicht direkt
+in der Manifestdatei enthalten sind.</p>
+</div>
+<h2 id="einspeisung-der-manifest-und-segmentdateien-in-den-stackit-bucket">Einspeisung der Manifest- und Segmentdateien in den STACKIT Bucket</h2>
+<p>Nach der Untersuchung der Manifestdatei werden die erzeugten HLS-Dateien wieder
+in das Bucket übertragen.
+Dazu wird das gesamte Verzeichnis hls_output in einen Unterordner des zuvor
+erstellten Buckets kopiert.</p>
+<p>Upload der HLS-Dateien</p>
+<pre><code class="language-bash">s3cmd sync hls_output s3://&lt;DEINBUCKETNAME&gt;/export/ 
+</code></pre>
+<p>Dabei werden sowohl die Manifestdatei (master.m3u8) als auch alle zugehörigen
+Segmentdateien (.ts) übertragen.</p>
+<h1 id="uberprufung-des-uploads">Überprüfung des Uploads</h1>
+<p>Um zu prüfen, ob die Dateien erfolgreich im Bucket abgelegt wurden,
+wird der Inhalt des Zielverzeichnisses aufgelistet:</p>
+<pre><code class="language-bash">s3cmd ls s3://&lt;DEINBUCKETNAME&gt;/export/hls_upload/
+</code></pre>
+<p>In der Ausgabe sollten nun sowohl die Manifestdatei als auch mehrere
+Segmentdateien angezeigt werden.</p>
+<h2 id="analyse-der-transcodierten-dateien-mit-mediainfo">Analyse der transcodierten Dateien mit MediaInfo</h2>
+<p>Im nächsten Schritt werden die transcodierten Dateien mit dem Analysewerkzeug <em>MediaInfo</em> untersucht.</p>
+<p><img alt="S3 Dashboard" src="../../assets/Versuch1/mediainfo.jpg" width="50%" /></p>
+<h3 id="vorbereitung">Vorbereitung</h3>
+<p>Zunächst wird mediainfo auf der VM installiert:</p>
+<pre><code class="language-bash">sudo apt-get install mediainfo -y
+</code></pre>
+<h3 id="analyse">Analyse</h3>
+<p>Die erzeugten Segmente können über die Kommandozeile analysiert werden, Beispiel:</p>
+<pre><code class="language-bash">mediainfo hls_output/stream_1080p4.ts
+</code></pre>
+<p>Dokumentieren Sie für alle Qualitätsstufen (also 480p, 720p, 1080p) die folgende Parameter:</p>
+<ul>
+<li>
+<p>Auflösung</p>
+</li>
+<li>
+<p>Codec</p>
+</li>
+<li>
+<p>Framerate</p>
+</li>
+<li>
+<p>Containerformat</p>
+</li>
+</ul>
+<p>Dokumentierten Sie für alle Segmente die folgende Parameter:</p>
+<ul>
+<li>
+<p>Dauer (Duration)</p>
+</li>
+<li>
+<p>Bitrate</p>
+</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Frage 1.6</p>
+<p>Vergleichen Sie die von mediainfo angezeigte Bitrate mit den Transcodier-Einstellungen.</p>
+<p>Wie erklären Sie den Unterschied?</p>
+<p>Addieren Sie die Einzel-Dauern der Segmente. Stimmt die Summe mit der Dauer der Quelldatei überein?</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Frage 1.7</p>
+<p><strong>Nun ist ihre Kreativität gefragt...</strong>
+Legen Sie einen oder mehrere zusätzliche Output-Ordner hls_output_2 etc. an.
+Transcodieren Sie die Quelldatei erneut mit <em>FFmpeg</em> und nehmen Sie dabei eigenständig Anpassungen an den Transcodierungsparametern vor.<br><br></p>
+<p>Verändern Sie mindestens zwei der folgenden Punkte:
+<ul>
+  <li>Video-Codec</li>
+  <li>Video-Bitrate</li>
+  <li>Audio-Bitrate</li>
+</ul></p>
+<p>Der benötigte FFmpeg-Befehl kann durch Abwandlung des obigen ffmpeg-Befehls erstellt werden.
+Wichtig: Wählen Sie einen anderen Ausgabe-Ordner, z.B. `hls_output_2</p>
+<p>Kopieren Sie den erstellten Unterordner wiederum in den export/ Ordner Ihres Bucket. </p>
+<p>Analysieren Sie die erzeugte Ausgabedatei anschließend mit <em>MediaInfo</em> und dokumentieren Sie:
+<ul>
+  <li>die gewählten Parameter</li>
+  <li>den verwendeten FFmpeg-Befehl</li>
+  <li>die Unterschiede zur vorherigen Transcodierung</li>
+</ul></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
+        
+          
+          <a href="../04-VorbereitungTranscodierung/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Vorbereitung Transcodierung">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Zurück
+              </span>
+              <div class="md-ellipsis">
+                Vorbereitung Transcodierung
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../versuch2/01-einfuehrung/" class="md-footer__link md-footer__link--next" aria-label="Weiter: Einführung Versuch 2">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Weiter
+              </span>
+              <div class="md-ellipsis">
+                Einführung Versuch 2
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.integrate", "navigation.top", "navigation.footer", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
