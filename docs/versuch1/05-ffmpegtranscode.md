@@ -199,7 +199,7 @@ Um zu prüfen, ob die Dateien erfolgreich im Bucket abgelegt wurden,
 wird der Inhalt des Zielverzeichnisses aufgelistet:
 
 ```bash
-s3cmd ls s3://<DEINBUCKETNAME>/export/hls_upload/
+s3cmd ls s3://<DEINBUCKETNAME>/export/hls_output/
 ```
 
 In der Ausgabe sollten nun sowohl die Manifestdatei als auch mehrere
